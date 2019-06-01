@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="ERPSYS.MVC"
+                   namespace="ERPSYS.MVC.Models">
+  <class name="Usuario" abstract="true">
+    <cache usage="nonstrict-read-write"/>
+    <id name="Id">
+      <generator class="identity"/>
+    </id>
+    <property name="Nome"/>
+    <property name="NomeUsuario" />
+  </class>
+</hibernate-mapping>
