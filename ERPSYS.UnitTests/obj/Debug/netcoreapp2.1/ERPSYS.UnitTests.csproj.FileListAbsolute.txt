@@ -12,3 +12,4 @@ D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.UnitTes
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.UnitTests\obj\Debug\netcoreapp2.1\ERPSYS.UnitTests.AssemblyInfo.cs
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.UnitTests\obj\Debug\netcoreapp2.1\ERPSYS.UnitTests.dll
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.UnitTests\obj\Debug\netcoreapp2.1\ERPSYS.UnitTests.pdb
+D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.UnitTests\obj\Debug\netcoreapp2.1\ERPSYS.UnitTests.csprojAssemblyReference.cache

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ERPSYS.MVC.DAO;
 using ERPSYS.MVC.IOC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
@@ -34,7 +36,9 @@ namespace ERPSYS
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            // Registrar Connection String para acesso ao banco de dados
+            string connectionString = Configuration.GetConnectionString("Default");
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
             // Registrar as Injeções de dependências
             IoCModule.LoadDependencyInjection(services);
         }
