@@ -1,7 +1,6 @@
 ﻿using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
 using Microsoft.Extensions.DependencyInjection;
-using Ninject.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using ERPSYS.Infra;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,8 +14,6 @@ namespace ERPSYS.MVC
     {
         public static void Main(string[] args)
         {
-            // Chamando o método que Gera ou atualiza as tabelas do banco de dados
-            NHibernateHelper.GerarOuAtualizarTabelas();
             // Iniciando o Host Web
             CreateWebHostBuilder(args).Build().Run();
         }

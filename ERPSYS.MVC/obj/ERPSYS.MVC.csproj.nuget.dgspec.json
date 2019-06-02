@@ -55,6 +55,7 @@
               "version": "[2.1.2, )"
             },
             "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
@@ -62,18 +63,6 @@
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.4.10, )"
-            },
-            "NHibernate": {
-              "target": "Package",
-              "version": "[5.2.5, )"
-            },
-            "NHibernate.Caches.SysCache": {
-              "target": "Package",
-              "version": "[5.5.1, )"
-            },
-            "Ninject": {
-              "target": "Package",
-              "version": "[3.3.4, )"
             }
           },
           "imports": [
