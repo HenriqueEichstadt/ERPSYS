@@ -10,24 +10,24 @@ namespace ERPSYS.MVC.Models
     public class Pessoa : IPessoa
     {
 
-        public virtual int Id { get; set; }
-        public virtual string Nome { get; set; }
-        public virtual DateTime DataNascimento { get; set; }
-        public virtual char? Genero { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public DateTime DataNascimento { get; set; }
+        public char? Genero { get; set; }
         [MaxLength(15)]
-        public virtual string RG { get; set; }
+        public string RG { get; set; }
         [Required, MinLength(14), MaxLength(18)]
-        public virtual string CPF { get; set; }
+        public string CPF { get; set; }
         [Required, MaxLength(50)]
-        public virtual string Email { get; set; }
+        public string Email { get; set; }
         [Required, MinLength(13), MaxLength(14)]
-        public virtual string TelefoneUm { get; set; }
+        public string TelefoneUm { get; set; }
         [MinLength(13), MaxLength(14)]
-        public virtual string TelefoneDois { get; set; }
-        public virtual DateTime DataInclusao { get; set; }
-        public virtual DateTime DataAlteracao { get; set; }
-        public virtual Usuario UsuarioInclusao { get; set; }
-        public virtual Usuario UsuarioAlteracao { get; set; }
+        public string TelefoneDois { get; set; }
+        public DateTime DataInclusao { get; set; }
+        public DateTime DataAlteracao { get; set; }
+        public Usuario UsuarioInclusao { get; set; }
+        public Usuario UsuarioAlteracao { get; set; }
        
         public Pessoa(string nome)
         {
@@ -36,7 +36,7 @@ namespace ERPSYS.MVC.Models
         
         public Pessoa() { }
 
-        public int GetIdadePessoa(DateTime dataNascimento)
+        public int GetIdade(DateTime dataNascimento)
         {
             TimeSpan ts = DateTime.Today - dataNascimento;
             DateTime idade = (new DateTime() + ts).AddYears(-1).AddDays(-1);

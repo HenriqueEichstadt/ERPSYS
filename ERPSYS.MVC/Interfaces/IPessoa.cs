@@ -21,6 +21,6 @@ namespace ERPSYS.MVC.Interfaces
         DateTime DataAlteracao { get; set; }
         Usuario UsuarioInclusao { get; set; }
         Usuario UsuarioAlteracao { get; set; }
-        int GetIdadePessoa(DateTime dataNascimento);
+        int GetIdade(DateTime dataNascimento);
     }
 }

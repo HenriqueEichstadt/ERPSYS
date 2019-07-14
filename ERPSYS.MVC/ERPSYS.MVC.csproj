@@ -10,16 +10,17 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190602015150_Inicial01062019.cs" />
     <Compile Remove="Migrations\20190602015150_Inicial01062019.Designer.cs" />
+    <Compile Remove="Migrations\20190602224343_CriandoTabelaPessoaFisica.cs" />
+    <Compile Remove="Migrations\20190602224343_CriandoTabelaPessoaFisica.Designer.cs" />
+    <Compile Remove="Migrations\20190602234544_teste.cs" />
+    <Compile Remove="Migrations\20190602234544_teste.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.10" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>
 
 </Project>

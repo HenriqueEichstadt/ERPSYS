@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ERPSYS.MVC.Models;
 using ERPSYS.Models;
+using Ninject;
+using ERPSYS.MVC.Interfaces;
 
 namespace ERPSYS.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        [Inject]
+        public IPessoa Pessoa { get; set; }
+
+
         public IActionResult Index()
         {
+            Pessoa.Nome = "Henrique";
             return View();
         }
 
