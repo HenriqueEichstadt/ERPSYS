@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\Mono.Cecil.dll" t="Include" />
+    <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\nunit.engine.netstandard.dll" t="Include" />
+    <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\NUnit3.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\NUnit3.TestAdapter.pdb" t="Include" />
+    <e p="C:\Users\Henrique Eichst\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Henrique Eichst\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_MySolution.-880299808.00" t="ExcludeRecursive" />
+    <e p="D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS" t="IncludeFlat">
+      <e p="ERPSYS.MVC" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="HomeController.cs" t="Include" />
+        </e>
+        <e p="DAO" t="Include">
+          <e p="ApplicationContext.cs" t="Include" />
+          <e p="EntityGenerator.cs" t="Include" />
+        </e>
+        <e p="Dockerfile" t="Include" />
+        <e p="ERPSYS.MVC.csproj" t="IncludeRecursive" />
+        <e p="Extensions" t="Include">
+          <e p="ApplicationBuilder" t="Include">
+            <e p="ApplicationBuilderExtensions.cs" t="Include" />
+          </e>
+          <e p="AspNetCore" t="Include">
+            <e p="AspNetCoreExtensions.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IEndereco.cs" t="Include" />
+          <e p="IPessoa.cs" t="Include" />
+          <e p="IPessoaFisica.cs" t="Include" />
+          <e p="IPessoaJuridica.cs" t="Include" />
+        </e>
+        <e p="IOC" t="Include">
+          <e p="Activators.cs" t="Include" />
+          <e p="ERPSYSNinjectModule.cs" t="Include" />
+          <e p="RequestScopingStartupFilter.cs" t="Include" />
+          <e p="TestService.cs" t="Include" />
+        </e>
+        <e p="Migrations" t="Include">
+          <e p="20190602015619_Inicial.cs" t="Include" />
+          <e p="20190602015619_Inicial.Designer.cs" t="Include" />
+          <e p="20190602015723_AdicionandoTabelaPESSOASeUSUARIOS.cs" t="Include" />
+          <e p="20190602015723_AdicionandoTabelaPESSOASeUSUARIOS.Designer.cs" t="Include" />
+          <e p="20190602225609_CriandoTabelaPessoaFisica.cs" t="Include" />
+          <e p="20190602225609_CriandoTabelaPessoaFisica.Designer.cs" t="Include" />
+          <e p="20190602230305_CriandoTabelaPessoaJuridica.cs" t="Include" />
+          <e p="20190602230305_CriandoTabelaPessoaJuridica.Designer.cs" t="Include" />
+          <e p="20190602231326_ModificandoTabelaUSUARIOS.cs" t="Include" />
+          <e p="20190602231326_ModificandoTabelaUSUARIOS.Designer.cs" t="Include" />
+          <e p="20190602233941_AlterandoNomeDeTabelasEAdicionandoCampos.cs" t="Include" />
+          <e p="20190602233941_AlterandoNomeDeTabelasEAdicionandoCampos.Designer.cs" t="Include" />
+          <e p="ApplicationContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Endereco.cs" t="Include" />
+          <e p="ErrorViewModel.cs" t="Include" />
+          <e p="Fornecedor.cs" t="Include" />
+          <e p="Pessoa.cs" t="Include" />
+          <e p="PessoaFisica.cs" t="Include" />
+          <e p="PessoaJuridica.cs" t="Include" />
+          <e p="Usuario.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="ERPSYS.MVC.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="Views" t="Include">
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="_ViewStart.cshtml" t="Include" />
+          <e p="Home" t="Include">
+            <e p="About.cshtml" t="Include" />
+            <e p="Contact.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+            <e p="Privacy.cshtml" t="Include" />
+          </e>
+          <e p="Shared" t="Include">
+            <e p="_CookieConsentPartial.cshtml" t="Include" />
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
+          </e>
+        </e>
+        <e p="wwwroot" t="Include">
+          <e p="css" t="Include">
+            <e p="site.css" t="Include" />
+            <e p="site.min.css" t="Include" />
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="images" t="Include">
+            <e p="banner1.svg" t="Include" />
+            <e p="banner2.svg" t="Include" />
+            <e p="banner3.svg" t="Include" />
+          </e>
+          <e p="js" t="Include">
+            <e p="site.js" t="Include" />
+            <e p="site.min.js" t="Include" />
+          </e>
+          <e p="lib" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p=".bower.json" t="Include" />
+              <e p="dist" t="Include">
+                <e p="css" t="Include">
+                  <e p="bootstrap-theme.css" t="Include" />
+                  <e p="bootstrap-theme.css.map" t="Include" />
+                  <e p="bootstrap-theme.min.css" t="Include" />
+                  <e p="bootstrap-theme.min.css.map" t="Include" />
+                  <e p="bootstrap.css" t="Include" />
+                  <e p="bootstrap.css.map" t="Include" />
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="fonts" t="Include">
+                  <e p="glyphicons-halflings-regular.eot" t="Include" />
+                  <e p="glyphicons-halflings-regular.svg" t="Include" />
+                  <e p="glyphicons-halflings-regular.ttf" t="Include" />
+                  <e p="glyphicons-halflings-regular.woff" t="Include" />
+                  <e p="glyphicons-halflings-regular.woff2" t="Include" />
+                </e>
+                <e p="js" t="Include">
+                  <e p="bootstrap.js" t="Include" />
+                  <e p="bootstrap.min.js" t="Include" />
+                  <e p="npm.js" t="Include" />
+                </e>
+              </e>
+              <e p="LICENSE" t="Include" />
+            </e>
+            <e p="jquery" t="Include">
+              <e p=".bower.json" t="Include" />
+              <e p="dist" t="Include">
+                <e p="jquery.js" t="Include" />
+                <e p="jquery.min.js" t="Include" />
+                <e p="jquery.min.map" t="Include" />
+              </e>
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+            <e p="jquery-validation" t="Include">
+              <e p=".bower.json" t="Include" />
+              <e p="dist" t="Include">
+                <e p="additional-methods.js" t="Include" />
+                <e p="additional-methods.min.js" t="Include" />
+                <e p="jquery.validate.js" t="Include" />
+                <e p="jquery.validate.min.js" t="Include" />
+              </e>
+              <e p="LICENSE.md" t="Include" />
+            </e>
+            <e p="jquery-validation-unobtrusive" t="Include">
+              <e p=".bower.json" t="Include" />
+              <e p="jquery.validate.unobtrusive.js" t="Include" />
+              <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="ERPSYS.UnitTests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ERPSYS.UnitTests.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="ERPSYS.UnitTests.AssemblyInfo.cs" t="Include" />
+              <e p="ERPSYS.UnitTests.Program.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="UnitTest1.cs" t="Include" />
+      </e>
+      <e p="MySolution.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
