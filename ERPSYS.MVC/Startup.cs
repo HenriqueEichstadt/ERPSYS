@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ERPSYS.MVC.DAO;
+using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Extensions.ApplicationBuilder;
 using ERPSYS.MVC.Extensions.AspNetCore;
 using ERPSYS.MVC.Interfaces;
@@ -16,6 +17,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
@@ -52,10 +54,10 @@ namespace ERPSYS
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             // Registrar Connection String para acesso ao banco de dados
-            string connectionString = Configuration.GetConnectionString("Default");
+            string connectionString = Configuration.GetConnectionString("BaseLocalNoProjeto"); //"Default" para usar no SSMS
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+
             // Registrar as Injeções de dependências
-            //IoCModule.LoadDependencyInjection(services);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddRequestScopingMiddleware(() => scopeProvider.Value = new Scope());
             services.AddCustomControllerActivation(Resolve);
@@ -74,7 +76,12 @@ namespace ERPSYS
             }
 
             // This is where our bindings are configurated
-            ERPSYSNinjectModule.LoadDependencyInjection(kernel, RequestScope);
+
+
+            // ERPSYSNinjectModule.LoadDependencyInjection(kernel, RequestScope); tentativa antiga
+
+            var module = new ERPSYSNinjectModule(kernel);
+            module.Load();
             // Cross-wire required framework services
             kernel.BindToMethod(app.GetRequestService<IViewBufferScope>);
 

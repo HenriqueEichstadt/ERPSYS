@@ -8,7 +8,7 @@ namespace ERPSYS.MVC.Interfaces
 {
     public interface IPessoa
     {
-        int Id { get; set; }
+        int Id { get; }
         string Nome { get; set; }
         DateTime DataNascimento { get; set; }
         char? Genero { get; set; }

@@ -9,22 +9,22 @@ namespace ERPSYS.MVC.DAO
 {
     public class EntityGenerator
     {
-        internal void GerarTabelaPESSOASFISICAS(ModelBuilder modelBuilder)
+        internal void GerarTabelaPESSOAS(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PessoaFisica>().HasKey(p => p.Id);
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.Id).HasColumnName("ID");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.Nome).IsRequired().HasColumnName("NOME");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.DataNascimento).IsRequired().HasColumnName("DATANASCIMENTO");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.Genero).HasColumnName("GENERO");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.RG).HasColumnName("RG");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.CPF).IsRequired().HasColumnName("CPF");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.Email).HasColumnName("EMAIL");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.TelefoneUm).IsRequired().HasColumnName("TELEFONEUM");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.TelefoneDois).HasColumnName("TELEFONEDOIS");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
-            modelBuilder.Entity<PessoaFisica>().Property(prop => prop.DataAlteracao).IsRequired().HasColumnName("DATAALTERACAO");
-            modelBuilder.Entity<PessoaFisica>().HasOne(u => u.UsuarioInclusao);
-            modelBuilder.Entity<PessoaFisica>().HasOne(u => u.UsuarioAlteracao);
+            modelBuilder.Entity<Pessoa>().HasKey(p => p.Id);
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.Id).HasColumnName("ID");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.Nome).IsRequired().HasColumnName("NOME");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.DataNascimento).IsRequired().HasColumnName("DATANASCIMENTO");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.Genero).HasColumnName("GENERO");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.RG).HasColumnName("RG");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.CPF).IsRequired().HasColumnName("CPF");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.Email).HasColumnName("EMAIL");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.TelefoneUm).IsRequired().HasColumnName("TELEFONEUM");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.TelefoneDois).HasColumnName("TELEFONEDOIS");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.DataAlteracao).IsRequired().HasColumnName("DATAALTERACAO");
+            modelBuilder.Entity<Pessoa>().HasOne(u => u.UsuarioInclusao);
+            modelBuilder.Entity<Pessoa>().HasOne(u => u.UsuarioAlteracao);
             //modelBuilder.Entity<PessoaFisica>().Property(prop => prop.UsuarioInclusao).HasColumnName("USUARIOINCLUSAO");
             //modelBuilder.Entity<PessoaFisica>().Property(prop => prop.UsuarioAlteracao).HasColumnName("USUARIOALTERACAO");
         }
@@ -33,27 +33,6 @@ namespace ERPSYS.MVC.DAO
         {
             
         }
-
-        internal void GerarTabelaPESSOASJURIDICAS(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<PessoaJuridica>().HasKey(p => p.Id);
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.Id).HasColumnName("ID");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.NomeFantasia).IsRequired().HasColumnName("NOMEFANTASIA");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.NomeRazaoSocial).IsRequired().HasColumnName("NOMERAZAOSOCIAL");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.InscricaoEstadual).IsRequired().HasColumnName("INSCRICAOESTADUAL");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.CNPJ).IsRequired().HasColumnName("CNPJ");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.Email).IsRequired().HasColumnName("EMAIL");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.TelefoneUm).IsRequired().HasColumnName("TELEFONEUM");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.TelefoneDois).HasColumnName("TELEFONEDOIS");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.Observacoes).HasColumnName("OBSERVACOES");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.DataInclusão).IsRequired().HasColumnName("DATAINCLUSAO");
-            modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.DataAlteracao).IsRequired().HasColumnName("DATAALTERACAO");
-            //modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.UsuarioInclusao).IsRequired().HasColumnName("USUARIOINCLUSAO");
-            //modelBuilder.Entity<PessoaJuridica>().Property(prop => prop.UsuarioAlteracao).IsRequired().HasColumnName("USUARIOALTERACAO");
-            modelBuilder.Entity<PessoaJuridica>().HasOne(u => u.UsuarioInclusao);
-            modelBuilder.Entity<PessoaJuridica>().HasOne(u => u.UsuarioAlteracao);
-        }
-
         internal void GerarTabelaUSUARIOS(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Usuario>().HasKey(p => p.Id);

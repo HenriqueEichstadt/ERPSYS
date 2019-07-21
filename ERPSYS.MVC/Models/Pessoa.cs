@@ -1,4 +1,5 @@
 ﻿using ERPSYS.MVC.Interfaces;
+using ERPSYS.MVC.IOC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,10 +8,9 @@ using System.Web;
 
 namespace ERPSYS.MVC.Models
 {
-    public class Pessoa : IPessoa
+    public class Pessoa : EntityModel, IPessoa
     {
-
-        public int Id { get; set; }
+        public Pessoa() { }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public char? Genero { get; set; }
@@ -24,17 +24,11 @@ namespace ERPSYS.MVC.Models
         public string TelefoneUm { get; set; }
         [MinLength(13), MaxLength(14)]
         public string TelefoneDois { get; set; }
-        public DateTime DataInclusao { get; set; }
-        public DateTime DataAlteracao { get; set; }
-        public Usuario UsuarioInclusao { get; set; }
-        public Usuario UsuarioAlteracao { get; set; }
        
         public Pessoa(string nome)
         {
             this.Nome = nome;
         }
-        
-        public Pessoa() { }
 
         public int GetIdade(DateTime dataNascimento)
         {

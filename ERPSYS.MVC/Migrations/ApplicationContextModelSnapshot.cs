@@ -23,54 +23,6 @@ namespace ERPSYS.MVC.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CPF")
-                        .IsRequired()
-                        .HasMaxLength(18);
-
-                    b.Property<DateTime>("DataAlteracao");
-
-                    b.Property<DateTime>("DataInclusao");
-
-                    b.Property<DateTime>("DataNascimento");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Genero")
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
-
-                    b.Property<string>("Nome");
-
-                    b.Property<string>("RG")
-                        .HasMaxLength(15);
-
-                    b.Property<string>("TelefoneDois")
-                        .HasMaxLength(14);
-
-                    b.Property<string>("TelefoneUm")
-                        .IsRequired()
-                        .HasMaxLength(14);
-
-                    b.Property<int?>("UsuarioAlteracaoId");
-
-                    b.Property<int?>("UsuarioInclusaoId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioAlteracaoId");
-
-                    b.HasIndex("UsuarioInclusaoId");
-
-                    b.ToTable("Pessoa");
-                });
-
-            modelBuilder.Entity("ERPSYS.MVC.Models.PessoaFisica", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -89,6 +41,7 @@ namespace ERPSYS.MVC.Migrations
                         .HasColumnName("DATANASCIMENTO");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnName("EMAIL")
                         .HasMaxLength(50);
 
@@ -123,71 +76,7 @@ namespace ERPSYS.MVC.Migrations
 
                     b.HasIndex("UsuarioInclusaoId");
 
-                    b.ToTable("PessoaFisica");
-                });
-
-            modelBuilder.Entity("ERPSYS.MVC.Models.PessoaJuridica", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CNPJ")
-                        .IsRequired()
-                        .HasColumnName("CNPJ")
-                        .HasMaxLength(18);
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnName("DATAALTERACAO");
-
-                    b.Property<DateTime>("DataInclusão")
-                        .HasColumnName("DATAINCLUSAO");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnName("EMAIL")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("InscricaoEstadual")
-                        .IsRequired()
-                        .HasColumnName("INSCRICAOESTADUAL")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("NomeFantasia")
-                        .IsRequired()
-                        .HasColumnName("NOMEFANTASIA")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("NomeRazaoSocial")
-                        .IsRequired()
-                        .HasColumnName("NOMERAZAOSOCIAL")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Observacoes")
-                        .HasColumnName("OBSERVACOES")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("TelefoneDois")
-                        .HasColumnName("TELEFONEDOIS")
-                        .HasMaxLength(14);
-
-                    b.Property<string>("TelefoneUm")
-                        .IsRequired()
-                        .HasColumnName("TELEFONEUM")
-                        .HasMaxLength(14);
-
-                    b.Property<int?>("UsuarioAlteracaoId");
-
-                    b.Property<int?>("UsuarioInclusaoId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioAlteracaoId");
-
-                    b.HasIndex("UsuarioInclusaoId");
-
-                    b.ToTable("PessoaJuridica");
+                    b.ToTable("PESSOAS");
                 });
 
             modelBuilder.Entity("ERPSYS.MVC.Models.Usuario", b =>
@@ -235,28 +124,6 @@ namespace ERPSYS.MVC.Migrations
                 });
 
             modelBuilder.Entity("ERPSYS.MVC.Models.Pessoa", b =>
-                {
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
-                        .WithMany()
-                        .HasForeignKey("UsuarioAlteracaoId");
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithMany()
-                        .HasForeignKey("UsuarioInclusaoId");
-                });
-
-            modelBuilder.Entity("ERPSYS.MVC.Models.PessoaFisica", b =>
-                {
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
-                        .WithMany()
-                        .HasForeignKey("UsuarioAlteracaoId");
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithMany()
-                        .HasForeignKey("UsuarioInclusaoId");
-                });
-
-            modelBuilder.Entity("ERPSYS.MVC.Models.PessoaJuridica", b =>
                 {
                     b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
                         .WithMany()

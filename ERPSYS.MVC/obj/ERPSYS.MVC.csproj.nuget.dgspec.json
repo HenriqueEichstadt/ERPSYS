@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[1.4.10, )"
             },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
             "Ninject": {
               "target": "Package",
               "version": "[3.3.4, )"

@@ -1,5 +1,7 @@
-﻿using ERPSYS.MVC.Models;
+﻿using ERPSYS.MVC.DAO.Interfaces;
+using ERPSYS.MVC.Models;
 using Microsoft.EntityFrameworkCore;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,9 @@ namespace ERPSYS.MVC.DAO
     {
         private EntityGenerator Gerador => new EntityGenerator();
 
-        public DbSet<Pessoa> PESSOASFISICAS { get; set; }
-        public DbSet<Pessoa> PESSOASJURIDICAS { get; set; }
+        public DbSet<Pessoa> PESSOAS { get; set; }
         public DbSet<Usuario> USUARIOS { get; set; }
+
         public ApplicationContext(DbContextOptions options) : base(options)
         {
         }
@@ -22,13 +24,9 @@ namespace ERPSYS.MVC.DAO
         {
             base.OnModelCreating(modelBuilder);
 
-            Gerador.GerarTabelaPESSOASFISICAS(modelBuilder);
-            Gerador.GerarTabelaPESSOASJURIDICAS(modelBuilder);
+            Gerador.GerarTabelaPESSOAS(modelBuilder);
             Gerador.GerarTabelaUSUARIOS(modelBuilder);
-            Gerador.GerarTabelaENDERECOS(modelBuilder);
-
+            //Gerador.GerarTabelaENDERECOS(modelBuilder);
         }
-
-
     }
 }

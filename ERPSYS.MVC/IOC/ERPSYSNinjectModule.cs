@@ -1,11 +1,16 @@
-﻿using ERPSYS.MVC.Extensions.ApplicationBuilder;
+﻿using ERPSYS.MVC.DAO;
+using ERPSYS.MVC.DAO.Interfaces;
+using ERPSYS.MVC.Extensions.ApplicationBuilder;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Ninject;
 using Ninject.Activation;
+using Ninject.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +18,34 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.IOC
 {
-    public static class ERPSYSNinjectModule
+    public class ERPSYSNinjectModule : NinjectModule
     {
-        public static void LoadDependencyInjection(StandardKernel kernel,Func<IContext, object> requestScope)
+        private StandardKernel Kernel { get; set; }
+
+        public ERPSYSNinjectModule(StandardKernel kernel)
         {
-            RegistroModelos(kernel, requestScope);
+            Kernel = kernel;
         }
 
-        private static void RegistroModelos(StandardKernel kernel, Func<IContext, object> requestScope)
+        public override void Load()
         {
-            kernel.Bind<ITestService>().To<TestService>().InScope(requestScope);
-            kernel.Bind<IPessoa>().To<Pessoa>().InScope(requestScope);
-            kernel.Bind<IEndereco>().To<Endereco>().InScope(requestScope);
+            RegistroModelos(Kernel);
+            RegistroDaos(Kernel);
         }
+
+        private static void RegistroModelos(StandardKernel kernel)
+        {
+            kernel.Bind<IPessoa>().To<Pessoa>();
+            kernel.Bind<IEndereco>().To<Endereco>();
+        }
+
+        private static void RegistroDaos(StandardKernel kernel)
+        {
+            kernel.Bind<IPessoaDAO>().To<PessoaDAO>();
+        }
+        //public static void LoadDependencyInjection(StandardKernel kernel,Func<IContext, object> requestScope)
+        //{
+
+        //}
     }
 }
