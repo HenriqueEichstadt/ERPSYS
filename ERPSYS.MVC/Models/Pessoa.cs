@@ -10,7 +10,6 @@ namespace ERPSYS.MVC.Models
 {
     public class Pessoa : EntityModel, IPessoa
     {
-        public Pessoa() { }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public char? Genero { get; set; }
@@ -25,10 +24,10 @@ namespace ERPSYS.MVC.Models
         [MinLength(13), MaxLength(14)]
         public string TelefoneDois { get; set; }
        
-        public Pessoa(string nome)
+        /*public Pessoa(string nome)
         {
             this.Nome = nome;
-        }
+        }*/
 
         public int GetIdade(DateTime dataNascimento)
         {

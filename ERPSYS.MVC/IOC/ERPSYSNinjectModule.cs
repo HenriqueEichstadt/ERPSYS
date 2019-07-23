@@ -20,17 +20,18 @@ namespace ERPSYS.MVC.IOC
 {
     public class ERPSYSNinjectModule : NinjectModule
     {
-        private StandardKernel Kernel { get; set; }
+        private StandardKernel _kernel;
 
         public ERPSYSNinjectModule(StandardKernel kernel)
         {
-            Kernel = kernel;
+            _kernel = kernel;
         }
 
         public override void Load()
         {
-            RegistroModelos(Kernel);
-            RegistroDaos(Kernel);
+            _kernel.Bind<DbContextOptions>().ToSelf();
+            RegistroModelos(_kernel);
+            RegistroDaos(_kernel);
         }
 
         private static void RegistroModelos(StandardKernel kernel)
@@ -43,9 +44,5 @@ namespace ERPSYS.MVC.IOC
         {
             kernel.Bind<IPessoaDAO>().To<PessoaDAO>();
         }
-        //public static void LoadDependencyInjection(StandardKernel kernel,Func<IContext, object> requestScope)
-        //{
-
-        //}
     }
 }

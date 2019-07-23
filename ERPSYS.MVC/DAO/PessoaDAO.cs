@@ -1,6 +1,7 @@
 ﻿using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
+using Microsoft.EntityFrameworkCore;
 using Ninject;
 using System;
 using System.Collections.Generic;

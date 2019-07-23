@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.DAO
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext, IApplicationContext
     {
         private EntityGenerator Gerador => new EntityGenerator();
 
@@ -26,7 +26,11 @@ namespace ERPSYS.MVC.DAO
 
             Gerador.GerarTabelaPESSOAS(modelBuilder);
             Gerador.GerarTabelaUSUARIOS(modelBuilder);
-            //Gerador.GerarTabelaENDERECOS(modelBuilder);
+        }
+
+        public new void Add()
+        {
+            throw new NotImplementedException();
         }
     }
 }

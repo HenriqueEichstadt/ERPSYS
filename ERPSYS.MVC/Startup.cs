@@ -59,6 +59,10 @@ namespace ERPSYS
 
             // Registrar as Injeções de dependências
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<DbContext, ApplicationContext>();
+            services.AddTransient(typeof(BaseDAO<>), typeof(BaseDAO<>));
+            services.AddTransient(typeof(ApplicationContext));
+            services.AddTransient(typeof(DbContextOptions<ApplicationContext>));
             services.AddRequestScopingMiddleware(() => scopeProvider.Value = new Scope());
             services.AddCustomControllerActivation(Resolve);
             services.AddCustomViewComponentActivation(Resolve);
