@@ -16,10 +16,6 @@ namespace ERPSYS.MVC.DAO
         public DbSet<Pessoa> PESSOAS { get; set; }
         public DbSet<Usuario> USUARIOS { get; set; }
 
-        public ApplicationContext(DbContextOptions options) : base(options)
-        {
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -28,9 +24,10 @@ namespace ERPSYS.MVC.DAO
             Gerador.GerarTabelaUSUARIOS(modelBuilder);
         }
 
-        public new void Add()
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            throw new NotImplementedException();
+            string connectionString = Startup.ConnectionString;
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }

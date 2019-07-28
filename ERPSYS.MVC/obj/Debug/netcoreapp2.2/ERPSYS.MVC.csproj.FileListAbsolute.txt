@@ -30,3 +30,5 @@ D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.pdb
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csproj.CopyComplete
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csprojAssemblyReference.cache
+D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Cliente\Novo.g.cshtml.cs
+D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Cliente\Cadastrados.g.cshtml.cs

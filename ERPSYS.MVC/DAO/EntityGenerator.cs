@@ -22,11 +22,11 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Pessoa>().Property(prop => prop.TelefoneUm).IsRequired().HasColumnName("TELEFONEUM");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.TelefoneDois).HasColumnName("TELEFONEDOIS");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.Ativo).IsRequired().HasColumnName("ATIVO");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.DataAlteracao).IsRequired().HasColumnName("DATAALTERACAO");
             modelBuilder.Entity<Pessoa>().HasOne(u => u.UsuarioInclusao);
             modelBuilder.Entity<Pessoa>().HasOne(u => u.UsuarioAlteracao);
-            //modelBuilder.Entity<PessoaFisica>().Property(prop => prop.UsuarioInclusao).HasColumnName("USUARIOINCLUSAO");
-            //modelBuilder.Entity<PessoaFisica>().Property(prop => prop.UsuarioAlteracao).HasColumnName("USUARIOALTERACAO");
+
         }
 
         internal void GerarTabelaENDERECOS(ModelBuilder modelBuilder)
@@ -45,10 +45,6 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Usuario>().Property(prop => prop.DataAlteracao).IsRequired().HasColumnName("DATAALTERACAO");
             modelBuilder.Entity<Usuario>().HasOne(p => p.UsuarioInclusao);
             modelBuilder.Entity<Usuario>().HasOne(p => p.UsuarioAlteracao);
-            //modelBuilder.Entity<Usuario>().Property(prop => prop.UsuarioInclusao).HasColumnName("USUARIOINCLUSAO");
-            //modelBuilder.Entity<Usuario>().Property(prop => prop.UsuarioAlteracao).HasColumnName("USUARIOALTERACAO");
         }
-
-
     }
 }

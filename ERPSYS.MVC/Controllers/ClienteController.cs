@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ERPSYS.MVC.DAO;
 using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Interfaces;
+using ERPSYS.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Ninject;
 
@@ -17,15 +18,31 @@ namespace ERPSYS.MVC.Controllers
 
         public IActionResult Cadastrados()
         {
-            return View();
+            var pessoas = PessoaDao.ListAll();
+            return View(pessoas);
         }
 
         public IActionResult Novo()
         {
-            Pessoa.CPF = "082.,62.349-00";
-            Pessoa.Email = "Teste";
-            PessoaDao.AddCliente(Pessoa);
-            return View();
+            return View(Pessoa);
+        }
+
+        [HttpPost]
+        public JsonResult AdicionarNovo(Pessoa pessoa)
+        {
+            if (ModelState.IsValid)
+            {
+                PessoaDao.Add(pessoa);
+
+                return Json(new
+                {
+                    data = new { add = true, message = "Sucesso", type = "success" }
+                });
+            }
+             return Json(new
+            {
+                data = new { add = false, message = "Erro", type = "warning" }
+            });
         }
     }
 }

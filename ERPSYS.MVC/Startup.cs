@@ -34,6 +34,8 @@ namespace ERPSYS
         private object Resolve(Type type) => Kernel.Get(type);
         private object RequestScope(IContext context) => scopeProvider.Value;
 
+        public static string ConnectionString { get; private set; }
+
         private sealed class Scope : DisposableObject { }
         public Startup(IConfiguration configuration)
         {
@@ -52,10 +54,9 @@ namespace ERPSYS
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // Registrar Connection String para acesso ao banco de dados
-            string connectionString = Configuration.GetConnectionString("BaseLocalNoProjeto"); //"Default" para usar no SSMS
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+            ConnectionString = Configuration.GetConnectionString("Default");
 
             // Registrar as Injeções de dependências
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

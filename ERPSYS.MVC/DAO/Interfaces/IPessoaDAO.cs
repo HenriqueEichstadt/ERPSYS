@@ -9,6 +9,12 @@ namespace ERPSYS.MVC.DAO.Interfaces
 {
     public interface IPessoaDAO
     {
-        void AddCliente(IPessoa pessoa);
+        void Add(IPessoa pessoa);
+        void Update(IPessoa pessoa);
+        void Delete(IPessoa pessoa);
+        IPessoa GetById(int id);
+        IList<Pessoa> ListActives();
+        IList<Pessoa> ListAll();
+        IPessoa GeyByCPFOrCNPJ(string cpfOrCnpj);
     }
 }

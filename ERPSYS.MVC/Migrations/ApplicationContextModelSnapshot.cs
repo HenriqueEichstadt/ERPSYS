@@ -26,10 +26,13 @@ namespace ERPSYS.MVC.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Ativo")
+                        .HasColumnName("ATIVO");
+
                     b.Property<string>("CPF")
                         .IsRequired()
                         .HasColumnName("CPF")
-                        .HasMaxLength(18);
+                        .HasMaxLength(14);
 
                     b.Property<DateTime>("DataAlteracao")
                         .HasColumnName("DATAALTERACAO");
@@ -43,15 +46,17 @@ namespace ERPSYS.MVC.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnName("EMAIL")
-                        .HasMaxLength(50);
+                        .HasMaxLength(100);
 
                     b.Property<string>("Genero")
+                        .IsRequired()
                         .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasColumnName("GENERO");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnName("NOME");
+                        .HasColumnName("NOME")
+                        .HasMaxLength(100);
 
                     b.Property<string>("RG")
                         .HasColumnName("RG")

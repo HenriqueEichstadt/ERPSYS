@@ -10,69 +10,65 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.DAO
 {
-    public class PessoaDAO : BaseDAO<Pessoa>, IPessoaDAO
+    public class PessoaDAO : IPessoaDAO
     {
-        public PessoaDAO(ApplicationContext contexto) : base(contexto)
+        public void Add(IPessoa pessoa)
         {
+            using (var dbSet = new ApplicationContext())
+            {
+                dbSet.Add(pessoa);
+                dbSet.SaveChanges();
+            }
         }
 
-        public void AddCliente(IPessoa pessoa)
+        public void Update(IPessoa pessoa)
         {
-            dbSet.Add(pessoa as Pessoa);
-            contexto.SaveChanges(); 
+            using (var dbSet = new ApplicationContext())
+            {
+                dbSet.Update(pessoa);
+                dbSet.SaveChanges();
+            }
         }
 
-        //public Pessoa GetCliente(int id)
-        //{
-        //    return dbSet.Where(p => p.Id == id).SingleOrDefault();
-        //}
+        public void Delete(IPessoa pessoa)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                dbSet.Remove(pessoa);
+                dbSet.SaveChanges();
+            }
+        }
 
-        //public void UpdateCliente(Pessoa pessoa)
-        //{
-        //    dbSet.Update(pessoa);
-        //    contexto.SaveChanges();
-        //}
+        public IPessoa GetById(int id)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.PESSOAS.Where(p => p.Id == id).SingleOrDefault();
+            }
+        }
 
-        //public IList<Cliente> ListaClientes()
-        //{
-        //    using (var contexto = new ApplicationContext())
-        //    {
-        //        return contexto.Clientes.Include(f => f.Pessoa).Where(c => c.Ativo == true).ToList();
-        //    }
-        //}
+        public IList<Pessoa> ListActives()
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.PESSOAS.Where(c => c.Ativo == true).ToList();
+            }
+        }
 
-        //public Cliente BuscaPorId(int id)
-        //{
-        //    using (var contexto = new ApplicationContext())
-        //    {
+        public IList<Pessoa> ListAll()
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.PESSOAS.ToList();
+            }
+        }
 
-        //        return contexto.Clientes.Include(c => c.Pessoa).ThenInclude(p => p.Endereco).Include(p => p.Pessoa.Veiculo).Where(c => c.Id == id).FirstOrDefault();
-        //    }
-        //}
-
-        //public void Atualiza(Cliente cliente)
-        //{
-        //    using (var contexto = new ApplicationContext())
-        //    {
-        //        contexto.Clientes.Update(cliente);
-        //        contexto.SaveChanges();
-        //    }
-        //}
-
-        //public Pessoa Busca(string login, string senha)
-        //{
-        //    using (var contexto = new ApplicationContext())
-        //    {
-        //        return contexto.Pessoas.FirstOrDefault();
-        //    }
-        //}
-
-        //public Pessoa BuscaCPfCnpj(string cpfECnpj)
-        //{
-        //    using (var contexto = new ApplicationContext())
-        //    {
-        //        return contexto.Pessoas.Where(c => c.CpfeCnpj == cpfECnpj).FirstOrDefault();
-        //    }
-        //}
+        public IPessoa GeyByCPFOrCNPJ(string cpfOrCnpj)
+        {
+            using (var contexto = new ApplicationContext())
+            {
+                return contexto.PESSOAS.Where(c => c.CPF == cpfOrCnpj).FirstOrDefault();
+            }
+        }
     }
 }

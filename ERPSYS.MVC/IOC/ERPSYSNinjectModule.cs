@@ -29,7 +29,6 @@ namespace ERPSYS.MVC.IOC
 
         public override void Load()
         {
-            _kernel.Bind<DbContextOptions>().ToSelf();
             RegistroModelos(_kernel);
             RegistroDaos(_kernel);
         }

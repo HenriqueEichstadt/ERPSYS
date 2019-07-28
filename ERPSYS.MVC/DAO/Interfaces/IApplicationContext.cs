@@ -8,8 +8,5 @@ namespace ERPSYS.MVC.DAO.Interfaces
 {
     public interface IApplicationContext
     {
-        //EntityGenerator Gerador { get; set; }
-        //void OnModelCreating(ModelBuilder modelBuilder);
-        void Add();
     }
 }
