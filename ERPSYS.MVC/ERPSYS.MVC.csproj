@@ -20,6 +20,34 @@
     <Compile Remove="Migrations\20190724003359_UpdateTabelaPessoas.Designer.cs" />
     <Compile Remove="Migrations\20190724003715_UpdateTabelaPessoas.cs" />
     <Compile Remove="Migrations\20190724003715_UpdateTabelaPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190803135529_AlterandoNomeColunas.cs" />
+    <Compile Remove="Migrations\20190803135529_AlterandoNomeColunas.Designer.cs" />
+    <Compile Remove="Migrations\20190803135749_AlterandoNomeColunas.cs" />
+    <Compile Remove="Migrations\20190803135749_AlterandoNomeColunas.Designer.cs" />
+    <Compile Remove="Migrations\20190803140021_AlterandoNomeDasColunasTabelaPessoas.cs" />
+    <Compile Remove="Migrations\20190803140021_AlterandoNomeDasColunasTabelaPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190803140157_AlterandoNomeDasColunasTabelaPessoas.cs" />
+    <Compile Remove="Migrations\20190803140157_AlterandoNomeDasColunasTabelaPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190803141336_CorrigindoFKNasTabelasUsuariosEPessoas.cs" />
+    <Compile Remove="Migrations\20190803141336_CorrigindoFKNasTabelasUsuariosEPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190803143137_AdicionandotabelaEnderecos.cs" />
+    <Compile Remove="Migrations\20190803143137_AdicionandotabelaEnderecos.Designer.cs" />
+    <Compile Remove="Migrations\20190803143157_AdicionandoTabelaEnderecos.cs" />
+    <Compile Remove="Migrations\20190803143157_AdicionandoTabelaEnderecos.Designer.cs" />
+    <Compile Remove="Migrations\20190803143245_AdicionandoTabelaEnderecos.cs" />
+    <Compile Remove="Migrations\20190803143245_AdicionandoTabelaEnderecos.Designer.cs" />
+    <Compile Remove="Migrations\20190806000350_AdicionandoTabelaClientes.cs" />
+    <Compile Remove="Migrations\20190806000350_AdicionandoTabelaClientes.Designer.cs" />
+    <Compile Remove="Migrations\20190806011351_AdicionandoTabelaVendaEVendaItens.cs" />
+    <Compile Remove="Migrations\20190806011351_AdicionandoTabelaVendaEVendaItens.Designer.cs" />
+    <Compile Remove="Migrations\20190806011814_AdicionandoTabelaVendaEVendaItens.cs" />
+    <Compile Remove="Migrations\20190806011814_AdicionandoTabelaVendaEVendaItens.Designer.cs" />
+    <Compile Remove="Migrations\20190806011940_AdicionandoTabelaVendaEVendaItens.cs" />
+    <Compile Remove="Migrations\20190806011940_AdicionandoTabelaVendaEVendaItens.Designer.cs" />
+    <Compile Remove="Migrations\20190806012341_AdicionandoTabelaVendaEVendaItens.cs" />
+    <Compile Remove="Migrations\20190806012341_AdicionandoTabelaVendaEVendaItens.Designer.cs" />
+    <Compile Remove="Migrations\20190806012659_AdicionandoTabelaVendaEVendaItens.cs" />
+    <Compile Remove="Migrations\20190806012659_AdicionandoTabelaVendaEVendaItens.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +56,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Ninject" Version="3.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
 
 </Project>

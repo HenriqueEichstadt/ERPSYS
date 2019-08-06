@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ERPSYS.MVC.IOC;
+using System;
 
 namespace ERPSYS.MVC.Models
 {

@@ -32,7 +32,7 @@ namespace ERPSYS.MVC.IOC
             if (TipoValidoParaInstanciar(tipo))
             {
                 result = GetInstanceFromActivator(tipo);
-               // DependencyContainer.Inject(result);
+                MyDependencyContainer.Inject(result);
             }
             return result;
         }

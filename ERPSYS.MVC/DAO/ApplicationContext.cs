@@ -15,6 +15,11 @@ namespace ERPSYS.MVC.DAO
 
         public DbSet<Pessoa> PESSOAS { get; set; }
         public DbSet<Usuario> USUARIOS { get; set; }
+        public DbSet<Endereco> ENDERECOS { get; set; }
+        public DbSet<Cliente> CLIENTES { get; set; }
+        public DbSet<Produto> PRODUTOS { get; set; }
+        public DbSet<Venda> VENDAS { get; set; }
+        public DbSet<VendaItens> VENDAITENS { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,12 +27,16 @@ namespace ERPSYS.MVC.DAO
 
             Gerador.GerarTabelaPESSOAS(modelBuilder);
             Gerador.GerarTabelaUSUARIOS(modelBuilder);
+            Gerador.GerarTabelaENDERECOS(modelBuilder);
+            Gerador.GerarTabelaCLIENTES(modelBuilder);
+            Gerador.GerarTabelaPRODUTOS(modelBuilder);
+            Gerador.GerarTabelaVENDAS(modelBuilder);
+            Gerador.GerarTabelaVENDAITENS(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = Startup.ConnectionString;
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(Startup.ConnectionString);
         }
     }
 }

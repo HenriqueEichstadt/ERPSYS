@@ -67,7 +67,7 @@ namespace ERPSYS.MVC.DAO
         {
             using (var contexto = new ApplicationContext())
             {
-                return contexto.PESSOAS.Where(c => c.CPF == cpfOrCnpj).FirstOrDefault();
+                return contexto.PESSOAS.Where(c => c.CPFCNPJ == cpfOrCnpj).FirstOrDefault();
             }
         }
     }

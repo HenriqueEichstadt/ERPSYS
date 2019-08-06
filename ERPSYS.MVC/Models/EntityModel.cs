@@ -23,7 +23,7 @@ namespace ERPSYS.MVC.Models
         [DataMember]
         [Column("DATAALTERACAO")]
         [DataType(DataType.DateTime)]
-        public DateTime DataAlteracao { get; set; }
+        public DateTime? DataAlteracao { get; set; }
 
         [DataMember]
         [Column("USUARIOINCLUSAO")]
