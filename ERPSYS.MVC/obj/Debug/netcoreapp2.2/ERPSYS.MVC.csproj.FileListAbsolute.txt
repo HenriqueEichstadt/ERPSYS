@@ -13,6 +13,8 @@ D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.TagHelpers.input.cache
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.TagHelpers.output.cache
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.RazorCoreGenerate.cache
+D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Cliente\Cadastrados.g.cshtml.cs
+D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Cliente\Novo.g.cshtml.cs
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Home\About.g.cshtml.cs
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Home\Contact.g.cshtml.cs
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
@@ -30,5 +32,3 @@ D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.pdb
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csproj.CopyComplete
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csprojAssemblyReference.cache
-D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Cliente\Novo.g.cshtml.cs
-D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Cliente\Cadastrados.g.cshtml.cs

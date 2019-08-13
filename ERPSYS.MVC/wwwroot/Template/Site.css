@@ -1,0 +1,30 @@
+﻿.header {
+    padding-bottom: 10px;
+    border-bottom: 3px solid #e5e5e5;
+    margin: 20px auto 20px;
+}
+
+th {
+    text-align: center;
+}
+
+.borda {
+    border: 5px solid black;
+}
+
+.lightseagreen {
+    background-color: #8dabc1;
+}
+
+#botaoFinalizar #botaoCancelar {
+    float: right;
+
+}
+.floatRigth {
+    float:right;
+}
+
+.control-label {
+	color: #030f23 !important;
+	font-weight: normal;
+}

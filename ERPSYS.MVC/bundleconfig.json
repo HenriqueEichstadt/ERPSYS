@@ -1,0 +1,70 @@
+[
+  {
+    "outputFileName": "wwwroot/Template/KlorofilPro.min.css",
+    "inputFiles": [
+      "wwwroot/css/site.css",
+      "wwwroot/Template/Site.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/font-awesome/css/font-awesome.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/themify-icons/css/themify-icons.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/pace/themes/orange/pace-theme-minimal.css",
+      "wwwroot/Template/TemplateADMIN/assets/css/vendor/animate/animate.min.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/x-editable/bootstrap3-editable/css/bootstrap-editable.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/bootstrap-tour/css/bootstrap-tour.min.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jqvmap/jqvmap.min.css",
+      "wwwroot/Template/TemplateADMIN/assets/css/main.css",
+      "wwwroot/Template/TemplateADMIN/assets/css/skins/sidebar-nav-darkgray.css",
+      "wwwroot/Template/TemplateADMIN/assets/css/skins/navbar3.css",
+      "wwwroot/Template/TemplateADMIN/assets/css/demo.css",
+      "wwwroot/Template/TemplateADMIN/demo-panel/style-switcher.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/datatables/css-main/jquery.dataTables.min.css",
+      "wwwroot/Template/DataTableCss/DataTables.css",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/DataTablesSelect/select.dataTables.min.css",
+      "wwwroot/Template/TemplateADMIN/assets/css/select2/select2.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Template/KlorofilPro.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/pace/pace.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/bootstrap-progressbar/js/bootstrap-progressbar.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/Flot/jquery.flot.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/Flot/jquery.flot.resize.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/Flot/jquery.flot.time.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/flot.tooltip/jquery.flot.tooltip.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/x-editable/bootstrap3-editable/js/bootstrap-editable.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery.maskedinput/jquery.maskedinput.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/moment/min/moment.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery-sparkline/js/jquery.sparkline.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/bootstrap-tour/js/bootstrap-tour.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery-ui/ui/widget.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery-ui/ui/data.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery-ui/ui/scroll-parent.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery-ui/ui/disable-selection.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery-ui/ui/widgets/mouse.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery-ui/ui/widgets/sortable.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jquery-appear/jquery.appear.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jqvmap/jquery.vmap.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jqvmap/maps/jquery.vmap.world.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/jqvmap/maps/jquery.vmap.usa.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/chart-js/Chart.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/raphael/raphael.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/justgage-toorshia/justgage.js",
+      "wwwroot/Template/TemplateADMIN/assets/scripts/klorofilpro-common.js",
+      "wwwroot/Template/TemplateADMIN/assets/scripts/bootstrap-notify.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/datatables/js-main/jquery.dataTables.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/datatables/js-bootstrap/dataTables.bootstrap.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/DataTablesSelect/dataTables.select.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/JQueryMask/jquery.mask.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/vendor/ValidateJquery/jquery.validate.min.js",
+      "wwwroot/Template/TemplateADMIN/assets/scripts/moment-with-locales.js",
+      "wwwroot/Template/TemplateADMIN/assets/css/select2/select2.min.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

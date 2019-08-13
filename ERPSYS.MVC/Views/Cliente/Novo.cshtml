@@ -1,74 +1,230 @@
-﻿@model ERPSYS.MVC.Models.Pessoa
-
-<h4>Pessoa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <div class="row" id="messageContainer"></div>
-        <form asp-action="AdicionarNovo" method="post" id="FormAdd">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label"></label>
-                <input asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Genero" class="control-label"></label>
-                <input asp-for="Genero" class="form-control" />
-                <span asp-validation-for="Genero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RG" class="control-label"></label>
-                <input asp-for="RG" class="form-control" />
-                <span asp-validation-for="RG" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CPFCNPJ" class="control-label"></label>
-                <input asp-for="CPFCNPJ" class="form-control" />
-                <span asp-validation-for="CPFCNPJ" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TelefoneUm" class="control-label"></label>
-                <input asp-for="TelefoneUm" class="form-control" />
-                <span asp-validation-for="TelefoneUm" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TelefoneDois" class="control-label"></label>
-                <input asp-for="TelefoneDois" class="form-control" />
-                <span asp-validation-for="TelefoneDois" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataInclusao" class="control-label"></label>
-                <input asp-for="DataInclusao" class="form-control" />
-                <span asp-validation-for="DataInclusao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataAlteracao" class="control-label"></label>
-                <input asp-for="DataAlteracao" class="form-control" />
-                <span asp-validation-for="DataAlteracao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Salvar" id="saveButton" class="btn btn-default" />
-            </div>
-        </form>
+﻿<title>Cadastrar novo cliente</title>
+<div class="main-content">
+    <div class="content-heading clearfix">
+        <div class="heading-left">
+            <h1 class="page-title">Formulário</h1>
+            <p class="page-subtitle">Cadastrar novo cliente</p>
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#">Formulário</a></li>
+            <li><a href="#">Cadastrar novo cliente</a></li>
+        </ul>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/jquery/FormPessoa.js"></script>
-}
+    <form action="/Cliente/AdicionaCliente" id="FormCadastro" method="post">
+        <div class="form-horizontal">
+            <div class="panel-body" id="formCadastro">
+                <div class="form-group">
+
+                    <div class="col-md-11 control-label">
+                        <p class="help-block">
+                            <h11>*</h11> Campo Obrigatório
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2 control-label">
+                        <h3>Dados do cliente:</h3>
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="NomeCompleto">Nome Completo <h11>*</h11></label>
+                    <div class="col-md-5">
+                        <input id="NomeCompleto" name="cliente.pessoa.Nome" value="ViewBag.Cliente.Pessoa.Nome" placeholder="Nome do Cliente" class="form-control input-md" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Nascimento">Nascimento<h11>*</h11></label>
+                    <div class="col-md-2">
+                        <input id="Nascimento" name="cliente.pessoa.Data" value="ViewBag.Cliente.Pessoa.Data" placeholder="DD/MM/AAAA" class="form-control input-md" type="date" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+                    </div>
+
+                    <!-- Multiple Radios (inline) -->
+
+                    <label class="col-md-1 control-label" id="Genero" for="Genero">Gênero <h11>*</h11></label>
+                    <div class="col-md-4">
+                        <label class="radio-inline" for="radios-1">
+                            <input name="cliente.pessoa.Genero" id="sexo" value="M" type="radio">
+                            Masculino
+                        </label>
+                        <label class="radio-inline" for="radios-0">
+                            <input name="cliente.pessoa.Genero" id="sexo" value="F" type="radio">
+                            Feminino
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Rg">RG <h11>*</h11></label>
+                    <div class="col-md-2">
+                        <input id="Rg" name="cliente.pessoa.Rg" value="ViewBag.Cliente.Pessoa.Rg" placeholder="Apenas números" class="form-control input-md" type="text" maxlength="11" pattern="[0-9]+$">
+                    </div>
+                    <label class="col-md-1 control-label" for="Nome">CPF <h11>*</h11></label>
+                    <div class="col-md-2">
+                        <input id="CpfeCnpj" name="cliente.pessoa.CpfeCnpj" value="ViewBag.Cliente.Pessoa.CpfeCnpj" placeholder="Apenas números" onkeyup="confereCPF(this)" class="form-control input-md" type="text" maxlength="15" pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})$">
+                        <span id="cpfFrase"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="prependedtext">Email <h11>*</h11></label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input id="email" name="cliente.pessoa.Email" value="ViewBag.Cliente.Pessoa.Email" class="form-control" placeholder="clienteemail.com" type="email">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prepended text-->
+                <div class="form-group">
+
+                    <label class="col-md-2 control-label" for="prependedtext">Telefone 1 <h11>*</h11></label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            <input id="telefoneUm" name="cliente.pessoa.TelefoneUm" value="ViewBag.Cliente.Pessoa.TelefoneUm" class="form-control" placeholder="(XX) XXXXX-XXXX" type="text" maxlength="14" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}+$">
+                        </div>
+                    </div>
+
+                    <label class="col-md-1 control-label" for="prependedtext">Telefone 2 <h11></h11></label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            <input id="telefoneDois" name="cliente.pessoa.TelefoneDois" value="ViewBag.Cliente.Pessoa.TelefoneDois" class="form-control" placeholder="(XX) XXXXX-XXXX" type="text" maxlength="14" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}+$">
+                        </div>
+                    </div>
+
+
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-2 control-label">
+                        <h3>Dados de endereço:</h3>
+                    </div>
+                </div>
+
+                <!-- Search input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="CEP">CEP <h11>*</h11></label>
+                    <div class="col-md-2">
+                        <input id="Cep" name="cliente.pessoa.endereco.Cep" value="ViewBag.Cliente.Pessoa.Endereco.Cep" onfocusout="pesquisacep(Cep.value)" placeholder="Apenas números" class="form-control input-md" type="search" maxlength="8" pattern="[0-9]+$">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="pesquisacep(Cep.value)">Pesquisar</button>
+                    </div>
+                </div>
+
+                <!-- Endereço-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="prependedtext">Endereço</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Rua</span>
+                            <input id="rua" name="cliente.pessoa.endereco.Rua" value="ViewBag.Cliente.Pessoa.Endereco.Rua" class="form-control" placeholder="" type="text">
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nº <h11>*</h11></span>
+                            <input id="numero" name="cliente.pessoa.endereco.Numero" value="ViewBag.Cliente.Pessoa.Endereco.Numero" class="form-control" placeholder="" type="text">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">Bairro</span>
+                            <input id="bairro" name="cliente.pessoa.endereco.Bairro" value="ViewBag.Cliente.Pessoa.Endereco.Bairro" class="form-control" placeholder="" type="text">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="prependedtext"></label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Cidade</span>
+                            <input id="cidade" name="cliente.pessoa.endereco.Cidade" value="ViewBag.Cliente.Pessoa.Endereco.Cidade" class="form-control" placeholder="" type="text">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">Estado</span>
+                            <input id="estado" name="cliente.pessoa.endereco.Estado" value="ViewBag.Cliente.Pessoa.Endereco.Estado" class="form-control" placeholder="" type="text">
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">Complemento</span>
+                            <input id="complemento" name="cliente.pessoa.endereco.Complemento" value="ViewBag.Cliente.Pessoa.Endereco.Complemento" class="form-control" placeholder="" type="text">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-2 control-label">
+                        <h3>Dados do Veículo:</h3>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Rg">Tipo de Veículo</label>
+                    <div class="col-md-2">
+                        <select id="listaTipoDeVeiculo" name="cliente.pessoa.veiculo.TipoDeVeiculo" value="ViewBag.Cliente.Pessoa.Veiculo.TipoDeVeiculo" class="form-control input-md">
+                            <option></option>
+                        </select>
+                    </div>
+                    <label class="col-md-1 control-label" for="Nome">Fabricante</label>
+                    <div class="col-md-2">
+                        <select id="listaFabricantes" onclick="PegaFabricantes()" name="cliente.pessoa.veiculo.Fabricante" oncç value="ViewBag.Cliente.Pessoa.Veiculo.Fabricante" class="form-control input-md">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="modelo">Modelo <h11>*</h11></label>
+                    <div class="col-md-5">
+                        <input id="modelo" name="cliente.pessoa.veiculo.Modelo" value="ViewBag.Cliente.Pessoa.Veiculo.Modelo" placeholder="Modelo do veículo" class="form-control input-md" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-1 control-label" for="placa">Placa</label>
+                    <div class="col-md-2">
+                        <input id="placa" name="cliente.pessoa.veiculo.Placa" value="ViewBag.Cliente.Pessoa.Veiculo.Placa" placeholder="ABC-1234" class="form-control input-md" type="text">
+                    </div>
+                    <label class="col-md-1 control-label" for="Rg">Ano</label>
+                    <div class="col-md-2">
+                        <input id="ano" name="cliente.pessoa.veiculo.Ano" value="ViewBag.Cliente.Pessoa.Veiculo.Ano" class="form-control input-md" type="text">
+                    </div>
+                    <label class="col-md-1 control-label" for="Rg">Cor</label>
+                    <div class="col-md-2">
+                        <input id="cor" name="cliente.pessoa.veiculo.Cor" value="ViewBag.Cliente.Pessoa.Veiculo.Cor" class="form-control input-md" type="text">
+                    </div>
+                </div>
+
+                <hr>
+                <!-- Botão Cadastrar e Cancelar -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="Cadastrar"></label>
+                    <div class="col-md-8">
+                        <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Cadastrar</button>
+                        <button id="Cancelar" name="Cancelar" class="btn btn-danger" type="Reset">Cancelar</button>
+                    </div>
+                    <fieldset id=""></fieldset>
+
+                </div>
+            </div>
+            <fieldset id="panel-body"></fieldset>
+        </div>
+    </form>
+</div>
