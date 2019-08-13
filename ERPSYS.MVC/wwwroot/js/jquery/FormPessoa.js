@@ -1,17 +1,5 @@
 ﻿$(document).ready(function () {
 
-    /* $('#FormAdd').ajaxForm({
-         dataType: 'json',
-         success: function (resposta) {
-             if (resposta.add) {
-                 alert("Salvei o cadastro");
-             }
-             else {
-                 alert("erro");
-             }
-         }
-     });*/
-
     $('#FormAdd').ajaxForm({
         dataType: 'json',
         success: function (resposta) {
@@ -46,30 +34,4 @@
             }
         }
     });
-
-
 });
-
-function successNotify(message, type) {
-    $.notify({
-        message: message
-    }, {
-        type: 'success'
-    });
-}
-
-function errorNotify(message, type) {
-    $.notify({
-        message: message
-    }, {
-            type: 'danger'
-        });
-}
-
-function warningNotify(message, type) {
-    $.notify({
-        message: message
-    }, {
-            type: 'warning'
-        });
-}

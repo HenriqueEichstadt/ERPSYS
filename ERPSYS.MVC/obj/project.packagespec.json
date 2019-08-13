@@ -1,20 +1,15 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.MVC\\ERPSYS.MVC.csproj",
+    "projectUniqueName": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.MVC\\ERPSYS.MVC.csproj",
     "projectName": "ERPSYS.MVC",
-    "projectPath": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.MVC\\ERPSYS.MVC.csproj",
-    "outputPath": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.MVC\\obj\\",
+    "projectPath": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.MVC\\ERPSYS.MVC.csproj",
+    "outputPath": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.MVC\\obj\\",
     "projectStyle": "PackageReference",
-    "fallbackFolders": [
-      "C:\\Microsoft\\Xamarin\\NuGet",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-    ],
     "originalTargetFrameworks": [
       "netcoreapp2.2"
     ],
     "sources": {
-      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
@@ -31,6 +26,18 @@
   "frameworks": {
     "netcoreapp2.2": {
       "dependencies": {
+        "BuildBundlerMinifier": {
+          "target": "Package",
+          "version": "[2.9.406, )"
+        },
+        "BundlerMinifier.Core": {
+          "target": "Package",
+          "version": "[2.9.406, )"
+        },
+        "Microsoft.ApplicationInsights.AspNetCore": {
+          "target": "Package",
+          "version": "[2.0.0, )"
+        },
         "Microsoft.AspNetCore.App": {
           "suppressParent": "All",
           "target": "Package",
@@ -42,6 +49,24 @@
           "target": "Package",
           "version": "[2.2.0, )"
         },
+        "Microsoft.EntityFrameworkCore.Design": {
+          "target": "Package",
+          "version": "[2.2.6, )"
+        },
+        "Microsoft.EntityFrameworkCore.SqlServer": {
+          "target": "Package",
+          "version": "[2.2.6, )"
+        },
+        "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+          "target": "Package",
+          "version": "[1.1.6, )"
+        },
+        "Microsoft.EntityFrameworkCore.Tools": {
+          "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.6, )"
+        },
         "Microsoft.NETCore.App": {
           "suppressParent": "All",
           "target": "Package",
@@ -51,6 +76,10 @@
         "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
           "target": "Package",
           "version": "[1.4.10, )"
+        },
+        "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+          "target": "Package",
+          "version": "[2.2.3, )"
         },
         "Ninject": {
           "target": "Package",

@@ -43,7 +43,7 @@ namespace ERPSYS.MVC.DAO
         {
             using (var dbSet = new ApplicationContext())
             {
-                return dbSet.PESSOAS.Where(p => p.Id == id).SingleOrDefault();
+                return dbSet.PESSOAS.SingleOrDefault(p => p.Id == id);
             }
         }
 

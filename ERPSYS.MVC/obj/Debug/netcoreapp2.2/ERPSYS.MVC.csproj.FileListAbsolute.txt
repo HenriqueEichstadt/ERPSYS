@@ -32,3 +32,37 @@ D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.pdb
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csproj.CopyComplete
 D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csprojAssemblyReference.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\bin\Debug\netcoreapp2.2\ERPSYS.MVC.deps.json
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\bin\Debug\netcoreapp2.2\ERPSYS.MVC.runtimeconfig.json
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\bin\Debug\netcoreapp2.2\ERPSYS.MVC.runtimeconfig.dev.json
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\bin\Debug\netcoreapp2.2\ERPSYS.MVC.dll
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\bin\Debug\netcoreapp2.2\ERPSYS.MVC.pdb
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\bin\Debug\netcoreapp2.2\ERPSYS.MVC.Views.dll
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\bin\Debug\netcoreapp2.2\ERPSYS.MVC.Views.pdb
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csprojAssemblyReference.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csproj.CoreCompileInputs.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.RazorAssemblyInfo.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.RazorAssemblyInfo.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.AssemblyInfoInputs.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.AssemblyInfo.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.TagHelpers.input.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.TagHelpers.output.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.RazorCoreGenerate.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Cliente\Cadastrados.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Cliente\Novo.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Home\About.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Home\Contact.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.RazorTargetAssemblyInfo.cache
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.RazorTargetAssemblyInfo.cs
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.Views.pdb
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.dll
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.pdb
+C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csproj.CopyComplete

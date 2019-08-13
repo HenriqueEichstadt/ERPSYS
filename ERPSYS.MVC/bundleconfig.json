@@ -27,6 +27,7 @@
     "outputFileName": "wwwroot/Template/KlorofilPro.min.js",
     "inputFiles": [
       "wwwroot/js/site.js",
+      "wwwroot/js/NotifyExtensions.js",
       "wwwroot/Template/TemplateADMIN/assets/vendor/pace/pace.min.js",
       "wwwroot/Template/TemplateADMIN/assets/vendor/bootstrap-progressbar/js/bootstrap-progressbar.min.js",
       "wwwroot/Template/TemplateADMIN/assets/vendor/Flot/jquery.flot.js",

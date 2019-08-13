@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Interfaces
 {
-    public interface IClientes
+    public interface ICliente
     {
         Pessoa Pessoa { get; set; }
         int? Pontos { get; set; }

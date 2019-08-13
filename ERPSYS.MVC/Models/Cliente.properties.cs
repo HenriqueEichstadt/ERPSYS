@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Models
 {
-    public partial class Cliente : EntityModel, IClientes
+    public partial class Cliente : EntityModel, ICliente
     {
         [Required(ErrorMessage = "A Pessoa é obrigatória")]
         public Pessoa Pessoa { get; set; }
