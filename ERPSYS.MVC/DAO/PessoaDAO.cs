@@ -12,11 +12,16 @@ namespace ERPSYS.MVC.DAO
 {
     public class PessoaDAO : IPessoaDAO
     {
+        [Inject] public IUsuarioDAO UsuarioDAO { get; set; }
         public void Add(IPessoa pessoa)
         {
             using (var dbSet = new ApplicationContext())
             {
+                pessoa.Ativo = true;
+                pessoa.DataInclusao = DateTime.Now;
+                pessoa.UsuarioInclusao = UsuarioDAO.GetById(1) as Usuario;
                 dbSet.Add(pessoa);
+                dbSet.Add(pessoa.Endereco);
                 dbSet.SaveChanges();
             }
         }
@@ -26,15 +31,17 @@ namespace ERPSYS.MVC.DAO
             using (var dbSet = new ApplicationContext())
             {
                 dbSet.Update(pessoa);
+                dbSet.Update(pessoa.Endereco);
                 dbSet.SaveChanges();
             }
         }
 
-        public void Delete(IPessoa pessoa)
+        public void Inativar(IPessoa pessoa)
         {
             using (var dbSet = new ApplicationContext())
             {
-                dbSet.Remove(pessoa);
+                pessoa.Ativo = false;
+                dbSet.Update(pessoa);
                 dbSet.SaveChanges();
             }
         }
@@ -43,7 +50,9 @@ namespace ERPSYS.MVC.DAO
         {
             using (var dbSet = new ApplicationContext())
             {
-                return dbSet.PESSOAS.SingleOrDefault(p => p.Id == id);
+                var pessoa = dbSet.PESSOAS.SingleOrDefault(p => p.Id == id);
+                pessoa.Endereco = dbSet.ENDERECOS.SingleOrDefault(p => p.Pessoa.Id == pessoa.Id);
+                return pessoa;
             }
         }
 

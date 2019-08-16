@@ -8,6 +8,7 @@ using ERPSYS.MVC.Models;
 using ERPSYS.Models;
 using Ninject;
 using ERPSYS.MVC.Interfaces;
+using ERPSYS.MVC.DAO.Interfaces;
 
 namespace ERPSYS.MVC.Controllers
 {
@@ -15,11 +16,12 @@ namespace ERPSYS.MVC.Controllers
     {
         [Inject]
         public IPessoa Pessoa { get; set; }
-
+        [Inject]
+        public IUsuarioDAO UsuarioDao { get; set; }
 
         public IActionResult Index()
         {
-            Pessoa.Nome = "Henrique";
+            UsuarioDao.Teste();
             return View();
         }
 

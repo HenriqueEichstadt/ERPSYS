@@ -37,11 +37,13 @@ namespace ERPSYS.MVC.IOC
         {
             kernel.Bind<IPessoa>().To<Pessoa>();
             kernel.Bind<IEndereco>().To<Endereco>();
+            kernel.Bind<IUsuario>().To<Usuario>();
         }
 
         private static void RegistroDaos(StandardKernel kernel)
         {
             kernel.Bind<IPessoaDAO>().To<PessoaDAO>();
+            kernel.Bind<IUsuarioDAO>().To<UsuarioDAO>();
         }
     }
 }

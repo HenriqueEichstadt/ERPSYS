@@ -11,7 +11,7 @@ namespace ERPSYS.MVC.DAO.Interfaces
     {
         void Add(IPessoa pessoa);
         void Update(IPessoa pessoa);
-        void Delete(IPessoa pessoa);
+        void Inativar(IPessoa pessoa);
         IPessoa GetById(int id);
         IList<Pessoa> ListActives();
         IList<Pessoa> ListAll();

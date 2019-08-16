@@ -58,6 +58,8 @@ namespace ERPSYS
             // Registrar Connection String para acesso ao banco de dados
             ConnectionString = Configuration.GetConnectionString("Default");
 
+            CriaUsuarioPrincipalNoSistema();
+
             // Registrar as Injeções de dependências
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<DbContext, ApplicationContext>();
@@ -67,6 +69,22 @@ namespace ERPSYS
             services.AddRequestScopingMiddleware(() => scopeProvider.Value = new Scope());
             services.AddCustomControllerActivation(Resolve);
             services.AddCustomViewComponentActivation(Resolve);
+        }
+
+        private void CriaUsuarioPrincipalNoSistema()
+        {
+            var usuarioDao = new UsuarioDAO();
+            var usuario = new Usuario
+            {
+                Nome = "Administrador",
+                Email = "administrador@adm.com",
+                Apelido = "admin",
+                Senha = "admin",
+                DataInclusao = DateTime.Now,
+            };
+            // Criar o usuário principal do sistema
+            if (!usuarioDao.ExisteComMesmoApelido(usuario.Apelido))                    
+                usuarioDao.Add(usuario);
         }
 
         private IKernel RegisterApplicationComponents(IApplicationBuilder app)

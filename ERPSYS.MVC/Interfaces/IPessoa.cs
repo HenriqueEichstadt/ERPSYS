@@ -22,5 +22,11 @@ namespace ERPSYS.MVC.Interfaces
         string InscricaoEstadual { get; set; }
         string Observacoes { get; set; }
         bool Ativo { get; set; }
+        Endereco Endereco { get; set; }
+        int Id { get; set; }
+        DateTime DataInclusao { get; set; }
+        DateTime? DataAlteracao { get; set; }
+        Usuario UsuarioInclusao { get; set; }
+        Usuario UsuarioAlteracao { get; set; }
     }
 }

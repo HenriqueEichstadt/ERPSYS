@@ -13,7 +13,7 @@ namespace ERPSYS.MVC.Models
     {
         [DataMember]
         [Column("ID")]
-        public int Id { get; protected set; }
+        public int Id { get; set; }
 
         [DataMember]
         [Column("DATAINCLUSAO")]

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -64,5 +65,7 @@ namespace ERPSYS.MVC.Models
 
         [Required(ErrorMessage = "O campo Ativo é obrigatório")]
         public bool Ativo { get; set; }
+
+        [NotMapped] public Endereco Endereco { get; set; }
     }
 }
