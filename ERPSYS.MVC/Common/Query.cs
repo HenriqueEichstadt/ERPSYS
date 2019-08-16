@@ -39,7 +39,7 @@ namespace ERPSYS.MVC.Common
                 return reader;
             }
             finally
-            {
+            {/*
                 // Fecha o datareader
                 if (reader != null)
                 {
@@ -50,7 +50,7 @@ namespace ERPSYS.MVC.Common
                 if (_sqlConnection != null)
                 {
                     _sqlConnection.Close();
-                }
+                }*/
             }
         }
 

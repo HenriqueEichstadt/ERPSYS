@@ -68,8 +68,8 @@ namespace ERPSYS.MVC.DAO
         {
             var query = new Query("SELECT NOME, EMAIL FROM USUARIOS");
             var entidade = query.Execute();
-            var nome = entidade["Nome"];
-            var email = entidade["Email"];
+            var nome = entidade["NOME"];
+            var email = entidade["EMAIL"];
         }
     }
 }
