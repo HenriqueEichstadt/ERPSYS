@@ -38,12 +38,22 @@ namespace ERPSYS.MVC.DAO
         {
             throw new NotImplementedException();
         }
-
-        public bool ExisteComMesmoApelido(string apelido)
+        public bool IsUsuarioCadastrado(string apelido, string senha = null)
         {
             using (var dbSet = new ApplicationContext())
             {
-                return (dbSet.USUARIOS.FirstOrDefault(u => u.Apelido == apelido) != null);
+                if (senha == null)
+                    return (dbSet.USUARIOS.Where(u => u.Apelido == apelido).FirstOrDefault()) != null;
+                else
+                    return (dbSet.USUARIOS.Where(u => u.Apelido == apelido && u.Senha == senha).FirstOrDefault()) != null;
+            }
+        }
+
+        public IUsuario GetByApelido(string apelido)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.USUARIOS.Where(u => u.Apelido == apelido).FirstOrDefault();
             }
         }
 

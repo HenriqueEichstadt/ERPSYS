@@ -58,6 +58,8 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Usuario>().Property(prop => prop.Apelido).IsRequired().HasColumnName("APELIDO");
             modelBuilder.Entity<Usuario>().Property(prop => prop.Email).IsRequired().HasColumnName("EMAIL");
             modelBuilder.Entity<Usuario>().Property(prop => prop.Senha).IsRequired().HasColumnName("SENHA");
+            modelBuilder.Entity<Usuario>().Property(prop => prop.Ativo).IsRequired().HasColumnName("ATIVO");
+            modelBuilder.Entity<Usuario>().Property(prop => prop.NivelAcesso).IsRequired().HasColumnName("NIVELACESSO");
             modelBuilder.Entity<Usuario>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<Usuario>().Property(prop => prop.DataAlteracao).HasColumnName("DATAALTERACAO");
             modelBuilder.Entity<Usuario>().HasOne(p => p.UsuarioInclusao).WithOne().HasForeignKey(typeof(Usuario).ToString(), "USUARIOINCLUSAO").OnDelete(DeleteBehavior.Restrict);

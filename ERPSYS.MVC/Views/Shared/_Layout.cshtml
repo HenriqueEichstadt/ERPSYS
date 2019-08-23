@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var nome = ViewData["NomeUsuario"];
+    var nivelAcesso = ViewData["NivelAcesso"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -6,7 +10,7 @@
         <link rel="stylesheet" href="~/Template/TemplateADMIN/assets/vendor/bootstrap/css/bootstrap.min.css" />
     </environment>
     <environment names="Staging,Production">
-         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
@@ -35,13 +39,10 @@
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                @{ //Mostra nome do usuário logado na sessão
-                                    string nome = "";
-                                    var funcionarioLogado = "Fulano";
-                                    if (funcionarioLogado != null)
+                                @{
+                                    if (nome != null)
                                     {
-                                        //nome = funcionarioLogado.NomeUsuario;
-                                        <i class="ti-user"></i><span>  nome</span>
+                                        <i class="ti-user"></i><span>  @nome</span>
                                     }
                                 }
                             </a>
@@ -68,8 +69,8 @@
                             </ul>
                         </div>
                     </li>
-                    <!--{
-                        if (funcionarioLogado.NivelAcesso == 0)
+                    @{
+                        if (nivelAcesso != null && Convert.ToChar(nivelAcesso) == 'A')
                         {
                             <li class="panel">
                                 <a href="#charts" data-toggle="collapse" data-parent="#sidebar-nav-menu" class="collapsed"><i class="ti-pie-chart"></i> <span class="title">Administrador</span> <i class="icon-submenu ti-angle-left"></i></a>
@@ -83,7 +84,7 @@
                                 </div>
                             </li>
                         }
-                    }-->
+                    }
                     <li class="panel">
                         <a href="#uiElements" data-toggle="collapse" data-parent="#sidebar-nav-menu" class="collapsed"><i class="fa fa-shopping-cart"></i> <span class="title">Venda</span> <i class="icon-submenu ti-angle-left"></i></a>
                         <div id="uiElements" class="collapse ">

@@ -28,5 +28,9 @@ namespace ERPSYS.MVC.Models
         [MinLength(5, ErrorMessage = "A Senha deve ter no mínimo 5 caracteres")]
         [MaxLength(30, ErrorMessage = "A Senha deve ter no máximo 30 caracteres")]
         public string Senha { get; set; }
+
+        public bool Ativo { get; set; }
+
+        public char NivelAcesso { get; set; }
     }
 }

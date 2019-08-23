@@ -30,7 +30,6 @@ namespace ERPSYS.MVC.Common
 
         public SqlDataReader Execute()
         {
-            SqlDataReader sqlDataReader;
             try
             {
                 OpenConnection();

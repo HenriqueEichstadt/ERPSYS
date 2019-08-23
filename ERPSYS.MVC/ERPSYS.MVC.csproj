@@ -48,6 +48,8 @@
     <Compile Remove="Migrations\20190806012341_AdicionandoTabelaVendaEVendaItens.Designer.cs" />
     <Compile Remove="Migrations\20190806012659_AdicionandoTabelaVendaEVendaItens.cs" />
     <Compile Remove="Migrations\20190806012659_AdicionandoTabelaVendaEVendaItens.Designer.cs" />
+    <Compile Remove="Migrations\20190817174846_AlterandoTabelaUsuariossdsadas.cs" />
+    <Compile Remove="Migrations\20190817174846_AlterandoTabelaUsuariossdsadas.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,6 +58,7 @@
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />

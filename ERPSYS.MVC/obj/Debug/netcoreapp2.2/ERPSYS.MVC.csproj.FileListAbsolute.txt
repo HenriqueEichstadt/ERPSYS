@@ -66,3 +66,4 @@ C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERP
 C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.dll
 C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.pdb
 C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\ERPSYS.MVC.csproj.CopyComplete
+D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS\ERPSYS.MVC\obj\Debug\netcoreapp2.2\Razor\Views\Login\Index.g.cshtml.cs

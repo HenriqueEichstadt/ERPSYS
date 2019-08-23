@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using ERPSYS.MVC.Models;
 using ERPSYS.Models;
 using Ninject;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.DAO.Interfaces;
+using ERPSYS.MVC.Extensions.Session;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ERPSYS.MVC.Controllers
 {
@@ -18,10 +19,13 @@ namespace ERPSYS.MVC.Controllers
         public IPessoa Pessoa { get; set; }
         [Inject]
         public IUsuarioDAO UsuarioDao { get; set; }
+        [Inject] public IUsuario UsuarioLogado { get; set; }
 
         public IActionResult Index()
         {
-            UsuarioDao.Teste();
+            GetUserInSession();
+            ViewData["NomeUsuario"] = UsuarioLogado.Nome;
+            ViewData["NivelAcesso"] = UsuarioLogado.NivelAcesso;
             return View();
         }
 
@@ -48,6 +52,13 @@ namespace ERPSYS.MVC.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public void GetUserInSession()
+        {
+            var usuarioId = HttpContext.Session.GetUserId("USERSESSION");
+            if (usuarioId != null)
+                UsuarioLogado = UsuarioDao.GetById(usuarioId ?? 0);
         }
     }
 }

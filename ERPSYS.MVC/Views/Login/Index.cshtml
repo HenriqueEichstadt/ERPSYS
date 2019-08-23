@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Posto de Combustível </title>
+    <link rel="stylesheet" type="text/css" href="~/Template/TemplateADMIN/TelaLogin/loginstyle.css">
+</head>
+<body>
+    <div class="login-box">
+        <form asp-action="Autenticar" method="post">
+            <h1 id="logoPosto"></h1>
+            <p>Usuário</p>
+            <input type="text" name="apelido" id="apelido" placeholder=" Nome de usuário">
+            <p>Senha</p>
+            <input type="password" name="senha" id="senha" placeholder=" Sua senha">
+            <input type="submit" name="submit" value="Entrar" autofocus>
+        </form>
+    </div>
+</body>
+</html>

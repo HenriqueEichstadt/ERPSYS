@@ -7,6 +7,7 @@ using ERPSYS.MVC.DAO;
 using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Extensions.ApplicationBuilder;
 using ERPSYS.MVC.Extensions.AspNetCore;
+using ERPSYS.MVC.Filters;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.IOC;
 using ERPSYS.MVC.Models;
@@ -35,6 +36,7 @@ namespace ERPSYS
         private object RequestScope(IContext context) => scopeProvider.Value;
 
         public static string ConnectionString { get; private set; }
+        public static ISession Session { get; set; }
 
         private sealed class Scope : DisposableObject { }
         public Startup(IConfiguration configuration)
@@ -54,12 +56,18 @@ namespace ERPSYS
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+                {
+                    options.Filters.Add(new AuthenticationFilterAttribute());
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddSessionStateTempDataProvider();
+            services.AddSession();
             // Registrar Connection String para acesso ao banco de dados
             ConnectionString = Configuration.GetConnectionString("Default");
 
             CriaUsuarioPrincipalNoSistema();
-
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/login");
             // Registrar as Injeções de dependências
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<DbContext, ApplicationContext>();
@@ -83,7 +91,7 @@ namespace ERPSYS
                 DataInclusao = DateTime.Now,
             };
             // Criar o usuário principal do sistema
-            if (!usuarioDao.ExisteComMesmoApelido(usuario.Apelido))                    
+            if (!usuarioDao.IsUsuarioCadastrado(usuario.Apelido))                    
                 usuarioDao.Add(usuario);
         }
 
@@ -124,16 +132,15 @@ namespace ERPSYS
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
