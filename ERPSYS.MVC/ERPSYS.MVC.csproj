@@ -50,11 +50,50 @@
     <Compile Remove="Migrations\20190806012659_AdicionandoTabelaVendaEVendaItens.Designer.cs" />
     <Compile Remove="Migrations\20190817174846_AlterandoTabelaUsuariossdsadas.cs" />
     <Compile Remove="Migrations\20190817174846_AlterandoTabelaUsuariossdsadas.Designer.cs" />
+    <Compile Remove="Migrations\20190825150141_teste.cs" />
+    <Compile Remove="Migrations\20190825150141_teste.Designer.cs" />
+    <Compile Remove="Migrations\20190825150219_teste.cs" />
+    <Compile Remove="Migrations\20190825150219_teste.Designer.cs" />
+    <Compile Remove="Migrations\20190825150335_teste.cs" />
+    <Compile Remove="Migrations\20190825150335_teste.Designer.cs" />
+    <Compile Remove="Migrations\20190825150648_ModificandoNullableToNullPessoas.cs" />
+    <Compile Remove="Migrations\20190825150648_ModificandoNullableToNullPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190825150723_ModificandoNouNullToNullPessoas.cs" />
+    <Compile Remove="Migrations\20190825150723_ModificandoNouNullToNullPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190825150754_ModificandoNotNullToNullPessoas.cs" />
+    <Compile Remove="Migrations\20190825150754_ModificandoNotNullToNullPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190825174801_teste.cs" />
+    <Compile Remove="Migrations\20190825174801_teste.Designer.cs" />
+    <Compile Remove="Migrations\20190825180611_test.cs" />
+    <Compile Remove="Migrations\20190825180611_test.Designer.cs" />
+    <Compile Remove="Migrations\20190825185149_Teste.cs" />
+    <Compile Remove="Migrations\20190825185149_Teste.Designer.cs" />
+    <Compile Remove="Migrations\20190825190238_Teste.cs" />
+    <Compile Remove="Migrations\20190825190238_Teste.Designer.cs" />
+    <Compile Remove="Migrations\20190825190807_Teste.cs" />
+    <Compile Remove="Migrations\20190825190807_Teste.Designer.cs" />
+    <Compile Remove="Migrations\20190825190916_Teste.cs" />
+    <Compile Remove="Migrations\20190825190916_Teste.Designer.cs" />
+    <Compile Remove="Migrations\20190825193924_TEST.cs" />
+    <Compile Remove="Migrations\20190825193924_TEST.Designer.cs" />
+    <Compile Remove="Migrations\20190825194205_TEST.cs" />
+    <Compile Remove="Migrations\20190825194205_TEST.Designer.cs" />
+    <Compile Remove="Migrations\20190825194356_AdicionandoFKnaTabelaPessoas.cs" />
+    <Compile Remove="Migrations\20190825194356_AdicionandoFKnaTabelaPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190825194614_RemovendoColunaEndereco.cs" />
+    <Compile Remove="Migrations\20190825194614_RemovendoColunaEndereco.Designer.cs" />
+    <Compile Remove="Migrations\20190825195044_RemovendoColunaEndereco.cs" />
+    <Compile Remove="Migrations\20190825195044_RemovendoColunaEndereco.Designer.cs" />
+    <Compile Remove="Migrations\20190825195211_EditandoColunaEnderecoTabelaPessoas.cs" />
+    <Compile Remove="Migrations\20190825195211_EditandoColunaEnderecoTabelaPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190825195705_RemovendoColunaEnderecoTabelaPessoas.cs" />
+    <Compile Remove="Migrations\20190825195705_RemovendoColunaEnderecoTabelaPessoas.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
     <PackageReference Include="BundlerMinifier.Core" Version="2.9.406" />
+    <PackageReference Include="EnterpriseLibrary.Validation.NetCore" Version="6.0.1312" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />

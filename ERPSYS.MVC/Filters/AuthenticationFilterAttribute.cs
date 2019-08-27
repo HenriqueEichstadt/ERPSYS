@@ -21,7 +21,8 @@ namespace ERPSYS.MVC.Filters
         public void OnActionExecuting(ActionExecutingContext context)
         {
             var controller = ((ControllerBase)context.Controller).ControllerContext;
-            var usuario = Startup.Session?.GetUserId("USERSESSION");
+            //var usuario = Startup.Session?.GetUserId("USERSESSION");
+            var usuario = Startup.UserSession;
             bool funcionario = controller.ActionDescriptor.ControllerName == "Login";
             bool index = controller.ActionDescriptor.ActionName == "Index";
             bool autenticar = controller.ActionDescriptor.ActionName == "Autenticar";

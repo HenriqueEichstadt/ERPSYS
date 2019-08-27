@@ -1,15 +1,20 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.UnitTests\\ERPSYS.UnitTests.csproj",
+    "projectUniqueName": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.UnitTests\\ERPSYS.UnitTests.csproj",
     "projectName": "ERPSYS.UnitTests",
-    "projectPath": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.UnitTests\\ERPSYS.UnitTests.csproj",
-    "outputPath": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.UnitTests\\obj\\",
+    "projectPath": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.UnitTests\\ERPSYS.UnitTests.csproj",
+    "outputPath": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.UnitTests\\obj\\",
     "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Microsoft\\Xamarin\\NuGet",
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
     "originalTargetFrameworks": [
       "netcoreapp2.1"
     ],
     "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {

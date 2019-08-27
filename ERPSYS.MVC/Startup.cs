@@ -37,6 +37,7 @@ namespace ERPSYS
 
         public static string ConnectionString { get; private set; }
         public static ISession Session { get; set; }
+        public static IUsuario UserSession { get; set; }
 
         private sealed class Scope : DisposableObject { }
         public Startup(IConfiguration configuration)

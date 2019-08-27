@@ -51,6 +51,10 @@
               "target": "Package",
               "version": "[2.9.406, )"
             },
+            "EnterpriseLibrary.Validation.NetCore": {
+              "target": "Package",
+              "version": "[6.0.1312, )"
+            },
             "Microsoft.ApplicationInsights.AspNetCore": {
               "target": "Package",
               "version": "[2.0.0, )"

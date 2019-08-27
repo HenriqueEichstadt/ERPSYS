@@ -10,7 +10,7 @@ namespace ERPSYS.MVC.Interfaces
     {
         char TipoPessoa { get; set; }
         string Nome { get; set; }
-        DateTime DataNascimento { get; set; }
+        DateTime? DataNascimento { get; set; }
         char? Genero { get; set; }
         string RG { get; set; }
         string CPFCNPJ { get; set; }

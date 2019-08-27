@@ -13,16 +13,16 @@ namespace ERPSYS.MVC.Models
         [Required(ErrorMessage = "O Tipo de Pessoa é obrigatório")]
         public char TipoPessoa { get; set; }
 
-        [Required(ErrorMessage = "O Nome é obrigatório")]
+       // [Required(ErrorMessage = "O Nome é obrigatório")]
         [MinLength(5, ErrorMessage = "O Nome deve ter no mínimo 5 caracteres")]
         [MaxLength(100, ErrorMessage = "O Nome deve ter no máximo 100 caracteres")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "A Data de Nascimento é obrigatória")]
+        //[Required(ErrorMessage = "A Data de Nascimento é obrigatória")]
         [DataType(DataType.Date)]
-        public DateTime DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
-        [Required(ErrorMessage = "O Gênero é obrigatório")]
+        //[Required(ErrorMessage = "O Gênero é obrigatório")]
         public char? Genero { get; set; }
 
         [MaxLength(15, ErrorMessage = "O RG deve ter no máximo 15 caracteres")]
@@ -66,6 +66,6 @@ namespace ERPSYS.MVC.Models
         [Required(ErrorMessage = "O campo Ativo é obrigatório")]
         public bool Ativo { get; set; }
 
-        [NotMapped] public Endereco Endereco { get; set; }
+        public Endereco Endereco { get; set; }
     }
 }

@@ -17,11 +17,11 @@ namespace ERPSYS.MVC.DAO
         {
             using (var dbSet = new ApplicationContext())
             {
-                pessoa.Ativo = true;
-                pessoa.DataInclusao = DateTime.Now;
-                pessoa.UsuarioInclusao = UsuarioDAO.GetById(1) as Usuario;
+                //pessoa.Ativo = true;
+                //pessoa.DataInclusao = DateTime.Now;
+                //pessoa.UsuarioInclusao = UsuarioDAO.GetById(1) as Usuario;
                 dbSet.Add(pessoa);
-                dbSet.Add(pessoa.Endereco);
+                //dbSet.Add(pessoa.Endereco);
                 dbSet.SaveChanges();
             }
         }
@@ -51,7 +51,6 @@ namespace ERPSYS.MVC.DAO
             using (var dbSet = new ApplicationContext())
             {
                 var pessoa = dbSet.PESSOAS.SingleOrDefault(p => p.Id == id);
-                pessoa.Endereco = dbSet.ENDERECOS.SingleOrDefault(p => p.Pessoa.Id == pessoa.Id);
                 return pessoa;
             }
         }

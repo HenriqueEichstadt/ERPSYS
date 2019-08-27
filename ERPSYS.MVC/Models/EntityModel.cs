@@ -26,11 +26,17 @@ namespace ERPSYS.MVC.Models
         public DateTime? DataAlteracao { get; set; }
 
         [DataMember]
+        [NotMapped] public Usuario UsuarioInclusao { get; set; }
+
+        [DataMember]
         [Column("USUARIOINCLUSAO")]
-        public Usuario UsuarioInclusao { get; set; }
+        public int? UsuarioInclusaoId { get; set; }
+
+        [DataMember]
+        [NotMapped] public Usuario UsuarioAlteracao { get; set; }
 
         [DataMember]
         [Column("USUARIOALTERACAO")]
-        public Usuario UsuarioAlteracao { get; set; }
+        public int? UsuarioAlteracaoId { get; set; }
     }
 }

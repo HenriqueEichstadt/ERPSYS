@@ -54,11 +54,13 @@
       "wwwroot/Template/TemplateADMIN/assets/vendor/justgage-toorshia/justgage.js",
       "wwwroot/Template/TemplateADMIN/assets/scripts/klorofilpro-common.js",
       "wwwroot/Template/TemplateADMIN/assets/scripts/bootstrap-notify.min.js",
+      "wwwroot/lib/jquery-forms/jquery.form.min.js",
       "wwwroot/Template/TemplateADMIN/assets/vendor/datatables/js-main/jquery.dataTables.min.js",
       "wwwroot/Template/TemplateADMIN/assets/vendor/datatables/js-bootstrap/dataTables.bootstrap.min.js",
       "wwwroot/Template/TemplateADMIN/assets/vendor/DataTablesSelect/dataTables.select.min.js",
       "wwwroot/Template/TemplateADMIN/assets/vendor/JQueryMask/jquery.mask.min.js",
       "wwwroot/Template/TemplateADMIN/assets/vendor/ValidateJquery/jquery.validate.min.js",
+      "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js", // teste
       "wwwroot/Template/TemplateADMIN/assets/scripts/moment-with-locales.js",
       "wwwroot/Template/TemplateADMIN/assets/css/select2/select2.min.js"
     ],

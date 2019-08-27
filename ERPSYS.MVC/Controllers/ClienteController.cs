@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ERPSYS.MVC.DAO;
 using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Interfaces;
+using ERPSYS.MVC.IOC;
 using ERPSYS.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Ninject;
@@ -13,36 +14,53 @@ namespace ERPSYS.MVC.Controllers
 {
     public class ClienteController : Controller
     {
-        [Inject] public IPessoa Pessoa { get; set; }
-        [Inject] public IPessoaDAO PessoaDao { get; set; }
+        [Inject] public ICliente Cliente { get; set; }
+        [Inject] public IClienteDAO ClienteDao { get; set; }
+        [Inject] public IUsuarioDAO UsuarioDao { get; set; }
+        [Inject] public IMyActivator MyActivator { get; set; }
 
         public IActionResult Cadastrados()
         {
-            var pessoas = PessoaDao.ListAll();
+            var pessoas = ClienteDao.ListAll();
             return View(pessoas);
         }
 
         public IActionResult Novo()
         {
-            return View(Pessoa);
+            Cliente.Pessoa = MyActivator.CreateInstance<Pessoa>();
+            Cliente.Pessoa.Endereco = MyActivator.CreateInstance<IEndereco, Endereco>() as Endereco;
+            return View(Cliente);
         }
 
         [HttpPost]
-        public JsonResult AdicionarNovo(Pessoa pessoa)
+        public JsonResult AdicionarNovo(Cliente cliente)
         {
+            cliente.AtribuirDados();
             if (ModelState.IsValid)
             {
-                PessoaDao.Add(pessoa);
-
+                ClienteDao.Add(cliente);
                 return Json(new
                 {
-                    data = new { add = true, message = "Sucesso", type = "success" }
+                    data = new { add = true, message = "Cliente cadastrado com sucesso!", type = "success" }
                 });
             }
-             return Json(new
+            return Json(new
             {
-                data = new { add = false, message = "Erro", type = "warning" }
+                data = new { add = false, message = "Erro no cadastro", type = "warning" }
             });
+        }
+
+        private string ModelStateErrors()
+        {
+            string erros = string.Empty;
+            foreach (var modelState in ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    erros += error + "\n";
+                }
+            }
+            return erros;
         }
     }
 }

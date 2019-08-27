@@ -56,9 +56,10 @@ namespace ERPSYS.MVC.Controllers
 
         public void GetUserInSession()
         {
-            var usuarioId = HttpContext.Session.GetUserId("USERSESSION");
-            if (usuarioId != null)
-                UsuarioLogado = UsuarioDao.GetById(usuarioId ?? 0);
+            //var usuarioId = HttpContext.Session.GetUserId("USERSESSION");
+            var usuario = Startup.UserSession;
+            if (usuario != null)
+                UsuarioLogado = UsuarioDao.GetById(usuario.Id);
         }
     }
 }

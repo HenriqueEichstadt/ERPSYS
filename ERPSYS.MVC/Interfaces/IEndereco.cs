@@ -8,7 +8,6 @@ namespace ERPSYS.MVC.Interfaces
 {
     public interface IEndereco
     {
-        Pessoa Pessoa { get; set; }
         string CEP { get; set; }
         string Estado { get; set; }
         string Cidade { get; set; }

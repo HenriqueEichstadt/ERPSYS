@@ -40,20 +40,15 @@ namespace ERPSYS.MVC.Migrations
                     b.Property<int?>("Pontos")
                         .HasColumnName("PONTOS");
 
-                    b.Property<int?>("USUARIOALTERACAO");
+                    b.Property<int?>("UsuarioAlteracaoId")
+                        .HasColumnName("USUARIOALTERACAO");
 
-                    b.Property<int>("USUARIOINCLUSAO");
+                    b.Property<int?>("UsuarioInclusaoId")
+                        .HasColumnName("USUARIOINCLUSAO");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PESSOA")
-                        .IsUnique();
-
-                    b.HasIndex("USUARIOALTERACAO")
-                        .IsUnique()
-                        .HasFilter("[USUARIOALTERACAO] IS NOT NULL");
-
-                    b.HasIndex("USUARIOINCLUSAO")
                         .IsUnique();
 
                     b.ToTable("CLIENTES");
@@ -101,28 +96,18 @@ namespace ERPSYS.MVC.Migrations
                         .HasColumnName("NUMERO")
                         .HasMaxLength(7);
 
-                    b.Property<int>("PESSOA");
-
                     b.Property<string>("Rua")
                         .IsRequired()
                         .HasColumnName("RUA")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("USUARIOALTERACAO");
+                    b.Property<int?>("UsuarioAlteracaoId")
+                        .HasColumnName("USUARIOALTERACAO");
 
-                    b.Property<int>("USUARIOINCLUSAO");
+                    b.Property<int?>("UsuarioInclusaoId")
+                        .HasColumnName("USUARIOINCLUSAO");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PESSOA")
-                        .IsUnique();
-
-                    b.HasIndex("USUARIOALTERACAO")
-                        .IsUnique()
-                        .HasFilter("[USUARIOALTERACAO] IS NOT NULL");
-
-                    b.HasIndex("USUARIOINCLUSAO")
-                        .IsUnique();
 
                     b.ToTable("ENDERECOS");
                 });
@@ -148,8 +133,10 @@ namespace ERPSYS.MVC.Migrations
                     b.Property<DateTime>("DataInclusao")
                         .HasColumnName("DATAINCLUSAO");
 
-                    b.Property<DateTime>("DataNascimento")
+                    b.Property<DateTime?>("DataNascimento")
                         .HasColumnName("DATANASCIMENTO");
+
+                    b.Property<int>("ENDERECO");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -157,31 +144,27 @@ namespace ERPSYS.MVC.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Genero")
-                        .IsRequired()
                         .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasColumnName("GENERO");
 
                     b.Property<string>("InscricaoEstadual")
-                        .IsRequired()
                         .HasColumnName("INSCRICAOESTADUAL")
                         .HasMaxLength(50);
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnName("NOME")
                         .HasMaxLength(100);
 
                     b.Property<string>("NomeFantasia")
-                        .IsRequired()
                         .HasColumnName("NOMEFANTASIA")
                         .HasMaxLength(50);
 
                     b.Property<string>("NomeRazaoSocial")
-                        .IsRequired()
                         .HasColumnName("NOMERAZAOSOCIAL")
                         .HasMaxLength(50);
 
                     b.Property<string>("Observacoes")
+                        .HasColumnName("OBSERVACOES")
                         .HasMaxLength(200);
 
                     b.Property<string>("RG")
@@ -202,17 +185,15 @@ namespace ERPSYS.MVC.Migrations
                         .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasColumnName("TIPOPESSOA");
 
-                    b.Property<int?>("USUARIOALTERACAO");
+                    b.Property<int?>("UsuarioAlteracaoId")
+                        .HasColumnName("USUARIOALTERACAO");
 
-                    b.Property<int>("USUARIOINCLUSAO");
+                    b.Property<int?>("UsuarioInclusaoId")
+                        .HasColumnName("USUARIOINCLUSAO");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("USUARIOALTERACAO")
-                        .IsUnique()
-                        .HasFilter("[USUARIOALTERACAO] IS NOT NULL");
-
-                    b.HasIndex("USUARIOINCLUSAO")
+                    b.HasIndex("ENDERECO")
                         .IsUnique();
 
                     b.ToTable("PESSOAS");
@@ -272,21 +253,16 @@ namespace ERPSYS.MVC.Migrations
                     b.Property<int?>("QtdPontosProgFidelidade")
                         .HasColumnName("QTDPONTOSPROGFIDELIDADE");
 
-                    b.Property<int?>("USUARIOALTERACAO");
+                    b.Property<int?>("UsuarioAlteracaoId")
+                        .HasColumnName("USUARIOALTERACAO");
 
-                    b.Property<int>("USUARIOINCLUSAO");
+                    b.Property<int?>("UsuarioInclusaoId")
+                        .HasColumnName("USUARIOINCLUSAO");
 
                     b.Property<DateTime?>("Validade")
                         .HasColumnName("VALIDADE");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("USUARIOALTERACAO")
-                        .IsUnique()
-                        .HasFilter("[USUARIOALTERACAO] IS NOT NULL");
-
-                    b.HasIndex("USUARIOINCLUSAO")
-                        .IsUnique();
 
                     b.ToTable("PRODUTOS");
                 });
@@ -332,19 +308,13 @@ namespace ERPSYS.MVC.Migrations
                         .HasColumnName("SENHA")
                         .HasMaxLength(30);
 
-                    b.Property<int?>("USUARIOALTERACAO");
+                    b.Property<int?>("UsuarioAlteracaoId")
+                        .HasColumnName("USUARIOALTERACAO");
 
-                    b.Property<int?>("USUARIOINCLUSAO");
+                    b.Property<int?>("UsuarioInclusaoId")
+                        .HasColumnName("USUARIOINCLUSAO");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("USUARIOALTERACAO")
-                        .IsUnique()
-                        .HasFilter("[USUARIOALTERACAO] IS NOT NULL");
-
-                    b.HasIndex("USUARIOINCLUSAO")
-                        .IsUnique()
-                        .HasFilter("[USUARIOINCLUSAO] IS NOT NULL");
 
                     b.ToTable("USUARIOS");
                 });
@@ -377,20 +347,15 @@ namespace ERPSYS.MVC.Migrations
                     b.Property<double>("TotalUnidades")
                         .HasColumnName("TOTALUNIDADES");
 
-                    b.Property<int?>("USUARIOALTERACAO");
+                    b.Property<int?>("UsuarioAlteracaoId")
+                        .HasColumnName("USUARIOALTERACAO");
 
-                    b.Property<int>("USUARIOINCLUSAO");
+                    b.Property<int?>("UsuarioInclusaoId")
+                        .HasColumnName("USUARIOINCLUSAO");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
-
-                    b.HasIndex("USUARIOALTERACAO")
-                        .IsUnique()
-                        .HasFilter("[USUARIOALTERACAO] IS NOT NULL");
-
-                    b.HasIndex("USUARIOINCLUSAO")
-                        .IsUnique();
 
                     b.ToTable("VENDAS");
                 });
@@ -414,12 +379,14 @@ namespace ERPSYS.MVC.Migrations
                     b.Property<int>("ProdutoId")
                         .HasColumnName("PRODUTO");
 
-                    b.Property<int?>("USUARIOALTERACAO");
-
-                    b.Property<int>("USUARIOINCLUSAO");
-
                     b.Property<double>("Unidades")
                         .HasColumnName("UNIDADES");
+
+                    b.Property<int?>("UsuarioAlteracaoId")
+                        .HasColumnName("USUARIOALTERACAO");
+
+                    b.Property<int?>("UsuarioInclusaoId")
+                        .HasColumnName("USUARIOINCLUSAO");
 
                     b.Property<int>("VendaId")
                         .HasColumnName("VENDA");
@@ -427,13 +394,6 @@ namespace ERPSYS.MVC.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProdutoId");
-
-                    b.HasIndex("USUARIOALTERACAO")
-                        .IsUnique()
-                        .HasFilter("[USUARIOALTERACAO] IS NOT NULL");
-
-                    b.HasIndex("USUARIOINCLUSAO")
-                        .IsUnique();
 
                     b.HasIndex("VendaId");
 
@@ -446,72 +406,13 @@ namespace ERPSYS.MVC.Migrations
                         .WithOne()
                         .HasForeignKey("ERPSYS.MVC.Models.Cliente", "PESSOA")
                         .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Cliente", "USUARIOALTERACAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Cliente", "USUARIOINCLUSAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("ERPSYS.MVC.Models.Endereco", b =>
-                {
-                    b.HasOne("ERPSYS.MVC.Models.Pessoa", "Pessoa")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Endereco", "PESSOA")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Endereco", "USUARIOALTERACAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Endereco", "USUARIOINCLUSAO")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ERPSYS.MVC.Models.Pessoa", b =>
                 {
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
+                    b.HasOne("ERPSYS.MVC.Models.Endereco", "Endereco")
                         .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Pessoa", "USUARIOALTERACAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Pessoa", "USUARIOINCLUSAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("ERPSYS.MVC.Models.Produto", b =>
-                {
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Produto", "USUARIOALTERACAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Produto", "USUARIOINCLUSAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("ERPSYS.MVC.Models.Usuario", b =>
-                {
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Usuario", "USUARIOALTERACAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Usuario", "USUARIOINCLUSAO")
+                        .HasForeignKey("ERPSYS.MVC.Models.Pessoa", "ENDERECO")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -521,16 +422,6 @@ namespace ERPSYS.MVC.Migrations
                         .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Venda", "USUARIOALTERACAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.Venda", "USUARIOINCLUSAO")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ERPSYS.MVC.Models.VendaItens", b =>
@@ -539,16 +430,6 @@ namespace ERPSYS.MVC.Migrations
                         .WithMany("VendaItens")
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioAlteracao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.VendaItens", "USUARIOALTERACAO")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ERPSYS.MVC.Models.Usuario", "UsuarioInclusao")
-                        .WithOne()
-                        .HasForeignKey("ERPSYS.MVC.Models.VendaItens", "USUARIOINCLUSAO")
-                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ERPSYS.MVC.Models.Venda", "Venda")
                         .WithMany("VendaItens")

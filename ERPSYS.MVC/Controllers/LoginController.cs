@@ -28,20 +28,28 @@ namespace ERPSYS.MVC.Controllers
         {
             if (UsuarioDao.IsUsuarioCadastrado(apelido, senha))
             {
-                Startup.Session = HttpContext.Session;
                 Usuario = UsuarioDao.GetByApelido(apelido) as Usuario;
+                Startup.Session = HttpContext.Session;
+                Startup.UserSession = Usuario;
                 HttpContext.Session.SetUserId("USERSESSION", Usuario.Id);
                 return RedirectToAction("Index", "Home");
             }
                 
             else
                 return RedirectToAction("Index");
+                //return Json(new { autenticou = false });
         }
 
-        public IActionResult Logout()
+        public JsonResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Login");
+            Startup.UserSession = null;
+            //HttpContext.Session.SetUserId("USERSESSION", -1);
+             foreach (var cookieKey in Request.Cookies.Keys)
+             {
+                 Response.Cookies.Delete(cookieKey);
+             }
+            return Json(new { logOut = true });
         }
     }
 }

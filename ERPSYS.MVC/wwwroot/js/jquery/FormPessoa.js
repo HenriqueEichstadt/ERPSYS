@@ -4,7 +4,7 @@
         dataType: 'json',
         success: function (resposta) {
             if (resposta.data.add) {
-                successNotify(resposta.data.message, resposta.data.type);
+                successNotify(resposta.data.message);
                 //$('#FormAdd').resetForm();
                 //$("#messageContainer").remove();
                 /*$("#messageContainer").append(
@@ -18,7 +18,7 @@
                     + '</div>');
                     */
             } else {
-                $.notify("Erro no Cadastro");
+                successNotify(resposta.data.message);
                 //$("#messageContainer").remove();
                 /*
                 $("#messageContainer").append(

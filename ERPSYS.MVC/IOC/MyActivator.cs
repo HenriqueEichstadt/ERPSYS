@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ERPSYS.MVC.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.IOC
 {
-    public class MyActivator
+    public class MyActivator : IMyActivator
     {
         public T CreateInstance<T>()
              where T : class
@@ -25,8 +26,8 @@ namespace ERPSYS.MVC.IOC
 
         public object CreateInstance(Type tipo)
         {
-            if (!tipo.Namespace.StartsWith("Benner.RH."))
-                throw new Exception($"{tipo.Name} não pertence ao sistema do RH");
+            if (!tipo.Namespace.StartsWith("ERPSYS"))
+                throw new Exception($"{tipo.Name} não pertence ao sistema ERPSYS");
 
             object result = null;
             if (TipoValidoParaInstanciar(tipo))

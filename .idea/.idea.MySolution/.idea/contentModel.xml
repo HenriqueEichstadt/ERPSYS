@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\heichstadt\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\Mono.Cecil.dll" t="Include" />
-    <e p="C:\Users\heichstadt\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\nunit.engine.netstandard.dll" t="Include" />
-    <e p="C:\Users\heichstadt\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\NUnit3.TestAdapter.dll" t="Include" />
-    <e p="C:\Users\heichstadt\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\NUnit3.TestAdapter.pdb" t="Include" />
-    <e p="C:\Users\heichstadt\.Rider2019.1\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\heichstadt\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_MySolution.1833842339.00" t="ExcludeRecursive" />
-    <e p="C:\Users\heichstadt\Desktop\ERPSYS\ERPSYS" t="IncludeFlat">
+    <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\Mono.Cecil.dll" t="Include" />
+    <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\nunit.engine.netstandard.dll" t="Include" />
+    <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\NUnit3.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\NUnit3.TestAdapter.pdb" t="Include" />
+    <e p="C:\Users\Henrique Eichst\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Henrique Eichst\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_MySolution.-880299808.00" t="ExcludeRecursive" />
+    <e p="D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS" t="IncludeFlat">
       <e p="ERPSYS.MVC" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="bundleconfig.json" t="Include" />
-        <e p="Common" t="Include" />
+        <e p="Common" t="Include">
+          <e p="EntityValidationResult.cs" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="IEntityValidationResultFactory.cs" t="Include" />
+          </e>
+          <e p="Parameter.cs" t="Include" />
+          <e p="Query.cs" t="Include" />
+        </e>
         <e p="Controllers" t="Include">
           <e p="ClienteController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
+          <e p="LoginController.cs" t="Include" />
         </e>
         <e p="DAO" t="Include">
           <e p="ApplicationContext.cs" t="Include" />
@@ -24,11 +32,12 @@
           <e p="ClienteDAO.cs" t="Include" />
           <e p="EntityGenerator.cs" t="Include" />
           <e p="Interfaces" t="Include">
-            <e p="IApplicationContext.cs" t="Include" />
             <e p="IClienteDAO.cs" t="Include" />
             <e p="IPessoaDAO.cs" t="Include" />
+            <e p="IUsuarioDAO.cs" t="Include" />
           </e>
           <e p="PessoaDAO.cs" t="Include" />
+          <e p="UsuarioDAO.cs" t="Include" />
         </e>
         <e p="Dockerfile" t="Include" />
         <e p="ERPSYS.MVC.csproj" t="IncludeRecursive" />
@@ -39,10 +48,17 @@
           <e p="AspNetCore" t="Include">
             <e p="AspNetCoreExtensions.cs" t="Include" />
           </e>
+          <e p="Session" t="Include">
+            <e p="SessionExtensions.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Filters" t="Include">
+          <e p="AuthenticationFilterAttribute.cs" t="Include" />
         </e>
         <e p="Interfaces" t="Include">
           <e p="ICliente.cs" t="Include" />
           <e p="IEndereco.cs" t="Include" />
+          <e p="IMyActivator.cs" t="Include" />
           <e p="IPessoa.cs" t="Include" />
           <e p="IProduto.cs" t="Include" />
           <e p="IUsuario.cs" t="Include" />
@@ -83,6 +99,20 @@
           <e p="20190806003309_AdicionandoTabelaProdutos.Designer.cs" t="Include" />
           <e p="20190806012848_AdicionandoTabelaVendaEVendaItens.cs" t="Include" />
           <e p="20190806012848_AdicionandoTabelaVendaEVendaItens.Designer.cs" t="Include" />
+          <e p="20190817174032_AlterandoTabelaUsuarios.cs" t="Include" />
+          <e p="20190817174032_AlterandoTabelaUsuarios.Designer.cs" t="Include" />
+          <e p="20190825151052_ModificandoNotNullToNullTabelaPessoas.cs" t="Include" />
+          <e p="20190825151052_ModificandoNotNullToNullTabelaPessoas.Designer.cs" t="Include" />
+          <e p="20190825163914_CorrigindoRequiredPessoa.cs" t="Include" />
+          <e p="20190825163914_CorrigindoRequiredPessoa.Designer.cs" t="Include" />
+          <e p="20190825191120_Teste.cs" t="Include" />
+          <e p="20190825191120_Teste.Designer.cs" t="Include" />
+          <e p="20190825193107_AlterandoFKTabelaEnderecos.cs" t="Include" />
+          <e p="20190825193107_AlterandoFKTabelaEnderecos.Designer.cs" t="Include" />
+          <e p="20190825195800_RemovendoColunaEnderecoTabelaPessoas.cs" t="Include" />
+          <e p="20190825195800_RemovendoColunaEnderecoTabelaPessoas.Designer.cs" t="Include" />
+          <e p="20190825195937_AdicionandoColunaEnderecoTabelaPessoas.cs" t="Include" />
+          <e p="20190825195937_AdicionandoColunaEnderecoTabelaPessoas.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -98,6 +128,7 @@
           <e p="Produto.properties.cs" t="Include" />
           <e p="Usuario.cs" t="Include" />
           <e p="Usuario.properties.cs" t="Include" />
+          <e p="Validacoes.cs" t="Include" />
           <e p="Venda.cs" t="Include" />
           <e p="Venda.properties.cs" t="Include" />
           <e p="VendaItens.cs" t="Include" />
@@ -128,6 +159,9 @@
             <e p="Contact.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
             <e p="Privacy.cshtml" t="Include" />
+          </e>
+          <e p="Login" t="Include">
+            <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">
             <e p="_CookieConsentPartial.cshtml" t="Include" />
@@ -1440,6 +1474,15 @@
               </e>
               <e p="tables-dynamic.html" t="Include" />
               <e p="tables-static.html" t="Include" />
+              <e p="TelaLogin" t="Include">
+                <e p="3.png" t="Include" />
+                <e p="avatar.png" t="Include" />
+                <e p="fundoTelaLogin.png" t="Include" />
+                <e p="loginstyle.css" t="Include" />
+                <e p="logo.png" t="Include" />
+                <e p="logoo.png" t="Include" />
+                <e p="logoo2.png" t="Include" />
+              </e>
               <e p="typography.html" t="Include" />
               <e p="ui-bootstrap.html" t="Include" />
               <e p="ui-buttons.html" t="Include" />

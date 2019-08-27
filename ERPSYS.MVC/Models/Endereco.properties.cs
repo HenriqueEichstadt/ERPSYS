@@ -9,9 +9,6 @@ namespace ERPSYS.MVC.Models
 {
     public partial class Endereco : EntityModel, IEndereco
     {
-        [Required(ErrorMessage = "A Pessoa é obrigatória")]
-        public Pessoa Pessoa { get; set; }
-
         [Required(ErrorMessage = "O CEP é obrigatório")]
         [MaxLength(9, ErrorMessage = "O CEP deve ter no máximo 9 caracteres")]
         public string CEP { get; set; }

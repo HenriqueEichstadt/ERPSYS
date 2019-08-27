@@ -1,15 +1,20 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.MVC\\ERPSYS.MVC.csproj",
+    "projectUniqueName": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.MVC\\ERPSYS.MVC.csproj",
     "projectName": "ERPSYS.MVC",
-    "projectPath": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.MVC\\ERPSYS.MVC.csproj",
-    "outputPath": "C:\\Users\\heichstadt\\Desktop\\ERPSYS\\ERPSYS\\ERPSYS.MVC\\obj\\",
+    "projectPath": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.MVC\\ERPSYS.MVC.csproj",
+    "outputPath": "D:\\Documents\\HENRIQUE documentos\\Repositórios de Projetos\\ERPSYS\\ERPSYS.MVC\\obj\\",
     "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Microsoft\\Xamarin\\NuGet",
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
     "originalTargetFrameworks": [
       "netcoreapp2.2"
     ],
     "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
@@ -34,6 +39,10 @@
           "target": "Package",
           "version": "[2.9.406, )"
         },
+        "EnterpriseLibrary.Validation.NetCore": {
+          "target": "Package",
+          "version": "[6.0.1312, )"
+        },
         "Microsoft.ApplicationInsights.AspNetCore": {
           "target": "Package",
           "version": "[2.0.0, )"
@@ -46,6 +55,10 @@
         },
         "Microsoft.AspNetCore.Razor.Design": {
           "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.AspNetCore.Session": {
           "target": "Package",
           "version": "[2.2.0, )"
         },

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ERPSYS.MVC.Common.Interfaces;
+using ERPSYS.MVC.DAO.Interfaces;
+using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +17,8 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Pessoa>().HasKey(p => p.Id);
             modelBuilder.Entity<Pessoa>().Property(prop => prop.Id).HasColumnName("ID");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.TipoPessoa).HasColumnName("TIPOPESSOA");
-            modelBuilder.Entity<Pessoa>().Property(prop => prop.Nome).IsRequired().HasColumnName("NOME");
-            modelBuilder.Entity<Pessoa>().Property(prop => prop.DataNascimento).IsRequired().HasColumnName("DATANASCIMENTO");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.Nome).HasColumnName("NOME");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.DataNascimento).HasColumnName("DATANASCIMENTO");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.Genero).HasColumnName("GENERO");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.RG).HasColumnName("RG");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.CPFCNPJ).IsRequired().HasColumnName("CPF");
@@ -24,20 +27,18 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Pessoa>().Property(prop => prop.TelefoneDois).HasColumnName("TELEFONEDOIS");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.Ativo).IsRequired().HasColumnName("ATIVO");
-            modelBuilder.Entity<Pessoa>().Property(prop => prop.NomeFantasia).IsRequired().HasColumnName("NOMEFANTASIA");
-            modelBuilder.Entity<Pessoa>().Property(prop => prop.NomeRazaoSocial).IsRequired().HasColumnName("NOMERAZAOSOCIAL");
-            modelBuilder.Entity<Pessoa>().Property(prop => prop.InscricaoEstadual).IsRequired().HasColumnName("INSCRICAOESTADUAL");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.NomeFantasia).HasColumnName("NOMEFANTASIA");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.NomeRazaoSocial).HasColumnName("NOMERAZAOSOCIAL");
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.InscricaoEstadual).HasColumnName("INSCRICAOESTADUAL");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<Pessoa>().Property(prop => prop.DataAlteracao).HasColumnName("DATAALTERACAO");
-            modelBuilder.Entity<Pessoa>().HasOne(p => p.UsuarioInclusao).WithOne().IsRequired().HasForeignKey(typeof(Pessoa).ToString(), "USUARIOINCLUSAO").OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Pessoa>().HasOne(p => p.UsuarioAlteracao).WithOne().HasForeignKey(typeof(Pessoa).ToString(), "USUARIOALTERACAO").OnDelete(DeleteBehavior.Restrict);
-
+            modelBuilder.Entity<Pessoa>().Property(prop => prop.Observacoes).HasColumnName("OBSERVACOES");
+            modelBuilder.Entity<Pessoa>().HasOne(p => p.Endereco).WithOne().IsRequired().HasForeignKey(typeof(Pessoa).ToString(), "ENDERECO").OnDelete(DeleteBehavior.Restrict);
         }
 
         internal void GerarTabelaENDERECOS(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Endereco>().HasKey(p => p.Id);
-            modelBuilder.Entity<Endereco>().HasOne(p => p.Pessoa).WithOne().IsRequired().HasForeignKey(typeof(Endereco).ToString(), "PESSOA").OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Endereco>().Property(prop => prop.CEP).HasColumnName("CEP");
             modelBuilder.Entity<Endereco>().Property(prop => prop.Estado).HasColumnName("ESTADO");
             modelBuilder.Entity<Endereco>().Property(prop => prop.Cidade).HasColumnName("CIDADE");
@@ -47,8 +48,6 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Endereco>().Property(prop => prop.Complemento).HasColumnName("COMPLEMENTO");
             modelBuilder.Entity<Endereco>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<Endereco>().Property(prop => prop.DataAlteracao).HasColumnName("DATAALTERACAO");
-            modelBuilder.Entity<Endereco>().HasOne(p => p.UsuarioInclusao).WithOne().IsRequired().HasForeignKey(typeof(Endereco).ToString(), "USUARIOINCLUSAO").OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Endereco>().HasOne(p => p.UsuarioAlteracao).WithOne().HasForeignKey(typeof(Endereco).ToString(), "USUARIOALTERACAO").OnDelete(DeleteBehavior.Restrict);
         }
         internal void GerarTabelaUSUARIOS(ModelBuilder modelBuilder)
         {
@@ -62,8 +61,6 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Usuario>().Property(prop => prop.NivelAcesso).IsRequired().HasColumnName("NIVELACESSO");
             modelBuilder.Entity<Usuario>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<Usuario>().Property(prop => prop.DataAlteracao).HasColumnName("DATAALTERACAO");
-            modelBuilder.Entity<Usuario>().HasOne(p => p.UsuarioInclusao).WithOne().HasForeignKey(typeof(Usuario).ToString(), "USUARIOINCLUSAO").OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Usuario>().HasOne(p => p.UsuarioAlteracao).WithOne().HasForeignKey(typeof(Usuario).ToString(), "USUARIOALTERACAO").OnDelete(DeleteBehavior.Restrict);
         }
 
         internal void GerarTabelaPRODUTOS(ModelBuilder modelBuilder)
@@ -84,8 +81,6 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Produto>().Property(prop => prop.Descricao).HasColumnName("DESCRICAO");
             modelBuilder.Entity<Produto>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<Produto>().Property(prop => prop.DataAlteracao).HasColumnName("DATAALTERACAO");
-            modelBuilder.Entity<Produto>().HasOne(p => p.UsuarioInclusao).WithOne().IsRequired().HasForeignKey(typeof(Produto).ToString(), "USUARIOINCLUSAO").OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Produto>().HasOne(p => p.UsuarioAlteracao).WithOne().HasForeignKey(typeof(Produto).ToString(), "USUARIOALTERACAO").OnDelete(DeleteBehavior.Restrict);
         }
 
         internal void GerarTabelaCLIENTES(ModelBuilder modelBuilder)
@@ -97,8 +92,6 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Cliente>().Property(prop => prop.Ativo).IsRequired().HasColumnName("ATIVO");
             modelBuilder.Entity<Cliente>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<Cliente>().Property(prop => prop.DataAlteracao).HasColumnName("DATAALTERACAO");
-            modelBuilder.Entity<Cliente>().HasOne(p => p.UsuarioInclusao).WithOne().IsRequired().HasForeignKey(typeof(Cliente).ToString(), "USUARIOINCLUSAO").OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Cliente>().HasOne(p => p.UsuarioAlteracao).WithOne().HasForeignKey(typeof(Cliente).ToString(), "USUARIOALTERACAO").OnDelete(DeleteBehavior.Restrict);
         }
 
         internal void GerarTabelaVENDAS(ModelBuilder modelBuilder)
@@ -112,8 +105,6 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<Venda>().Property(prop => prop.FormaPagamento).IsRequired().HasColumnName("FORMAPAGAMENTO");
             modelBuilder.Entity<Venda>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<Venda>().Property(prop => prop.DataAlteracao).HasColumnName("DATAALTERACAO");
-            modelBuilder.Entity<Venda>().HasOne(p => p.UsuarioInclusao).WithOne().IsRequired().HasForeignKey(typeof(Venda).ToString(), "USUARIOINCLUSAO").OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Venda>().HasOne(p => p.UsuarioAlteracao).WithOne().HasForeignKey(typeof(Venda).ToString(), "USUARIOALTERACAO").OnDelete(DeleteBehavior.Restrict);
         }
 
         internal void GerarTabelaVENDAITENS(ModelBuilder modelBuilder)
@@ -125,8 +116,15 @@ namespace ERPSYS.MVC.DAO
             modelBuilder.Entity<VendaItens>().Property(prop => prop.PrecoTotalItem).HasColumnName("PRECOTOTALITEM");
             modelBuilder.Entity<VendaItens>().Property(prop => prop.DataInclusao).IsRequired().HasColumnName("DATAINCLUSAO");
             modelBuilder.Entity<VendaItens>().Property(prop => prop.DataAlteracao).HasColumnName("DATAALTERACAO");
-            modelBuilder.Entity<VendaItens>().HasOne(p => p.UsuarioInclusao).WithOne().IsRequired().HasForeignKey(typeof(VendaItens).ToString(), "USUARIOINCLUSAO").OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<VendaItens>().HasOne(p => p.UsuarioAlteracao).WithOne().HasForeignKey(typeof(VendaItens).ToString(), "USUARIOALTERACAO").OnDelete(DeleteBehavior.Restrict);
+        }
+
+        internal void IgnorarPropriedadesNaoMapeadas(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<IClienteDAO>();
+            modelBuilder.Ignore<IPessoaDAO>();
+            modelBuilder.Ignore<IUsuarioDAO>();
+            modelBuilder.Ignore<IEntityValidationResultFactory>();
+            modelBuilder.Ignore<IMyActivator>();
         }
     }
 }

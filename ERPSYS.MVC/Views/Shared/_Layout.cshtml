@@ -44,11 +44,15 @@
                                     {
                                         <i class="ti-user"></i><span>  @nome</span>
                                     }
+                                    else
+                                    {
+                                        <i class="ti-user"></i><span>  Usuário</span>
+                                    }
                                 }
                             </a>
                             <ul class="dropdown-menu logged-user-menu">
                                 <li><a href="#"><i class="ti-user"></i> <span>Meu Perfil</span></a></li>
-                                <li><a href="#" onclick="LogOut();"><i class="ti-power-off"></i> <span>Sair</span></a></li>
+                                <li><a href="#" onclick="logOut();"><i class="ti-power-off"></i> <span>Sair</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -98,7 +102,7 @@
                         <a href="#forms" data-toggle="collapse" data-parent="#sidebar-nav-menu" class="collapsed"><i class="ti-receipt"></i> <span class="title">Formulários</span> <i class="icon-submenu ti-angle-left"></i></a>
                         <div id="forms" class="collapse ">
                             <ul class="submenu">
-                                <li><a href="/Cliente/Index">Cadastro de cliente</a></li>
+                                <li><a href="/Cliente/Novo">Cadastro de cliente</a></li>
                                 <li><a href="/Estoque/Form">Cadastro de produto</a></li>
                             </ul>
                         </div>
@@ -273,5 +277,18 @@
     <script type="text/javascript" src="~/Template/TemplateADMIN/assets/vendor/datatables/js-main/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="~/Template/TemplateADMIN/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Template/KlorofilPro.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script>
+        function logOut() {
+            var url = "@Url.Action("Logout", "Login")";
+            $.post(url, null, encerrar);
+        }
+
+        function encerrar(login) {
+            if (login.logOut == true) {
+                location.href = "/Login";
+            }
+        }
+    </script>
 </body>
 </html>

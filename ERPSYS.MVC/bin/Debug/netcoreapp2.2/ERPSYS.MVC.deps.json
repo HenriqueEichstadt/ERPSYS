@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "c7e8b16cbad56c3f1b10e3eb7e4088295aba8730"
+    "signature": "ede215e2b3e94163cd9caee79cd9d852db4e5251"
   },
   "compilationOptions": {
     "defines": [
@@ -26,6 +26,7 @@
         "dependencies": {
           "BuildBundlerMinifier": "2.9.406",
           "BundlerMinifier.Core": "2.9.406",
+          "EnterpriseLibrary.Validation.NetCore": "6.0.1312",
           "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
@@ -61,6 +62,48 @@
         },
         "compile": {
           "lib/netcoreapp2.0/dotnet-bundle.dll": {}
+        }
+      },
+      "CommonServiceLocator.NetCore/1.3.1": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Practices.ServiceLocation.dll": {
+            "assemblyVersion": "1.3.0.0",
+            "fileVersion": "1.3.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
+      "EnterpriseLibrary.Common.NetCore/6.0.1312": {
+        "dependencies": {
+          "Microsoft.Win32.Registry": "4.5.0",
+          "System.Configuration.ConfigurationManager": "4.4.0",
+          "Unity.Interception.NetCore": "4.0.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Practices.EnterpriseLibrary.Common.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1312.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Practices.EnterpriseLibrary.Common.dll": {}
+        }
+      },
+      "EnterpriseLibrary.Validation.NetCore/6.0.1312": {
+        "dependencies": {
+          "EnterpriseLibrary.Common.NetCore": "6.0.1312",
+          "System.ComponentModel.Annotations": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Practices.EnterpriseLibrary.Validation.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1312.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Practices.EnterpriseLibrary.Validation.dll": {}
         }
       },
       "Microsoft.ApplicationInsights/2.2.0": {
@@ -609,6 +652,20 @@
           "lib/netstandard1.0/System.Composition.TypedParts.dll": {}
         }
       },
+      "System.Configuration.ConfigurationManager/4.4.0": {
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "4.4.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.25519.3"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+        }
+      },
       "System.Data.SqlClient/4.6.1": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.5.0",
@@ -705,6 +762,22 @@
           }
         }
       },
+      "System.Security.Cryptography.ProtectedData/4.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.25519.3"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.25519.3"
+          }
+        }
+      },
       "System.Text.Encoding.CodePages/4.5.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.2.0",
@@ -723,6 +796,50 @@
             "assemblyVersion": "4.1.1.0",
             "fileVersion": "4.6.26515.6"
           }
+        }
+      },
+      "Unity.Interception.NetCore/4.0.4": {
+        "dependencies": {
+          "System.Reflection.Emit": "4.3.0",
+          "Unity.NetCore": "4.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Practices.Unity.Interception.Configuration.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          },
+          "lib/netstandard2.0/Microsoft.Practices.Unity.Interception.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Practices.Unity.Interception.Configuration.dll": {},
+          "lib/netstandard2.0/Microsoft.Practices.Unity.Interception.dll": {}
+        }
+      },
+      "Unity.NetCore/4.0.3": {
+        "dependencies": {
+          "CommonServiceLocator.NetCore": "1.3.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Practices.Unity.Configuration.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          },
+          "lib/netstandard2.0/Microsoft.Practices.Unity.RegistrationByConvention.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          },
+          "lib/netstandard2.0/Microsoft.Practices.Unity.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Practices.Unity.Configuration.dll": {},
+          "lib/netstandard2.0/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/netstandard2.0/Microsoft.Practices.Unity.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3802,6 +3919,27 @@
       "path": "bundlerminifier.core/2.9.406",
       "hashPath": "bundlerminifier.core.2.9.406.nupkg.sha512"
     },
+    "CommonServiceLocator.NetCore/1.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+5n9l8QUPAz3jWrA0YRco8ZGoYqq+hqXaodnQEjD7MI5LHrvzAIZvXpVrDzpFKA4pR7tWPYwOTKncUUv4UYIRQ==",
+      "path": "commonservicelocator.netcore/1.3.1",
+      "hashPath": "commonservicelocator.netcore.1.3.1.nupkg.sha512"
+    },
+    "EnterpriseLibrary.Common.NetCore/6.0.1312": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Y2d3SU93BT7qz7d6K/t+JOdodsfBxXneEarfK2xod3HiXV+kyHCSRbczXLusNnVhy+LxxENlnEe4i6VDcbHcPA==",
+      "path": "enterpriselibrary.common.netcore/6.0.1312",
+      "hashPath": "enterpriselibrary.common.netcore.6.0.1312.nupkg.sha512"
+    },
+    "EnterpriseLibrary.Validation.NetCore/6.0.1312": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q3NV9bGh9J1mT4G/hGrICgquHxiOjA/Y+qUWFgpd0J/RdNxw8FsVxVy2RPnDwyNG+YwFfkSRKaPHc4fpTFw6+Q==",
+      "path": "enterpriselibrary.validation.netcore/6.0.1312",
+      "hashPath": "enterpriselibrary.validation.netcore.6.0.1312.nupkg.sha512"
+    },
     "Microsoft.ApplicationInsights/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -4061,6 +4199,13 @@
       "path": "system.composition.typedparts/1.0.31",
       "hashPath": "system.composition.typedparts.1.0.31.nupkg.sha512"
     },
+    "System.Configuration.ConfigurationManager/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gWwQv/Ug1qWJmHCmN17nAbxJYmQBM/E94QxKLksvUiiKB1Ld3Sc/eK1lgmbSjDFxkQhVuayI/cGFZhpBSodLrg==",
+      "path": "system.configuration.configurationmanager/4.4.0",
+      "hashPath": "system.configuration.configurationmanager.4.4.0.nupkg.sha512"
+    },
     "System.Data.SqlClient/4.6.1": {
       "type": "package",
       "serviceable": true,
@@ -4096,12 +4241,33 @@
       "path": "system.net.nameresolution/4.0.0",
       "hashPath": "system.net.nameresolution.4.0.0.nupkg.sha512"
     },
+    "System.Security.Cryptography.ProtectedData/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cJV7ScGW7EhatRsjehfvvYVBvtiSMKgN8bOVI0bQhnF5bU7vnHVIsH49Kva7i7GWaWYvmEzkYVk1TC+gZYBEog==",
+      "path": "system.security.cryptography.protecteddata/4.4.0",
+      "hashPath": "system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
+    },
     "System.Text.Encoding.CodePages/4.5.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-S0wEUiKcLvRlkFUXca8uio1UQ5bYQzYgOmOKtCqaBQC3GR9AJjh43otcM32IGsAyvadFTaAMw9Irm6dS4Evfng==",
       "path": "system.text.encoding.codepages/4.5.0",
       "hashPath": "system.text.encoding.codepages.4.5.0.nupkg.sha512"
+    },
+    "Unity.Interception.NetCore/4.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-E3Lw2BUgx8QgHMkaCs7VU+6i3JpvJzgT5gpI6X9EXhsTTmMSlnzCwmvcVkBN6DzFtHFVyZZ+BEgyJoQ174TiyQ==",
+      "path": "unity.interception.netcore/4.0.4",
+      "hashPath": "unity.interception.netcore.4.0.4.nupkg.sha512"
+    },
+    "Unity.NetCore/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Se1z5U72aUzd5CklbtYD30iPB1D5zoe1X9MVgmyczwGgR//SEcfoT2BIlOzc0zpHB6nMIH3RvBULcpAza377nA==",
+      "path": "unity.netcore/4.0.3",
+      "hashPath": "unity.netcore.4.0.3.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",
