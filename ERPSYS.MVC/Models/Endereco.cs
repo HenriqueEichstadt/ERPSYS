@@ -13,18 +13,12 @@ namespace ERPSYS.MVC.Models
 {
     public partial class Endereco
     {
-        public IUsuarioDAO UsuarioDao { get; set; }
         [Inject] public IMyActivator MyActivator { get; set; }
-
-        public Endereco()
-        {
-            MyDependencyContainer.Inject(this);
-        }
         
         internal void AtribuirDados()
         {
             DataInclusao = DateTime.Now;
-            var usuarioDao = MyActivator.CreateInstance<IUsuarioDAO>();
+            var usuarioDao = MyActivator.CreateInstance<IUsuarioDAO, UsuarioDAO>();
             UsuarioInclusaoId = usuarioDao.GetById(Startup.UserSession.Id).Id;
         }
     }

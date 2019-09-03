@@ -5,6 +5,9 @@
         success: function (resposta) {
             if (resposta.data.add) {
                 successNotify(resposta.data.message);
+                setTimeout(function () {
+                    $(location).attr('href', "/Home/Index");
+                }, 3000);
                 //$('#FormAdd').resetForm();
                 //$("#messageContainer").remove();
                 /*$("#messageContainer").append(

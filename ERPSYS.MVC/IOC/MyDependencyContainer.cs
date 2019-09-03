@@ -8,11 +8,11 @@ namespace ERPSYS.MVC.IOC
 {
     internal static class MyDependencyContainer
     {
-        private static IKernel _kernel = new StandardKernel(Array.Empty<INinjectModule>());
+        public static IKernel Kernel { get; set; }
 
         public static void LoadModule(INinjectModule module)
         {
-            ModuleLoadExtensions.Load(_kernel, (INinjectModule[])new INinjectModule[1]
+            ModuleLoadExtensions.Load(Kernel, (INinjectModule[])new INinjectModule[1]
             {
             module
             });
@@ -20,54 +20,54 @@ namespace ERPSYS.MVC.IOC
 
         public static T Get<T>()
         {
-            return ResolutionExtensions.Get<T>(_kernel, Array.Empty<IParameter>());
+            return ResolutionExtensions.Get<T>(Kernel, Array.Empty<IParameter>());
         }
 
         public static T Get<T>(params IParameter[] parameters)
         {
-            return ResolutionExtensions.Get<T>(_kernel, parameters);
+            return ResolutionExtensions.Get<T>(Kernel, parameters);
         }
 
         public static object Get(Type type)
         {
-            return ResolutionExtensions.Get(_kernel, type, Array.Empty<IParameter>());
+            return ResolutionExtensions.Get(Kernel, type, Array.Empty<IParameter>());
         }
 
         public static object Get(Type type, params IParameter[] parameters)
         {
-            return ResolutionExtensions.Get(_kernel, type, parameters);
+            return ResolutionExtensions.Get(Kernel, type, parameters);
         }
 
         public static T TryGet<T>()
         {
-            return ResolutionExtensions.TryGet<T>(_kernel, Array.Empty<IParameter>());
+            return ResolutionExtensions.TryGet<T>(Kernel, Array.Empty<IParameter>());
         }
 
         public static T TryGet<T>(params IParameter[] parameters)
         {
-            return ResolutionExtensions.Get<T>(_kernel, parameters);
+            return ResolutionExtensions.Get<T>(Kernel, parameters);
         }
 
         public static object TryGet(Type type)
         {
-            return ResolutionExtensions.Get(_kernel, type, Array.Empty<IParameter>());
+            return ResolutionExtensions.Get(Kernel, type, Array.Empty<IParameter>());
         }
 
         public static object TryGet(Type type, params IParameter[] parameters)
         {
-            return ResolutionExtensions.Get(_kernel, type, parameters);
+            return ResolutionExtensions.Get(Kernel, type, parameters);
         }
 
         public static void Inject(object instance)
         {
-            IKernel kernel = _kernel;
+            IKernel kernel = Kernel;
             IParameter[] array = (IParameter[])new Parameter[0];
             kernel.Inject(instance, array);
         }
 
         public static IBindingToSyntax<T> Bind<T>()
         {
-            return _kernel.Bind<T>();
+            return Kernel.Bind<T>();
         }
     }
 }

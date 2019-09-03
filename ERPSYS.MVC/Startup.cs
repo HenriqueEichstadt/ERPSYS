@@ -124,6 +124,7 @@ namespace ERPSYS
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             this.Kernel = this.RegisterApplicationComponents(app);
+            MyDependencyContainer.Kernel = this.Kernel;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

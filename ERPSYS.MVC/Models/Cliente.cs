@@ -1,6 +1,7 @@
 ﻿using ERPSYS.MVC.Common.Interfaces;
 using ERPSYS.MVC.DAO;
 using ERPSYS.MVC.DAO.Interfaces;
+using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.IOC;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Ninject;
@@ -14,13 +15,14 @@ namespace ERPSYS.MVC.Models
 {
     public partial class Cliente
     {
-        //[Inject] public IUsuarioDAO UsuarioDao { get; set; }
+        [Inject] public IMyActivator MyActivator { get; set; }
         [Inject] public IEntityValidationResultFactory EntityValidationResult { get; set; }
         public void AtribuirDados()
         {
             Ativo = true;
             Pontos = 0;
-            UsuarioInclusaoId = (new UsuarioDAO().GetById(Startup.UserSession.Id) as Usuario).Id;
+            var usuarioDao = MyActivator.CreateInstance<IUsuarioDAO, UsuarioDAO>();
+            UsuarioInclusaoId = usuarioDao.GetById(Startup.UserSession.Id).Id;
             DataInclusao = DateTime.Now;
             Pessoa.AtribuirDados('F');
         }
@@ -29,7 +31,7 @@ namespace ERPSYS.MVC.Models
         {
             if(!Validacoes.ValidaCpf(Pessoa.CPFCNPJ))
             {
-                EntityValidationResult.NewResult(" O CPF informado não é válido! ");
+                EntityValidationResult.NewResult(" O CPF informado não é válido!");
             }
 
             return EntityValidationResult.GetValidationMessage();
