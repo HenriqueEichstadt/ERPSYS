@@ -15,26 +15,13 @@ namespace ERPSYS.MVC.Models
 {
     public partial class Cliente
     {
-        [Inject] public IMyActivator MyActivator { get; set; }
-        [Inject] public IEntityValidationResultFactory EntityValidationResult { get; set; }
         public void AtribuirDados()
         {
             Ativo = true;
             Pontos = 0;
-            var usuarioDao = MyActivator.CreateInstance<IUsuarioDAO, UsuarioDAO>();
-            UsuarioInclusaoId = usuarioDao.GetById(Startup.UserSession.Id).Id;
+            UsuarioInclusaoId = new UsuarioDAO().GetById(Startup.UserSession.Id).Id;
             DataInclusao = DateTime.Now;
             Pessoa.AtribuirDados('F');
-        }
-
-        public string Validade()
-        {
-            if(!Validacoes.ValidaCpf(Pessoa.CPFCNPJ))
-            {
-                EntityValidationResult.NewResult(" O CPF informado não é válido!");
-            }
-
-            return EntityValidationResult.GetValidationMessage();
         }
     }
 }
