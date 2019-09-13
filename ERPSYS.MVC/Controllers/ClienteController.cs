@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using ERPSYS.MVC.DAO;
 using ERPSYS.MVC.DAO.Interfaces;
+using ERPSYS.MVC.Extensions.ModelState;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.IOC;
 using ERPSYS.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Ninject;
 
 namespace ERPSYS.MVC.Controllers
@@ -41,26 +43,15 @@ namespace ERPSYS.MVC.Controllers
                 ClienteDao.Add(cliente);
                 return Json(new
                 {
-                    data = new { add = true, message = "Cliente cadastrado com sucesso!", type = "success" }
+                    data = new { add = true, message = "Cliente cadastrado com sucesso!" }
                 });
             }
+
+            //string validacoes = cliente.Valida();
             return Json(new
             {
-                data = new { add = false, message = "Erro no cadastro", type = "warning" }
+                data = new { add = false, message = "Erro no cadastro", validate = ModelState.GetAllErrors()}
             });
-        }
-
-        private string ModelStateErrors()
-        {
-            string erros = string.Empty;
-            foreach (var modelState in ModelState.Values)
-            {
-                foreach (var error in modelState.Errors)
-                {
-                    erros += error + "\n";
-                }
-            }
-            return erros;
         }
     }
 }

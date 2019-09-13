@@ -5,8 +5,8 @@
     <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\nunit.engine.netstandard.dll" t="Include" />
     <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\NUnit3.TestAdapter.dll" t="Include" />
     <e p="C:\Users\Henrique Eichst\.nuget\packages\nunit3testadapter\3.10.0\build\netcoreapp1.0\NUnit3.TestAdapter.pdb" t="Include" />
-    <e p="C:\Users\Henrique Eichst\.Rider2019.1\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Henrique Eichst\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_MySolution.-880299808.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Henrique Eichst\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Henrique Eichst\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_MySolution.-880299808.00" t="ExcludeRecursive" />
     <e p="D:\Documents\HENRIQUE documentos\Repositórios de Projetos\ERPSYS" t="IncludeFlat">
       <e p="ERPSYS.MVC" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
@@ -47,6 +47,9 @@
           </e>
           <e p="AspNetCore" t="Include">
             <e p="AspNetCoreExtensions.cs" t="Include" />
+          </e>
+          <e p="ModelState" t="Include">
+            <e p="ModelStateExtensions.cs" t="Include" />
           </e>
           <e p="Session" t="Include">
             <e p="SessionExtensions.cs" t="Include" />
@@ -133,7 +136,6 @@
           <e p="Venda.properties.cs" t="Include" />
           <e p="VendaItens.cs" t="Include" />
           <e p="VendaItens.properties.cs" t="Include" />
-          <e p="ViewModelHelper.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -182,7 +184,7 @@
             <e p="banner3.svg" t="Include" />
           </e>
           <e p="js" t="Include">
-            <e p="jquery" t="Include">
+            <e p="Form" t="Include">
               <e p="FormPessoa.js" t="Include" />
             </e>
             <e p="NotifyExtensions.js" t="Include" />

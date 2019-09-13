@@ -9,7 +9,7 @@ namespace ERPSYS.MVC.Common
 {
     public class EntityValidationResultFactory : IEntityValidationResultFactory
     {
-        public StringBuilder _validationMessage;
+        private StringBuilder _validationMessage;
 
         public EntityValidationResultFactory()
         {

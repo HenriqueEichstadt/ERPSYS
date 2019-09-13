@@ -21,7 +21,7 @@
                     + '</div>');
                     */
             } else {
-                successNotify(resposta.data.message);
+                warningNotify(resposta.data.validate);
                 //$("#messageContainer").remove();
                 /*
                 $("#messageContainer").append(
