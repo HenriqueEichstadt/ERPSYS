@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ERPSYS.MVC.Common;
-using ERPSYS.MVC.DAO.Interfaces;
+﻿using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Extensions.Session;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ninject;
 

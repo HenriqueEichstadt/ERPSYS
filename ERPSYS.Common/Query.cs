@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ERPSYS.MVC.Common
+namespace ERPSYS.Common
 {
     public class Query
     {
@@ -55,7 +55,7 @@ namespace ERPSYS.MVC.Common
 
         private void OpenConnection()
         {
-            _sqlConnection = new SqlConnection(Startup.ConnectionString);
+            _sqlConnection = new SqlConnection("");
             _sqlConnection.Open();
         }
 

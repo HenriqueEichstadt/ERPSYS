@@ -1,16 +1,6 @@
-﻿using ERPSYS.MVC.Common.Interfaces;
-using ERPSYS.MVC.DAO;
-using ERPSYS.MVC.DAO.Interfaces;
-using ERPSYS.MVC.Interfaces;
-using ERPSYS.MVC.IOC;
-using Microsoft.Practices.EnterpriseLibrary.Validation;
-using Ninject;
+﻿using ERPSYS.MVC.DAO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using ERPSYS.MVC.Common;
+using ERPSYS.Common;
 
 namespace ERPSYS.MVC.Models
 {

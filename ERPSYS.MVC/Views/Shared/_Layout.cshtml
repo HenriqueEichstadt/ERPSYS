@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     <link rel="stylesheet" href="~/Template/KlorofilPro.min.css" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
 
@@ -121,7 +122,7 @@
                         <a href="#subPages" data-toggle="collapse" data-parent="#sidebar-nav-menu" class="collapsed"><i class="ti-files"></i> <span class="title">Cadastros</span> <i class="icon-submenu ti-angle-left"></i></a>
                         <div id="subPages" class="collapse ">
                             <ul class="submenu">
-                                <li><a href="/Cliente/Clientes">Clientes</a></li>
+                                <li><a href="/Cliente/Cadastrados">Clientes</a></li>
                                 <li><a href="/Veiculo/Veiculos">Veículos</a></li>
                             </ul>
                         </div>

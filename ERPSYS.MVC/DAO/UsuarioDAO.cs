@@ -1,12 +1,9 @@
-﻿using ERPSYS.MVC.Common;
-using ERPSYS.MVC.DAO.Interfaces;
+﻿using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.DAO
 {
@@ -72,14 +69,6 @@ namespace ERPSYS.MVC.DAO
                 dbSet.Update(usuario);
                 dbSet.SaveChanges();
             }
-        }
-
-        public void Teste()
-        {
-            var query = new Query("SELECT NOME, EMAIL FROM USUARIOS");
-            var entidade = query.Execute();
-            var nome = entidade["NOME"];
-            var email = entidade["EMAIL"];
         }
     }
 }

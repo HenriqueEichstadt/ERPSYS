@@ -59,7 +59,23 @@ WHERE B.ATIVO = TRUE";
         {
             using (var dbSet = new ApplicationContext())
             {
-                return dbSet.CLIENTES.ToList();
+                return dbSet.CLIENTES.FromSql(
+@"
+SELECT
+   A.ID,
+   B.NOME,
+   B.CPF,
+   A.PONTOS,
+   A.ATIVO,
+   A.DATAINCLUSAO,
+   A.DATAALTERACAO,
+   INC.NOME,
+   ALT.NOME 
+ FROM CLIENTES A
+   INNER JOIN PESSOAS B ON A.PESSOA = B.ID
+   LEFT JOIN USUARIOS INC ON A.USUARIOINCLUSAO = INC.ID
+   LEFT JOIN USUARIOS ALT ON A.USUARIOALTERACAO = ALT.ID")
+                    .ToList();
             }
         }
     }
