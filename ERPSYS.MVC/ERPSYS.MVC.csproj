@@ -88,6 +88,16 @@
     <Compile Remove="Migrations\20190825195211_EditandoColunaEnderecoTabelaPessoas.Designer.cs" />
     <Compile Remove="Migrations\20190825195705_RemovendoColunaEnderecoTabelaPessoas.cs" />
     <Compile Remove="Migrations\20190825195705_RemovendoColunaEnderecoTabelaPessoas.Designer.cs" />
+    <Compile Remove="Migrations\20190915184755_Testedasdsadas.cs" />
+    <Compile Remove="Migrations\20190915184755_Testedasdsadas.Designer.cs" />
+    <Compile Remove="Migrations\20190915185326_CorrigindoTabelaClientes.cs" />
+    <Compile Remove="Migrations\20190915185326_CorrigindoTabelaClientes.Designer.cs" />
+    <Compile Remove="Migrations\20190915190704_TesteTeste.cs" />
+    <Compile Remove="Migrations\20190915190704_TesteTeste.Designer.cs" />
+    <Compile Remove="Migrations\20190915190839_TesteTeste.cs" />
+    <Compile Remove="Migrations\20190915190839_TesteTeste.Designer.cs" />
+    <Compile Remove="Migrations\20190915193106_TesteTeste.cs" />
+    <Compile Remove="Migrations\20190915193106_TesteTeste.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,250 @@
+@model Cliente
+
+<title>Editar Cadastro do cliente</title>
+<div class="main-content">
+<div class="content-heading clearfix">
+    <div class="heading-left">
+        <h1 class="page-title">Formulário</h1>
+        <p class="page-subtitle">Editar cliente</p>
+    </div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li>
+            <a href="#">Formulário</a>
+        </li>
+        <li>
+            <a href="#">Editar cliente</a>
+        </li>
+    </ul>
+</div>
+
+
+<form asp-action="UpdateCliente" id="FormAdd" method="post">
+    <div class="form-horizontal">
+        <div class="panel-body" id="formCadastro">
+            <div class="form-group">
+
+                <div class="col-md-11 control-label">
+                    <p class="help-block">
+                        <h11>*</h11> Campo Obrigatório
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    <h3>Dados do cliente:</h3>
+                </div>
+            </div>
+
+            <input asp-for="@Model.Id"id="clienteId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.DataInclusao" id="clienteDataInclusao" readonlyplaceholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.DataAlteracao" id="clienteDataAlteracao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.UsuarioInclusaoId" id="clienteUsuarioInclusaoId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.UsuarioAlteracaoId" id="clienteUsuarioAteracao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Ativo" id="clienteAtivo" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.Id" id="clientePessoaId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.DataInclusao" id="pessoaDataInclusao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.DataAlteracao" id="pessoaDataAlteracao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.UsuarioInclusaoId" id="pessoaUsuarioInclusao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.UsuarioAlteracaoId" id="pessoaUsuarioAteracao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.Ativo" id="pessoaAtivo" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.TipoPessoa" id="pessoaTipoPessoa" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.Endereco.Id" id="pessoaEnderecoId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.Endereco.DataInclusao" id="pessoaEnderecoDataInclusao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.Endereco.DataAlteracao" id="pessoaEnderecoDataAlteracao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.Endereco.UsuarioInclusaoId" id="pessoaEnderecoUsuarioInclusaoId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+            <input asp-for="@Model.Pessoa.Endereco.UsuarioAlteracaoId" id="pessoaEnderecoUsuarioAlteracaoId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="nomeproduto">Pontos <h11></h11></label>
+                <div class="col-md-2">
+                    <input asp-for="@Model.Pontos" style="text-align: center" id="nomeproduto" readonly placeholder="Nome do produto" class="form-control input-md" type="text">
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="nomeCompleto">Nome Completo <h11>*</h11></label>
+                <div class="col-md-5">
+                    <input asp-for="@Model.Pessoa.Nome" type="text" id="nomeCompleto" placeholder="Nome do Cliente" class="form-control input-md">
+                    <span asp-validation-for="Pessoa.Nome" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="nascimento">Nascimento<h11>*</h11></label>
+                <div class="col-md-2">
+                    <input asp-for="@Model.Pessoa.DataNascimento" id="nascimento" placeholder="DD/MM/AAAA" class="form-control input-md" type="date" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+                    <span asp-validation-for="Pessoa.DataNascimento" class="text-danger"></span>
+                </div>
+
+                <!-- Multiple Radios (inline) -->
+
+                <label class="col-md-1 control-label" id="Genero" for="Genero">Gênero <h11>*</h11></label>
+                <div class="col-md-4">
+                    <label class="radio-inline" for="generoMasc">
+                        <input asp-for="@Model.Pessoa.Genero" id="generoMasc" value="M" type="radio">
+                        Masculino
+                    </label>
+                    <label class="radio-inline" for="generoFem">
+                        <input asp-for="@Model.Pessoa.Genero" id="generoFem" value="F" type="radio">
+                        Feminino
+                    </label>
+                    <span asp-validation-for="Pessoa.Genero" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="rg">RG <h11>*</h11></label>
+                <div class="col-md-2">
+                    <input asp-for="@Model.Pessoa.RG" id="rg" placeholder="Apenas números" class="form-control input-md" type="text" maxlength="11" pattern="[0-9]+$">
+                    <span asp-validation-for="Pessoa.RG" class="text-danger"></span>
+                </div>
+                <label class="col-md-1 control-label" for="CpfeCnpj">CPF <h11>*</h11></label>
+                <div class="col-md-2">
+                    <input asp-for="@Model.Pessoa.CPFCNPJ" id="CpfeCnpj" placeholder="Apenas números" onkeyup="confereCPF(this)" class="form-control input-md" type="text" maxlength="15" pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})$">
+                    <span asp-validation-for="Pessoa.CPFCNPJ" class="text-danger"></span>
+                    <span id="cpfFrase"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="email">Email <h11>*</h11></label>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                        </span>
+                        <input asp-for="@Model.Pessoa.Email" id="email" class="form-control" placeholder="pessoa@email.com" type="email">
+                        <span asp-validation-for="Pessoa.Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prepended text-->
+            <div class="form-group">
+
+                <label class="col-md-2 control-label" for="telefoneUm">Telefone 1 <h11>*</h11></label>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-earphone"></i>
+                        </span>
+                        <input asp-for="@Model.Pessoa.TelefoneUm" id="telefoneUm" class="form-control" placeholder="(XX) XXXXX-XXXX" type="text" maxlength="14" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}+$">
+                        <span asp-validation-for="Pessoa.TelefoneUm" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <label class="col-md-1 control-label" for="telefoneDois">Telefone 2 <h11></h11></label>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-earphone"></i>
+                        </span>
+                        <input asp-for="@Model.Pessoa.TelefoneDois" id="telefoneDois" class="form-control" placeholder="(XX) XXXXX-XXXX" type="text" maxlength="14" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}+$">
+                        <span asp-validation-for="Pessoa.TelefoneDois" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="col-md-2 control-label">
+                    <h3>Dados de endereço:</h3>
+                </div>
+            </div>
+
+            <!-- Search input-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="Cep">CEP <h11>*</h11></label>
+                <div class="col-md-2">
+                    <input asp-for="@Model.Pessoa.Endereco.CEP" id="Cep" onfocusout="pesquisacep(Cep.value)" placeholder="Apenas números" class="form-control input-md" type="search" maxlength="8" pattern="[0-9]+$">
+                    <span asp-validation-for="Pessoa.Endereco.CEP" class="text-danger"></span>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary" onclick="pesquisacep(Cep.value)">Pesquisar</button>
+                </div>
+            </div>
+
+            <!-- Endereço-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="rua">Endereço</label>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rua</span>
+                        <input asp-for="@Model.Pessoa.Endereco.Rua" id="rua" class="form-control" placeholder="" type="text">
+                        <span asp-validation-for="Pessoa.Endereco.Rua" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">Nº <h11>*</h11></span>
+                        <input asp-for="@Model.Pessoa.Endereco.Numero" id="numero" class="form-control" placeholder="" type="text">
+                        <span asp-validation-for="Pessoa.Endereco.Numero" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Bairro</span>
+                        <input asp-for="@Model.Pessoa.Endereco.Bairro" id="bairro" class="form-control" placeholder="" type="text">
+                        <span asp-validation-for="Pessoa.Endereco.Bairro" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="cidade"></label>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Cidade</span>
+                        <input asp-for="@Model.Pessoa.Endereco.Cidade" id="cidade" class="form-control" placeholder="" type="text">
+                        <span asp-validation-for="Pessoa.Endereco.Cidade" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">Estado</span>
+                        <input asp-for="@Model.Pessoa.Endereco.Estado" id="estado" class="form-control" placeholder="" type="text">
+                        <span asp-validation-for="Pessoa.Endereco.Estado" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Complemento</span>
+                        <input asp-for="@Model.Pessoa.Endereco.Complemento" id="complemento" class="form-control" placeholder="" type="text">
+                        <span asp-validation-for="Pessoa.Endereco.Complemento" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!-- Botão Cadastrar e Cancelar -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="Cadastrar"></label>
+                <div class="col-md-8">
+                    <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Salvar</button>
+                    <button id="Cancelar" name="Cancelar" class="btn btn-danger" onclick="window.location.href = '/Cliente/Cadastrados'">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+
+@section Scripts{
+
+    <script src="~/Template/TemplateADMIN/assets/scripts/templateAdminScripts.js"></script>
+    <script src="~/js/Form/FormPessoa.js"></script>
+
+    <script>
+    $(function () {
+            $("#nascimento").val(@Model.Pessoa.DataNascimento?.ToString("yyyy-MM-dd")");    
+    });
+    </script>
+}

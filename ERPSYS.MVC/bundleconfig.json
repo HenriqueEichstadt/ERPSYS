@@ -18,8 +18,8 @@
       "wwwroot/Template/TemplateADMIN/assets/css/demo.css",
       "wwwroot/Template/TemplateADMIN/demo-panel/style-switcher.css",
       "wwwroot/Template/TemplateADMIN/assets/vendor/datatables/css-main/jquery.dataTables.min.css",
-      "wwwroot/Template/DataTableCss/DataTables.css",
       "wwwroot/Template/TemplateADMIN/assets/vendor/DataTablesSelect/select.dataTables.min.css",
+      "wwwroot/Template/DataTableCss/dataTables.css",
       "wwwroot/Template/TemplateADMIN/assets/css/select2/select2.min.css"
     ]
   },

@@ -10,7 +10,7 @@ namespace ERPSYS.MVC.Models
     {
         private UsuarioDAO _usuarioDao = new UsuarioDAO();
         
-        public void AtribuirDados(char tipoPessoa)
+        public void AtribuirDadosInclusao(char tipoPessoa)
         {
             switch (tipoPessoa)
             {
@@ -44,6 +44,12 @@ namespace ERPSYS.MVC.Models
             DataInclusao = DateTime.Now;
             TipoPessoa = 'J';
             Endereco.AtribuirDados();
+        }
+
+        public void AtribuirDadosAlteracao()
+        {
+            UsuarioAlteracaoId = _usuarioDao.GetById(Startup.UserSession.Id).Id;
+            DataAlteracao = DateTime.Now;
         }
     }
 }

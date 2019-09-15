@@ -18,11 +18,11 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public void Update(ICliente cliente)
+        public void Update(Cliente cliente)
         {
             using (var dbSet = new ApplicationContext())
             {
-                dbSet.Update(cliente);
+                dbSet.CLIENTES.Update(cliente);
                 dbSet.SaveChanges();
             }
         }
@@ -36,11 +36,14 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public ICliente GetById(int id)
+        public Cliente GetById(int id)
         {
             using (var dbSet = new ApplicationContext())
             {
-                return dbSet.CLIENTES.FirstOrDefault(c => c.Id == id);
+                return dbSet.CLIENTES
+                    .Include(c => c.Pessoa)
+                    .ThenInclude(p => p.Endereco)
+                    .FirstOrDefault(c => c.Id == id);
             }
         }
 
@@ -48,10 +51,10 @@ namespace ERPSYS.MVC.DAO
         {
             using (var dbSet = new ApplicationContext())
             {
-                var query = $@"SELECT * FROM CLIENTES A
-INNER JOIN PESSOAS B ON A.PESSOA = B.ID
-WHERE B.ATIVO = TRUE";
-                return dbSet.CLIENTES.FromSql(query).ToList();
+                return dbSet.CLIENTES
+                    .Include(p => p.Pessoa)
+                    .Where(a => a.Ativo == true)
+                    .ToList();
             }
         }
 
@@ -59,23 +62,42 @@ WHERE B.ATIVO = TRUE";
         {
             using (var dbSet = new ApplicationContext())
             {
-                return dbSet.CLIENTES.FromSql(
-@"
-SELECT
-   A.ID,
-   B.NOME,
-   B.CPF,
-   A.PONTOS,
-   A.ATIVO,
-   A.DATAINCLUSAO,
-   A.DATAALTERACAO,
-   INC.NOME,
-   ALT.NOME 
- FROM CLIENTES A
-   INNER JOIN PESSOAS B ON A.PESSOA = B.ID
-   LEFT JOIN USUARIOS INC ON A.USUARIOINCLUSAO = INC.ID
-   LEFT JOIN USUARIOS ALT ON A.USUARIOALTERACAO = ALT.ID")
+                return dbSet.CLIENTES
+                    .Include(p => p.Pessoa)
                     .ToList();
+            }
+        }
+
+        public IList<Cliente> ListarClientes()
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.CLIENTES
+                    .Include(p => p.Pessoa)
+                    .Where(a => a.Pessoa.TipoPessoa.Equals('F'))
+                    .ToList();
+            }
+        }
+        
+        public void Inativar(int id)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                var cliente = GetById(id);
+                cliente.Ativo = false;
+                dbSet.CLIENTES.Update(cliente);
+                dbSet.SaveChanges();
+            }
+        }
+
+        public void Ativar(int id)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                var cliente = GetById(id);
+                cliente.Ativo = true;
+                dbSet.CLIENTES.Update(cliente);
+                dbSet.SaveChanges();
             }
         }
     }
