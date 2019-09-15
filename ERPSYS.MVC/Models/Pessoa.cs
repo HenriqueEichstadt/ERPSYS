@@ -8,6 +8,8 @@ namespace ERPSYS.MVC.Models
 {
     public partial class Pessoa
     {
+        private UsuarioDAO _usuarioDao = new UsuarioDAO();
+        
         public void AtribuirDados(char tipoPessoa)
         {
             switch (tipoPessoa)
@@ -19,8 +21,6 @@ namespace ERPSYS.MVC.Models
                     AtribuirPessoaJuridica();
                     break;
             }
-
-
         }
 
         public int GetIdade(DateTime dataNascimento)
@@ -32,7 +32,7 @@ namespace ERPSYS.MVC.Models
         private void AtribuirPessoaFisica()
         {
             Ativo = true;
-            UsuarioInclusaoId = new UsuarioDAO().GetById(Startup.UserSession.Id).Id;
+            UsuarioInclusaoId = _usuarioDao.GetById(Startup.UserSession.Id).Id;
             DataInclusao = DateTime.Now;
             TipoPessoa = 'F';
             Endereco.AtribuirDados();
@@ -40,7 +40,7 @@ namespace ERPSYS.MVC.Models
         private void AtribuirPessoaJuridica()
         {
             Ativo = true;
-            UsuarioInclusaoId = new UsuarioDAO().GetById(Startup.UserSession.Id).Id;
+            UsuarioInclusaoId = _usuarioDao.GetById(Startup.UserSession.Id).Id;
             DataInclusao = DateTime.Now;
             TipoPessoa = 'J';
             Endereco.AtribuirDados();

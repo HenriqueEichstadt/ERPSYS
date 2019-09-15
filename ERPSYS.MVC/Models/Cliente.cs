@@ -6,11 +6,13 @@ namespace ERPSYS.MVC.Models
 {
     public partial class Cliente
     {
+        private UsuarioDAO _usuarioDao = new UsuarioDAO();
+        
         public void AtribuirDados()
         {
             Ativo = true;
             Pontos = 0;
-            UsuarioInclusaoId = new UsuarioDAO().GetById(Startup.UserSession.Id).Id;
+            UsuarioInclusaoId = _usuarioDao.GetById(Startup.UserSession.Id).Id;
             DataInclusao = DateTime.Now;
             Pessoa.AtribuirDados('F');
         }

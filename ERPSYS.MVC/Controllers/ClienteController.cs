@@ -31,7 +31,7 @@ namespace ERPSYS.MVC.Controllers
         {
             Cliente.Pessoa = MyActivator.CreateInstance<Pessoa>();
             Cliente.Pessoa.Endereco = MyActivator.CreateInstance<IEndereco, Endereco>() as Endereco;
-            return View(Cliente);
+            return View(Cliente as Cliente);
         }
 
         [HttpPost]
