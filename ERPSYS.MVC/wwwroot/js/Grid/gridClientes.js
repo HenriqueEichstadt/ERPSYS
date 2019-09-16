@@ -60,17 +60,22 @@ $(document).ready(function () {
 
         ]
     });
+    tabela.on('select', function(e, dt, type, indexes){
+        $('#inativar').hide();
+        $('#ativar').hide();
+        if(tabela.rows({ selected: true }).data()[0] != undefined) {
+            if (tabela.rows({selected: true}).data()[0].ativo == true) {
+                $('#inativar').show();
+            }
+            if (tabela.rows({selected: true}).data()[0].ativo == false) {
+                $('#ativar').show();
+            }
+        }
+    });
     
     // ocultar botões
     $('#inativar').hide();
     $('#ativar').hide();
-    
-    if(tabela.rows({ selected: true }).data()[0].ativo){
-        $('#inativar').show();
-    }
-    if(tabela.rows({ selected: true }).data()[0].ativo){
-        $('#ativar').show();
-    }
     
     // Inativa Cliente
     $('#inativar').click(function () {

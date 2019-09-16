@@ -6,7 +6,7 @@
             if (resposta.data.add) {
                 successNotify(resposta.data.message);
                 setTimeout(function () {
-                    $(location).attr('href', "/Home/Index");
+                    window.history.back();
                 }, 3000);
                 //$('#FormAdd').resetForm();
                 //$("#messageContainer").remove();
