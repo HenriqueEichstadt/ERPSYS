@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
 
     $('#FormAdd').ajaxForm({
         dataType: 'json',

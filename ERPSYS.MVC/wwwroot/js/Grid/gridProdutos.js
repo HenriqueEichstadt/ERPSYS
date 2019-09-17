@@ -29,15 +29,27 @@ $(document).ready(function () {
                 }
             },
         "ajax": {
-            "url": "/Cliente/ListarClientes",
+            "url": "/Produto/ListarProdutos",
             "type": "GET",
             "datatype": "json",
         },
         "columns": [
-            { "data": "id", "autoWidth": true, },
-            { "data": "pessoa.nome", "autoWidth": true },
-            { "data": "pessoa.cpfcnpj", "autoWidth": true },
-            { "data": "pontos", "autoWidth": true },
+            { "data": "id", "autoWidth": true },
+            { "data": "nome", "autoWidth": true },
+            { "data": "marca", "autoWidth": true },
+            {
+                "data": "categoria",
+                "autoWidth": true,
+                render: function (data, type, row) {
+                    if(row.categoria == 'P'){
+                        return "Produto";
+                    }
+                    else{
+                        return "Sem Categoria";
+                    }
+            },
+            { "data": "precoVenda", "autoWidth": true },
+            { "data": "precoCusto", "autoWidth": true },
             {
                 "data": "ativo",
                 "autoWidth": true,
@@ -50,14 +62,20 @@ $(document).ready(function () {
                     }
                 }
             },
-            {
-                "data": "dataInclusao",
-                "autoWidth": true,
-                render: function (data, type, row) {
-                    return moment(row.Validade).format('L');
-                }
-            },
-
+            { "data": "estoqueAtual", "autoWidth": true },
+            { "data": "limiteEstoque", "autoWidth": true },
+            { "data": "validade", "autoWidth": true },
+            { 
+                "data": "qtdPontosProgFidelidade",
+                "autoWidth": true },
+            render: function(data type, row){
+            if(row.qtdPontosProgFidelidade == null){
+                return "-"
+            }
+            else{
+                return data;
+            }
+    }
         ]
     });
     tabela.on('select', function(e, dt, type, indexes){
@@ -72,21 +90,21 @@ $(document).ready(function () {
             }
         }
     });
-    
+
     // ocultar botões
     $('#inativar').hide();
     $('#ativar').hide();
-    
+
     // Inativa Cliente
     $('#inativar').click(function () {
-        let clienteId = tabela.rows({ selected: true }).data()[0].id;
+        let produtoId = tabela.rows({ selected: true }).data()[0].id;
         $.ajax({
             type: "GET",
-            url: "/Cliente/InativarCliente/" + clienteId,
+            url: "/Produto/InativarProduto/" + produtoId,
             dataType: "json",
             success: function (response) {
                 if (response.data.inativou) {
-                    successNotify("Cliente Inativado");
+                    successNotify("Produto Inativado");
                     $('#inativar').hide();
                     $('#ativar').show();
                     tabela.ajax.reload();
@@ -97,14 +115,14 @@ $(document).ready(function () {
 
     // Ativar Cliente
     $('#ativar').click(function () {
-        let clienteId = tabela.rows({ selected: true }).data()[0].id;
+        let produtoId = tabela.rows({ selected: true }).data()[0].id;
         $.ajax({
             type: "GET",
-            url: "/Cliente/AtivarCliente/" + clienteId,
+            url: "/Produto/AtivarProduto/" + produtoId,
             dataType: "json",
             success: function (response) {
                 if (response.data.ativou) {
-                    successNotify("Cliente Ativado");
+                    successNotify("Produto Ativado");
                     $('#inativar').show();
                     $('#ativar').hide();
                     tabela.ajax.reload();
@@ -112,11 +130,11 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     // Abre o form para editar registro do cliente
     $('#editar').click(function () {
-        let clienteId = tabela.rows({ selected: true }).data()[0].id;
-        window.location.href = "/Cliente/Editar/" + clienteId
+        let produtoId = tabela.rows({ selected: true }).data()[0].id;
+        window.location.href = "/Produto/Editar/" + produtoId
     });
 
 });

@@ -19,7 +19,6 @@ namespace ERPSYS.MVC.Controllers
     {
         [Inject] public ICliente Cliente { get; set; }
         [Inject] public IClienteDAO ClienteDao { get; set; }
-        [Inject] public IUsuarioDAO UsuarioDao { get; set; }
         [Inject] public IMyActivator MyActivator { get; set; }
 
         public IActionResult Cadastrados()
