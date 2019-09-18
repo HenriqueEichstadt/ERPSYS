@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+    // ocultar botões ativar e inativar
+    ocultarBotoes();
+    
     var tabela = $('#MyEstoque').DataTable({
         dom: 'Blftip',
         select: { style: 'single' },
@@ -41,12 +45,12 @@ $(document).ready(function () {
                 "data": "categoria",
                 "autoWidth": true,
                 render: function (data, type, row) {
-                    if(row.categoria == 'P'){
+                    if (row.categoria == 'P') {
                         return "Produto";
-                    }
-                    else{
+                    } else {
                         return "Sem Categoria";
                     }
+                }
             },
             { "data": "precoVenda", "autoWidth": true },
             { "data": "precoCusto", "autoWidth": true },
@@ -67,15 +71,15 @@ $(document).ready(function () {
             { "data": "validade", "autoWidth": true },
             { 
                 "data": "qtdPontosProgFidelidade",
-                "autoWidth": true },
-            render: function(data type, row){
-            if(row.qtdPontosProgFidelidade == null){
-                return "-"
+                "autoWidth": true,
+                render: function(data, type, row) {
+                    if (row.qtdPontosProgFidelidade == null) {
+                        return "-"
+                    } else {
+                        return data;
+                    }
+                }
             }
-            else{
-                return data;
-            }
-    }
         ]
     });
     tabela.on('select', function(e, dt, type, indexes){
@@ -90,10 +94,6 @@ $(document).ready(function () {
             }
         }
     });
-
-    // ocultar botões
-    $('#inativar').hide();
-    $('#ativar').hide();
 
     // Inativa Cliente
     $('#inativar').click(function () {
@@ -138,3 +138,8 @@ $(document).ready(function () {
     });
 
 });
+
+function ocultarBotoes(){
+    $('#inativar').hide();
+    $('#ativar').hide();
+}
