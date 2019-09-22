@@ -31,15 +31,13 @@ namespace ERPSYS.MVC.Controllers
                 
             else
                 return RedirectToAction("Index");
-                //return Json(new { autenticou = false });
         }
 
         public JsonResult Logout()
         {
             HttpContext.Session.Clear();
             Startup.UserSession = null;
-            //HttpContext.Session.SetUserId("USERSESSION", -1);
-             foreach (var cookieKey in Request.Cookies.Keys)
+            foreach (var cookieKey in Request.Cookies.Keys)
              {
                  Response.Cookies.Delete(cookieKey);
              }

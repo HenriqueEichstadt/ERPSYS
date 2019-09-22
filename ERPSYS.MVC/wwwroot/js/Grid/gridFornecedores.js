@@ -1,19 +1,19 @@
 $(document).ready(function () {
-    
+
     // Carregar Data Tables
     DataTable.Load();
-    
+
     // ocultar botões
     VisualizationFields.OcultarBotoes();
-    
+
     // Inativar Cliente
-    ButtonActions.InatinarCliente();
-    
+    ButtonActions.InatinarFornecedor();
+
     // Ativar Cliente
-    ButtonActions.AtivarCliente();
-    
+    ButtonActions.AtivarFornecedor();
+
     // Abre o form para editar registro do cliente
-    ButtonActions.EditarCliente();
+    ButtonActions.EditarFornecedor();
 
 });
 
@@ -61,15 +61,15 @@ DataTable = (function () {
                     }
                 },
             "ajax": {
-                "url": "/Cliente/ListarClientes",
+                "url": "/Fornecedor/ListarFornecedores",
                 "type": "GET",
                 "datatype": "json",
             },
             "columns": [
                 {"data": "id", "autoWidth": true,},
-                {"data": "pessoa.nome", "autoWidth": true},
-                {"data": "pessoa.cpfcnpj", "autoWidth": true},
-                {"data": "pontos", "autoWidth": true},
+                {"data": "nomeFantasia", "autoWidth": true},
+                {"data": "telefoneUm", "autoWidth": true},
+                {"data": "email", "autoWidth": true},
                 {
                     "data": "ativo",
                     "autoWidth": true,
@@ -81,14 +81,6 @@ DataTable = (function () {
                         }
                     }
                 },
-                {
-                    "data": "dataInclusao",
-                    "autoWidth": true,
-                    render: function (data, type, row) {
-                        return moment(row.Validade).format('L');
-                    }
-                },
-
             ]
         });
         table.on('select', function (e, dt, type, indexes) {
@@ -114,17 +106,17 @@ DataTable = (function () {
 
 
 ButtonActions = (function (){
-    
-    function InatinarCliente(){
+
+    function InatinarFornecedor(){
         $('#inativar').click(function () {
-            let clienteId = DataTable.GetSelectedRow().id;
+            let fornecedorId = DataTable.GetSelectedRow().id;
             $.ajax({
                 type: "GET",
-                url: "/Cliente/InativarCliente/" + clienteId,
+                url: "/Fornecedor/InativarFornecedor/" + fornecedorId,
                 dataType: "json",
                 success: function (response) {
                     if (response.data.inativou) {
-                        successNotify("Cliente Inativado");
+                        successNotify("Fornecedor Inativado");
                         VisualizationFields.OcultarBotao('#inativar');
                         VisualizationFields.ExibirBotao('#ativar');
                         DataTable.GetTable().ajax.reload();
@@ -133,17 +125,17 @@ ButtonActions = (function (){
             });
         });
     }
-    
-    function AtivarCliente(){
+
+    function AtivarFornecedor(){
         $('#ativar').click(function () {
-            let clienteId = DataTable.GetSelectedRow().id;
+            let fornecedorId = DataTable.GetSelectedRow().id;
             $.ajax({
                 type: "GET",
-                url: "/Cliente/AtivarCliente/" + clienteId,
+                url: "/Fornecedor/AtivarFornecedor/" + fornecedorId,
                 dataType: "json",
                 success: function (response) {
                     if (response.data.ativou) {
-                        successNotify("Cliente Ativado");
+                        successNotify("Fornecedor Ativado");
                         VisualizationFields.ExibirBotao('#inativar');
                         VisualizationFields.OcultarBotao('#ativar');
                         DataTable.GetTable().ajax.reload();
@@ -152,18 +144,18 @@ ButtonActions = (function (){
             });
         });
     }
-    
-    function EditarCliente(){
+
+    function EditarFornecedor(){
         $('#editar').click(function () {
-            let clienteId = DataTable.GetSelectedRow().id;
-            window.location.href = "/Cliente/Editar/" + clienteId
+            let fornecedorId = DataTable.GetSelectedRow().id;
+            window.location.href = "/Fornecedor/Editar/" + fornecedorId
         });
     }
-    
+
     return {
-        InatinarCliente: InatinarCliente,
-        AtivarCliente: AtivarCliente,
-        EditarCliente: EditarCliente
+        InatinarFornecedor: InatinarFornecedor,
+        AtivarFornecedor: AtivarFornecedor,
+        EditarFornecedor: EditarFornecedor
     };
 })();
 
@@ -194,5 +186,5 @@ VisualizationFields = (function (){
         ExibirBotoes: exibirBotoes,
         OcultarBotao: ocultarBotao,
         ExibirBotao: exibirBotao
-    };    
+    };
 })();

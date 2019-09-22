@@ -1,0 +1,239 @@
+@model Pessoa
+
+<div class="main-content">
+<div class="content-heading clearfix">
+    <div class="heading-left">
+        <h1 class="page-title">Formulário</h1>
+        <p class="page-subtitle">Editar fornecedor</p>
+    </div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li>
+            <a href="#">Formulário</a>
+        </li>
+        <li>
+            <a href="#">Editar fornecedor</a>
+        </li>
+    </ul>
+</div>
+
+<form asp-action="UpdateFornecedor" id="FormAdd" method="post">
+<main class="form-horizontal">
+<div class="panel-body">
+<div class="form-group">
+
+    <div class="col-md-11 control-label">
+        <p class="help-block">
+            <h11>*</h11> Campo Obrigatório
+        </p>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-3 control-label">
+        <h3>Dados do fornecedor:</h3>
+    </div>
+</div>
+<input asp-for="@Model.Id"id="clienteId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.DataInclusao" id="clienteDataInclusao" readonlyplaceholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.DataAlteracao" id="clienteDataAlteracao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.UsuarioInclusaoId" id="clienteUsuarioInclusaoId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.UsuarioAlteracaoId" id="clienteUsuarioAteracao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.Ativo" id="clienteAtivo" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.TipoPessoa" id="pessoaTipoPessoa" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.Endereco.Id" id="pessoaEnderecoId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.Endereco.DataInclusao" id="pessoaEnderecoDataInclusao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.Endereco.DataAlteracao" id="pessoaEnderecoDataAlteracao" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.Endereco.UsuarioInclusaoId" id="pessoaEnderecoUsuarioInclusaoId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+<input asp-for="@Model.Endereco.UsuarioAlteracaoId" id="pessoaEnderecoUsuarioAlteracaoId" readonly placeholder="Nome do produto" class="form-control input-md" type="hidden">
+
+<div class="form-group">
+    <label class="col-md-2 control-label" for="idFornecedor">Id do Fornecedor<h11></h11></label>
+    <div class="col-md-3">
+        <input asp-for="Id" id="idFornecedor" readonly class="form-control input-md" type="text">
+    </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="nome">Nome do vendedor <h11></h11></label>
+    <div class="col-md-3">
+        <input asp-for="@Model.Nome" id="nome" placeholder="Opcional" class="form-control input-md" type="text">
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+</div>
+
+<!-- Pessoa Jurídica-->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="nomeEmpresa">Empresa <h11>*</h11></label>
+    <div class="col-md-3">
+        <input asp-for="@Model.NomeFantasia" id="nomeEmpresa" placeholder="Nome da Empresa" class="form-control input-md" type="text">
+        <span asp-validation-for="NomeFantasia" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-2 control-label" for="razaoSocial">Razão Social <h11>*</h11></label>
+    <div class="col-md-3">
+        <input asp-for="@Model.NomeRazaoSocial" id="razaoSocial" placeholder="Razão Social" class="form-control input-md" type="search">
+        <span asp-validation-for="NomeRazaoSocial" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-2 control-label" for="inscricaoEstadual">Inscrição Estadual <h11>*</h11></label>
+    <div class="col-md-3">
+        <input asp-for="@Model.InscricaoEstadual" id="inscricaoEstadual" placeholder="Inscrição Estadual" class="form-control input-md" type="search">
+        <span asp-validation-for="InscricaoEstadual" class="text-danger"></span>
+    </div>
+</div>
+
+
+<!-- CPF/CNPJ-->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="CpfeCnpj">CNPJ <h11>*</h11></label>
+    <div class="col-md-3">
+        <input asp-for="@Model.CPFCNPJ" id="CpfeCnpj" placeholder="Digite o CNPJ" onkeyup="confereCNPJ(this)" class="form-control input-md" type="text">
+        <span asp-validation-for="CPFCNPJ" class="text-danger"></span>
+        <span id="cnpjFrase"></span>
+    </div>
+
+</div>
+
+<!-- Prepended text-->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="telefoneUm">Telefone 1 <h11>*</h11></label>
+    <div class="col-md-2">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-earphone"></i>
+            </span>
+            <input asp-for="@Model.TelefoneUm" id="telefoneUm" class="form-control" placeholder="(XX)XXXXX-XXXX" type="text">
+            <span asp-validation-for="TelefoneUm" class="text-danger"></span>
+        </div>
+    </div>
+    <label class="col-md-1 control-label" for="telefoneDois">Telefone 2 <h11></h11></label>
+    <div class="col-md-2">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-earphone"></i>
+            </span>
+            <input asp-for="@Model.TelefoneDois" id="telefoneDois" class="form-control" placeholder="(XX)XXXXX-XXXX" type="text">
+            <span asp-validation-for="TelefoneDois" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="email">Email <h11>*</h11></label>
+    <div class="col-md-5">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-envelope"></i>
+            </span>
+            <input asp-for="@Model.Email" id="email" class="form-control" placeholder="email@email.com" type="email">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label" for="observacoes">Observações</label>
+    <div class="col-md-5">
+        <textarea asp-for="@Model.Observacoes" id="observacoes" placeholder="Opcional" class="form-control input-md" type="text"></textarea>
+        <span asp-validation-for="Observacoes" class="text-danger"></span>
+    </div>
+</div>
+<hr>
+<div class="form-group">
+    <div class="col-md-3 control-label">
+        <h3>Dados de endereço:</h3>
+    </div>
+</div>
+<!-- Prepended text -->
+<!-- Search input-->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="Cep">CEP <h11>*</h11></label>
+    <div class="col-md-2">
+        <input asp-for="@Model.Endereco.CEP" id="Cep" onfocusout="pesquisacep(Cep.value)" placeholder="Apenas números" class="form-control input-md" type="search" maxlength="8" pattern="[0-9]+$">
+        <span asp-validation-for="Endereco.CEP" class="text-danger"></span>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary" onclick="pesquisacep(Cep.value)">Pesquisar</button>
+    </div>
+</div>
+
+<!-- Endereço-->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="rua">Endereço</label>
+    <div class="col-md-4">
+        <div class="input-group">
+            <span class="input-group-addon">Rua</span>
+            <input asp-for="@Model.Endereco.Rua" id="rua" class="form-control" placeholder="" type="text">
+            <span asp-validation-for="Endereco.Rua" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="col-md-2">
+        <div class="input-group">
+            <span class="input-group-addon">Nº <h11>*</h11></span>
+            <input asp-for="@Model.Endereco.Numero" id="numero" class="form-control" placeholder="" type="text">
+            <span asp-validation-for="Endereco.Numero" class="text-danger"></span>
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+        <div class="input-group">
+            <span class="input-group-addon">Bairro</span>
+            <input asp-for="@Model.Endereco.Bairro" id="bairro" class="form-control" placeholder="" type="text">
+            <span asp-validation-for="Endereco.Bairro" class="text-danger"></span>
+        </div>
+
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-2 control-label" for="cidade"></label>
+    <div class="col-md-4">
+        <div class="input-group">
+            <span class="input-group-addon">Cidade</span>
+            <input asp-for="@Model.Endereco.Cidade" id="cidade" class="form-control" placeholder="" type="text">
+            <span asp-validation-for="Endereco.Cidade" class="text-danger"></span>
+        </div>
+
+    </div>
+
+    <div class="col-md-2">
+        <div class="input-group">
+            <span class="input-group-addon">Estado</span>
+            <input asp-for="@Model.Endereco.Estado" id="estado" class="form-control" placeholder="" type="text">
+            <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <span class="input-group-addon">Complemento</span>
+            <input asp-for="@Model.Endereco.Complemento" id="complemento" class="form-control" placeholder="" type="text">
+            <span asp-validation-for="Endereco.Complemento" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<hr>
+<!-- Dados para Login -->
+<!-- Botão Cadastrar e Cancelar -->
+<div class="form-group">
+    <label class="col-md-2 control-label" for="Cadastrar"></label>
+    <div class="col-md-8">
+        <button id="Cadastrar" autofocus name="Cadastrar" class="btn btn-success" type="submit">Cadastrar</button>
+        <button id="Cancelar" name="Cancelar" onclick="window.location.href = '/Fornecedor/Cadastrados'" class="btn btn-danger" type="reset">Cancelar</button>
+    </div>
+</div>
+</div>
+</main>
+</form>
+</div>
+
+@section Scripts {
+    <script src="~/Template/TemplateADMIN/assets/scripts/templateAdminScripts.js"></script>
+    <script src="~/js/Form/FormPessoa.js"></script>
+}

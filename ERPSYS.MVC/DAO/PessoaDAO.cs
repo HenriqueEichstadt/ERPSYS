@@ -12,7 +12,7 @@ namespace ERPSYS.MVC.DAO
 {
     public class PessoaDAO : IPessoaDAO
     {
-        [Inject] public IUsuarioDAO UsuarioDAO { get; set; }
+        [Inject] public IUsuarioDAO UsuarioDao { get; set; }
         public void Add(IPessoa pessoa)
         {
             using (var dbSet = new ApplicationContext())
@@ -36,21 +36,33 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public void Inativar(IPessoa pessoa)
+        public void Ativar(int id)
         {
             using (var dbSet = new ApplicationContext())
             {
-                pessoa.Ativo = false;
-                dbSet.Update(pessoa);
+                var pessoa = GetById(id);
+                pessoa.Ativo = true;
+                dbSet.PESSOAS.Update(pessoa);
                 dbSet.SaveChanges();
             }
         }
 
-        public IPessoa GetById(int id)
+        public void Inativar(int id)
         {
             using (var dbSet = new ApplicationContext())
             {
-                var pessoa = dbSet.PESSOAS.SingleOrDefault(p => p.Id == id);
+                var pessoa = GetById(id);
+                pessoa.Ativo = false;
+                dbSet.PESSOAS.Update(pessoa);
+                dbSet.SaveChanges();
+            }
+        }
+
+        public Pessoa GetById(int id)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                var pessoa = dbSet.PESSOAS.Include(e => e.Endereco).SingleOrDefault(p => p.Id == id);
                 return pessoa;
             }
         }
@@ -73,9 +85,17 @@ namespace ERPSYS.MVC.DAO
 
         public IPessoa GeyByCPFOrCNPJ(string cpfOrCnpj)
         {
-            using (var contexto = new ApplicationContext())
+            using (var dbSet = new ApplicationContext())
             {
-                return contexto.PESSOAS.Where(c => c.CPFCNPJ == cpfOrCnpj).FirstOrDefault();
+                return dbSet.PESSOAS.Where(c => c.CPFCNPJ == cpfOrCnpj).FirstOrDefault();
+            }
+        }
+
+        public IList<Pessoa> ListFornecedores()
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.PESSOAS.Where(f => f.TipoPessoa == 'J').ToList();
             }
         }
     }

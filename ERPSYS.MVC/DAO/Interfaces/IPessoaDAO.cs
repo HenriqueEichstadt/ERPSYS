@@ -11,10 +11,12 @@ namespace ERPSYS.MVC.DAO.Interfaces
     {
         void Add(IPessoa pessoa);
         void Update(IPessoa pessoa);
-        void Inativar(IPessoa pessoa);
-        IPessoa GetById(int id);
+        void Ativar(int id);
+        void Inativar(int id);
+        Pessoa GetById(int id);
         IList<Pessoa> ListActives();
         IList<Pessoa> ListAll();
         IPessoa GeyByCPFOrCNPJ(string cpfOrCnpj);
+        IList<Pessoa> ListFornecedores();
     }
 }
