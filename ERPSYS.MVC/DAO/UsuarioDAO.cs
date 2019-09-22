@@ -18,7 +18,7 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public IUsuario GetById(int id)
+        public Usuario GetById(int id)
         {
             using (var dbSet = new ApplicationContext())
             {
@@ -26,14 +26,34 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public void Inativar(IUsuario usuario)
+        public void Ativar(int id)
         {
-            throw new NotImplementedException();
+            using (var dbSet = new ApplicationContext())
+            {
+                var usuario = GetById(id);
+                usuario.Ativo = true;
+                dbSet.USUARIOS.Update(usuario);
+                dbSet.SaveChanges();
+            }
+        }
+
+        public void Inativar(int id)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                var usuario = GetById(id);
+                usuario.Ativo = false;
+                dbSet.USUARIOS.Update(usuario);
+                dbSet.SaveChanges();
+            }
         }
 
         public IList<Usuario> ListActives()
         {
-            throw new NotImplementedException();
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.USUARIOS.Where(a => a.Ativo).ToList();
+            }
         }
         public bool IsUsuarioCadastrado(string apelido, string senha = null)
         {

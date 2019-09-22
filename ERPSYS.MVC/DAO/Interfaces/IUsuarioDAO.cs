@@ -11,8 +11,9 @@ namespace ERPSYS.MVC.DAO.Interfaces
     {
         void Add(IUsuario usuario);
         void Update(IUsuario usuario);
-        void Inativar(IUsuario usuario);
-        IUsuario GetById(int id);
+        void Ativar(int id);
+        void Inativar(int id);
+        Usuario GetById(int id);
         IList<Usuario> ListActives();
         IList<Usuario> ListAll();
         IUsuario GetByApelido(string apelido);

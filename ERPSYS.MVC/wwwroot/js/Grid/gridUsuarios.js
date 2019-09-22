@@ -6,14 +6,14 @@ $(document).ready(function () {
     // ocultar botões
     VisualizationFields.OcultarBotoes();
 
-    // Inativar Fornecedor
-    ButtonActions.InatinarFornecedor();
+    // Inativar Usuário
+    ButtonActions.InatinarUsuario();
 
-    // Ativar Fornecedor
-    ButtonActions.AtivarFornecedor();
+    // Ativar Usuário
+    ButtonActions.AtivarUsuario();
 
-    // Abre o form para editar registro do fornecedor
-    ButtonActions.EditarFornecedor();
+    // Abre o form para editar registro do usuário
+    ButtonActions.EditarUsuario();
 
 });
 
@@ -21,15 +21,17 @@ DataTable = (function () {
     let table;
     let selectedRow;
 
-    function GetTable(){
-        if(table != undefined){
+    function GetTable() {
+        if (table != undefined) {
             return table;
         }
     }
-    function GetSelectedRow(){
-        if(table != undefined)
+
+    function GetSelectedRow() {
+        if (table != undefined)
             return table.rows({selected: true}).data()[0];
     }
+
     function Load() {
         table = $('#MyEstoque').DataTable({
             dom: 'Blftip',
@@ -61,14 +63,24 @@ DataTable = (function () {
                     }
                 },
             "ajax": {
-                "url": "/Fornecedor/ListarFornecedores",
+                "url": "/Usuario/ListarUsuarios",
                 "type": "GET",
                 "datatype": "json",
             },
             "columns": [
                 {"data": "id", "autoWidth": true,},
-                {"data": "nomeFantasia", "autoWidth": true},
-                {"data": "telefoneUm", "autoWidth": true},
+                {
+                    "data": "nivelAcesso",
+                    "autoWidth": true,
+                    render: function (data, type, row, meta) {
+                        if (row.nivelAcesso == 'A')
+                            return '<button type="button" class="btn btn-success mb-1 rounded" onclick="InativarUsuario(' + meta.row + ')"><i class="fa fa-user-secret"></i></button>';
+                        if (row.nivelAcesso == 'N')
+                            return '<button type="button" class="btn btn-danger rounded" onclick="AtivarUsuario(' + meta.row + ')"><i class="fa fa-group"></i></button>';
+                    }
+                },
+                {"data": "nome", "autoWidth": true},
+                {"data": "apelido", "autoWidth": true},
                 {"data": "email", "autoWidth": true},
                 {
                     "data": "ativo",
@@ -96,27 +108,28 @@ DataTable = (function () {
             }
         });
     }
+
     return {
         Load: Load,
-        Table : table,
+        Table: table,
         GetSelectedRow: GetSelectedRow,
         GetTable: GetTable
     };
 })();
 
 
-ButtonActions = (function (){
+ButtonActions = (function () {
 
-    function InatinarFornecedor(){
+    function InatinarUsuario() {
         $('#inativar').click(function () {
-            let fornecedorId = DataTable.GetSelectedRow().id;
+            let usuarioId = DataTable.GetSelectedRow().id;
             $.ajax({
                 type: "GET",
-                url: "/Fornecedor/InativarFornecedor/" + fornecedorId,
+                url: "/Usuario/InativarUsuario/" + usuarioId,
                 dataType: "json",
                 success: function (response) {
                     if (response.data.inativou) {
-                        successNotify("Fornecedor Inativado");
+                        successNotify("Usuário Inativado");
                         VisualizationFields.OcultarBotao('#inativar');
                         VisualizationFields.ExibirBotao('#ativar');
                         DataTable.GetTable().ajax.reload();
@@ -126,16 +139,16 @@ ButtonActions = (function (){
         });
     }
 
-    function AtivarFornecedor(){
+    function AtivarUsuario() {
         $('#ativar').click(function () {
-            let fornecedorId = DataTable.GetSelectedRow().id;
+            let usuarioId = DataTable.GetSelectedRow().id;
             $.ajax({
                 type: "GET",
-                url: "/Fornecedor/AtivarFornecedor/" + fornecedorId,
+                url: "/Usuario/AtivarUsuario/" + usuarioId,
                 dataType: "json",
                 success: function (response) {
                     if (response.data.ativou) {
-                        successNotify("Fornecedor Ativado");
+                        successNotify("Usuário Ativado");
                         VisualizationFields.ExibirBotao('#inativar');
                         VisualizationFields.OcultarBotao('#ativar');
                         DataTable.GetTable().ajax.reload();
@@ -145,39 +158,39 @@ ButtonActions = (function (){
         });
     }
 
-    function EditarFornecedor(){
+    function EditarUsuario() {
         $('#editar').click(function () {
-            let fornecedorId = DataTable.GetSelectedRow().id;
-            window.location.href = "/Fornecedor/Editar/" + fornecedorId
+            let usuarioId = DataTable.GetSelectedRow().id;
+            window.location.href = "/Usuario/Editar/" + usuarioId
         });
     }
 
     return {
-        InatinarFornecedor: InatinarFornecedor,
-        AtivarFornecedor: AtivarFornecedor,
-        EditarFornecedor: EditarFornecedor
+        InatinarUsuario: InatinarUsuario,
+        AtivarUsuario: AtivarUsuario,
+        EditarUsuario: EditarUsuario
     };
 })();
 
 
-VisualizationFields = (function (){
+VisualizationFields = (function () {
 
-    function ocultarBotoes(){
+    function ocultarBotoes() {
         $('#inativar').hide();
         $('#ativar').hide();
     }
 
-    function exibirBotoes(){
+    function exibirBotoes() {
         $('#inativar').show();
         $('#ativar').show();
     }
 
-    function ocultarBotao(id){
+    function ocultarBotao(id) {
         $(id).hide();
     }
 
 
-    function exibirBotao(id){
+    function exibirBotao(id) {
         $(id).show();
     }
 

@@ -8,37 +8,32 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Models
 {
-    [DataContract]
     public partial class Usuario : EntityModel, IUsuario
     {
-        [DataMember]
-        [Required(ErrorMessage = "O Nome é obrigatório")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(5, ErrorMessage = "O Nome deve ter no mínimo 5 caracteres")]
         [MaxLength(50, ErrorMessage = "O Nome deve ter no máximo 50 caracteres")]
         public string Nome { get; set; }
-
-        [DataMember]
-        [Required(ErrorMessage = "O Apelido é obrigatório")]
+        
+        [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(5, ErrorMessage = "O Apelido deve ter no mínimo 5 caracteres")]
         [MaxLength(40, ErrorMessage = "O Apelido deve ter no máximo 40 caracteres")]
         public string Apelido { get; set; }
 
-        [DataMember]
-        [Required(ErrorMessage = "O Email é obrigatório")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(5, ErrorMessage = "O Email deve ter no mínimo 5 caracteres")]
         [MaxLength(100, ErrorMessage = "O Email deve ter no máximo 100 caracteres")]
+        [EmailAddress(ErrorMessage = "Preencha com um email válido")]
         public string Email { get; set; }
-
-        [DataMember]
-        [Required(ErrorMessage = "A Senha é obrigatória")]
+        
+        [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(5, ErrorMessage = "A Senha deve ter no mínimo 5 caracteres")]
         [MaxLength(30, ErrorMessage = "A Senha deve ter no máximo 30 caracteres")]
         public string Senha { get; set; }
-
-        [DataMember]
+        
         public bool Ativo { get; set; }
 
-        [DataMember]
+        [Required(ErrorMessage = "Campo obrigatório")]
         public char NivelAcesso { get; set; }
     }
 }
