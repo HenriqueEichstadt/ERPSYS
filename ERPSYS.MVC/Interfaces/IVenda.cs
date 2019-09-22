@@ -12,7 +12,7 @@ namespace ERPSYS.MVC.Interfaces
         DateTime Data { get; set; }
         double PrecoTotal { get; set; }
         Cliente Cliente { get; set; }
-        int ClienteId { get; set; }
+        int? ClienteId { get; set; }
         IList<VendaItens> VendaItens { get; set; }
         int FormaPagamento { get; set; }
     }

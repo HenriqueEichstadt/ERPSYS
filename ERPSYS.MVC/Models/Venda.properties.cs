@@ -14,7 +14,7 @@ namespace ERPSYS.MVC.Models
         public DateTime Data { get; set; }
         public double PrecoTotal { get; set; }
         public Cliente Cliente { get; set; }
-        public int ClienteId { get; set; }
+        public int? ClienteId { get; set; }
         public IList<VendaItens> VendaItens { get; set; }
         public int FormaPagamento { get; set; }
 

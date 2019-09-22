@@ -49,6 +49,7 @@ namespace ERPSYS.MVC.IOC
             kernel.Bind<IUsuarioDAO>().To<UsuarioDAO>();
             kernel.Bind<IClienteDAO>().To<ClienteDAO>();
             kernel.Bind<IProdutoDAO>().To<ProdutoDAO>();
+            kernel.Bind<IVendaDAO>().To<VendaDAO>();
         }
 
         private void RegistroComuns(StandardKernel kernel)
