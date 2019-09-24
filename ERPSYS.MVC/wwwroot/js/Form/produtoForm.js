@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    //  $('#validade-message').hide();
+    //$('#validade-message').html("ahskjdhakdjsa");
+    
     $('#FormAdd').ajaxForm({
         dataType: 'json',
         success: function (resposta) {
