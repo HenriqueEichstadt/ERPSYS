@@ -123,8 +123,4 @@
     <ProjectReference Include="..\ERPSYS.Common\ERPSYS.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="wwwroot\Template\TemplateADMIN\Venda\bootstrap.min.css" />
-  </ItemGroup>
-
 </Project>

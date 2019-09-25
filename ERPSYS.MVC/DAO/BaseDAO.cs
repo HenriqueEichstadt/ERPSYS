@@ -10,14 +10,14 @@ namespace ERPSYS.MVC.DAO
 {
     public class BaseDAO<T> where T : EntityModel
     {
-        protected readonly ApplicationContext contexto;
+        protected readonly ApplicationContext Context;
 
-        protected readonly DbSet<T> dbSet;
+        protected readonly DbSet<T> DbSet;
 
         public BaseDAO(ApplicationContext contexto)
         {
-            this.contexto = contexto;
-            dbSet = contexto.Set<T>();
+            Context = contexto;
+            DbSet = contexto.Set<T>();
         }
     }
 }

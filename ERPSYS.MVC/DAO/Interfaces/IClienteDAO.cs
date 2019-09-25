@@ -6,9 +6,9 @@ namespace ERPSYS.MVC.DAO.Interfaces
 {
     public interface IClienteDAO
     {
-        void Add(ICliente cliente);
+        void Add(Cliente cliente);
         void Update(Cliente cliente);
-        void Delete(ICliente cliente);
+        void Delete(Cliente cliente);
         Cliente GetById(int id);
         IList<Cliente> ListActives();
         IList<Cliente> ListAll();
