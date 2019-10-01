@@ -91,5 +91,13 @@ namespace ERPSYS.MVC.Controllers
                 data = new { Ativou = true }
             });
         }
+
+        public JsonResult ListarProdutosAtivos()
+        {
+            return Json(new
+            {
+                data = ProdutoDao.ListActives()
+            });
+        }
     }
 }

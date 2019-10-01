@@ -143,7 +143,7 @@ ButtonActions = (function (){
                 dataType: "json",
                 success: function (response) {
                     if (response.data.ativou) {
-                        successNotify("Cliente Ativado");
+                        Notify.SuccessNotify("Cliente Ativado");
                         VisualizationFields.ExibirBotao('#inativar');
                         VisualizationFields.OcultarBotao('#ativar');
                         DataTable.GetTable().ajax.reload();

@@ -151,7 +151,7 @@ ButtonActions = (function () {
                 dataType: "json",
                 success: function (response) {
                     if (response.data.inativou) {
-                        successNotify("Produto Inativado");
+                        Notify.SuccessNotify("Produto Inativado");
                         VisualizationFields.OcultarBotao('#inativar');
                         VisualizationFields.ExibirBotao('#ativar');
                         DataTable.GetTable().ajax.reload();
@@ -170,7 +170,7 @@ ButtonActions = (function () {
                 dataType: "json",
                 success: function (response) {
                     if (response.data.ativou) {
-                        successNotify("Produto Ativado");
+                        Notify.SuccessNotify("Produto Ativado");
                         VisualizationFields.ExibirBotao('#inativar');
                         VisualizationFields.OcultarBotao('#ativar');
                         DataTable.GetTable().ajax.reload();

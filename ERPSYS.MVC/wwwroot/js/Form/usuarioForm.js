@@ -4,16 +4,16 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (resposta) {
             if (resposta.data.add) {
-                successNotify(resposta.data.message);
+                Notify.SuccessNotify(resposta.data.message);
                 setTimeout(function () {
                     window.history.back();
                 }, 3000);
             } else {
                 if(resposta.data.message != undefined){
-                    warningNotify(resposta.data.message);    
+                    Notify.WarningNotify(resposta.data.message);    
                 }
                 else{
-                    warningNotify(resposta.data.validate);   
+                    Notify.WarningNotify(resposta.data.validate);   
                 }
             }
         }

@@ -68,6 +68,14 @@ namespace ERPSYS.MVC.Controllers
             });
         }
 
+        public JsonResult ListarClientesAtivos()
+        {
+            return Json(new
+            {
+                data = ClienteDao.ListActives()
+            });
+        }
+
         public JsonResult UpdateCliente(Cliente cliente)
         {
             cliente.AtribuirDadosAlteracao();

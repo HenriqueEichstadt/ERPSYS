@@ -29,13 +29,10 @@
     <link rel="stylesheet" href="~/Template/TemplateADMIN/Venda/style.css">
 }
 
+<!-- ALERT BOX -->
+<div class="alert alert-warning alert-dismissible hide" id="alertMessage"></div>
 
-<div class="alert alert-warning alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h4><i class="icon fa fa-warning"></i> Atenção</h4>
-    Adicione aqui as validações
-</div>
-
+<!-- SECTION VENDA -->
 <section class="content">
     <div class="box box-primary">
         <div class="box-header with-border">
@@ -49,58 +46,51 @@
             </div>
         </div>
 
-        <form id="frmSales" action="inventory/sales-save" method="post">
+        <form  id="form_venda" action="/Venda/AdicionarNovo" method="post">
             <div class="box-body">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="sales_no">Número da venda</label>
-                        <input type="text" name="sales_no" id="sales_no" class="form-control" value="1003">
-                    </div>
-                    <div class="form-group">
-                        <label for="item_id">Seleção de Item</label>
-                        <select name="item_id" id="item_id" class="form-control change-price select2">
-                            <option value="1">1001 - Test Item 01</option>
-                            <option value="2">1002 - Test Item 02</option>
+                        <label for="forma_pagamento">Forma de pagamento</label>
+                        <select id="forma_pagamento" class="form-control select2 col-md-6">
+                            <option value="1">Dinheiro</option>
+                            <option value="2">Débito</option>
+                            <option value="3">Crédito</option>
+                            <option value="4">Troca por pontos</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="quantity">Quantidade</label>
-                        <input type="text" name="quantity" id="quantity" class="form-control" placeholder="0">
+                        <label for="data_venda">Data da venda</label>
+                        <input type="date" id="data_venda" class="form-control datepicker" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="price">Preço por unidade</label>
-                        <input type="text" name="price" id="price" class="form-control" placeholder="Deixe em branco para selecionar o preço padrão">
+                        <label for="qtd_itens_venda">Quantidade de itens</label>
+                        <input type="text" id="qtd_itens_venda" class="form-control" readonly>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="sales_date">Data da venda</label>
-                        <input type="text" name="sales_date" id="sales_date" class="form-control datepicker"
-                               value="01/01/2019">
-                    </div>
-                    <div class="form-group">
-                        <label for="customer_id">Cliente &nbsp;&nbsp;</label>
-                        <select name="customer_id" id="customer_id" class="form-control select2 col-md-6">
+                        <label for="select_clientes">Cliente</label>
+                        <select id="select_clientes" class="form-control col-md-6">
                             <option value="1">Cliente 1</option>
                             <option value="2">Cliente 2</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="notes">Observações</label>
-                        <textarea name="notes" id="notes" rows="3" class="form-control" placeholder="Opcional..."></textarea>
+                        <label for="pontos_cliente">Pontos do cliente</label>
+                        <input type="text" id="pontos_cliente" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="preco_total">Preço total</label>
+                        <input type="text" id="preco_total" class="form-control" readonly>
                     </div>
                 </div>
             </div>
-
             <input type="hidden" name="csrf_test_name" value="3a59fb028421bd64fb4ccf2aee90e89b">
-            <div class="box-footer" align="center">
-                <button type="button" id="sales_add_item" class="btn btn-primary">
-                    <strong>Add Item</strong>
-                </button>
-            </div>
         </form>
     </div>
 </section>
+
+<!-- SECTION ITENS DA VENDA -->
 <section class="content">
     <div class="box box-primary">
         <div class="box-header with-border">
@@ -115,7 +105,32 @@
         </div>
 
         <div class="box-body" id="sales_details">
-            <table id="sales_details_table" class="table table-bordered table-striped">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="select_produtos">Seleção de produto</label>
+                    <select id="select_produtos" class="form-control change-price select2"></select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="unidades">Unidades</label>
+                    <input type="number" id="unidades" class="form-control" placeholder="0">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="preco_unidade">Preço por unidade</label>
+                    <input type="text" id="preco_unidade" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                <label for="venda_add_item">Adicionar produto</label>
+                <button type="button" id="venda_add_item" class="btn btn-primary form-control">Adicionar</button>
+            </div>
+            
+            </div>
+            <table id="tabela_venda" class="table table-bordered table-striped text-center">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -130,25 +145,9 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th colspan="6">Order Totals</th>
-                </tr>
-                <tr>
-                    <td colspan="2">&nbsp;</td>
-                    <td>0</td>
-                    <td></td>
-                    <td>0.00</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="right">Sales TAX</td>
-                    <td>0.00</td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td colspan="4">Total Paid Amount</td>
+                    <td colspan="4">Preço total</td>
                     <td>
-                        <input type="text" name="paid_amount" id="paid_amount" placeholder="Total Paid Amount"
+                        <input type="text" id="precoTotal" placeholder="00,00"
                                value="">
                     </td>
                     <td></td>
@@ -158,60 +157,10 @@
         </div>
 
         <div class="box-footer" align="center">
-            <input type="button" id="sales_complete" class="btn btn-success" value="Complete Sales Entry">
+            <input type="button" id="emitir_venda" class="btn btn-success" value="Emitir Venda">
         </div>
     </div>
 </section>
-<div class="modal modal-info fade" id="modal-customer" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span
-                        aria-hidden="true">
-                        &times;
-                    </span>
-                </button>
-                <h4 class="modal-title">Customer Entry Form</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="code">Customer Code</label>
-                    <input type="text" name="code" id="code" value="1003" class="form-control" placeholder="Customer Code">
-                    Digit Only
-                </div>
-                <div class="form-group">
-                    <label for="name">Customer Name</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Customer Name">
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea name="address" id="address" class="form-control" placeholder="Customer Address"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="mobile">Mobile</label>
-                    <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Customer Mobile Number">
-                </div>
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <input type="text" name="country" id="country" class="form-control" placeholder="Customer Country">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Customer Email Address">
-                </div>
-                <div class="form-group">
-                    <label for="notes">Notes</label>
-                    <textarea name="notes" id="notes" class="form-control" placeholder="Customer Notes"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <button type="button" id="add_customer" class="btn btn-outline">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 
 @section Scripts{

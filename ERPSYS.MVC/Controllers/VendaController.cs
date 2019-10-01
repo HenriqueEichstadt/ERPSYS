@@ -39,7 +39,7 @@ namespace ERPSYS.MVC.Controllers
                venda.Data = DateTime.Now;
 
                // Se for uma venda por troca de pontos
-               if (venda.ClienteId != null && venda.FormaPagamento == 1)
+               if (venda.ClienteId != null && venda.FormaPagamento == 4)
                {
                    int trocaPontos = (int) (venda.PrecoTotal * 100);
                    VendaDao.TrocaPorPontos(venda.ClienteId, trocaPontos);
@@ -51,8 +51,8 @@ namespace ERPSYS.MVC.Controllers
                    VendaDao.DecrementaDoEstoque(vendaItens);
                }
 
-               // Se for no Dinheiro ou Débito gera pontos para o programa de fidelidade
-               if (venda.ClienteId != null && venda.FormaPagamento == 0 || venda.FormaPagamento == 1)
+               // Se for no Dinheiro ou DÃ©bito gera pontos para o programa de fidelidade
+               if (venda.ClienteId != null && venda.FormaPagamento == 1 || venda.FormaPagamento == 2)
                {
                    int qtdDePontos = Convert.ToInt32(venda.PrecoTotal);
                    int cliente = Convert.ToInt32(venda.ClienteId);
