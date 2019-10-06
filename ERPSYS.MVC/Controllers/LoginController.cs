@@ -1,7 +1,9 @@
-﻿using ERPSYS.MVC.DAO.Interfaces;
+﻿using System;
+using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Extensions.Session;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ninject;
 
@@ -20,28 +22,37 @@ namespace ERPSYS.MVC.Controllers
         [HttpPost]
         public IActionResult Autenticar(string apelido, string senha)
         {
-            if (UsuarioDao.IsUsuarioCadastrado(apelido, senha))
+            Usuario = UsuarioDao.GetByApelidoESenha(apelido, senha);
+
+            if (Usuario != null)
             {
-                Usuario = UsuarioDao.GetByApelido(apelido) as Usuario;
                 Startup.Session = HttpContext.Session;
                 Startup.UserSession = Usuario;
-                HttpContext.Session.SetUserId("USERSESSION", Usuario.Id);
+                AtribuirDadosUsuarioNaSessao(Usuario.Nome, Usuario.Id, Usuario.NivelAcesso);
                 return RedirectToAction("Index", "Home");
             }
-                
-            else
-                return RedirectToAction("Index");
-        }
 
+            return RedirectToAction("Index");
+        }
+        
         public JsonResult Logout()
         {
             HttpContext.Session.Clear();
             Startup.UserSession = null;
+            Startup.Session = null;
             foreach (var cookieKey in Request.Cookies.Keys)
-             {
-                 Response.Cookies.Delete(cookieKey);
-             }
-            return Json(new { logOut = true });
+            {
+                Response.Cookies.Delete(cookieKey);
+            }
+
+            return Json(new {logOut = true});
+        }
+        
+        private void AtribuirDadosUsuarioNaSessao(string usuarioNome, int usuarioId, char usuarioNivelAcesso)
+        {
+            HttpContext.Session.SetString("USERNAME", Usuario.Nome);
+            HttpContext.Session.SetString("ID", Convert.ToString(Usuario.Id));
+            HttpContext.Session.SetString("NIVELACESSO", Usuario.NivelAcesso.ToString());
         }
     }
 }

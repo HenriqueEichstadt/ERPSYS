@@ -55,14 +55,15 @@ namespace ERPSYS.MVC.DAO
                 return dbSet.USUARIOS.Where(a => a.Ativo).ToList();
             }
         }
+
         public bool IsUsuarioCadastrado(string apelido, string senha = null)
         {
             using (var dbSet = new ApplicationContext())
             {
                 if (senha == null)
-                    return (dbSet.USUARIOS.Where(u => u.Apelido == apelido).FirstOrDefault()) != null;
+                    return (dbSet.USUARIOS.FirstOrDefault(u => u.Apelido == apelido)) != null;
                 else
-                    return (dbSet.USUARIOS.Where(u => u.Apelido == apelido && u.Senha == senha).FirstOrDefault()) != null;
+                    return (dbSet.USUARIOS.FirstOrDefault(u => u.Apelido == apelido && u.Senha == senha)) != null;
             }
         }
 
@@ -70,7 +71,15 @@ namespace ERPSYS.MVC.DAO
         {
             using (var dbSet = new ApplicationContext())
             {
-                return dbSet.USUARIOS.Where(u => u.Apelido == apelido).FirstOrDefault();
+                return dbSet.USUARIOS.FirstOrDefault(u => u.Apelido == apelido);
+            }
+        }
+        
+        public IUsuario GetByApelidoESenha(string apelido, string senha)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.USUARIOS.FirstOrDefault(a => a.Apelido == apelido && a.Senha == senha);
             }
         }
 

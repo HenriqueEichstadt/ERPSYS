@@ -57,13 +57,16 @@ namespace ERPSYS
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            
             services.AddMvc(options =>
                 {
                     options.Filters.Add(new AuthenticationFilterAttribute());
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddSessionStateTempDataProvider();
-            services.AddSession();
+            
             // Registrar Connection String para acesso ao banco de dados
             ConnectionString = Configuration.GetConnectionString("Default");
 
@@ -137,6 +140,8 @@ namespace ERPSYS
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
             app.UseSession();
             app.UseMvc(routes =>
             {

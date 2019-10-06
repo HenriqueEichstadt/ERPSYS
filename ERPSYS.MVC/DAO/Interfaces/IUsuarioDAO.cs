@@ -17,6 +17,7 @@ namespace ERPSYS.MVC.DAO.Interfaces
         IList<Usuario> ListActives();
         IList<Usuario> ListAll();
         IUsuario GetByApelido(string apelido);
+        IUsuario GetByApelidoESenha(string apelido, string senha);
         bool IsUsuarioCadastrado(string apelido, string senha);
     }
 }

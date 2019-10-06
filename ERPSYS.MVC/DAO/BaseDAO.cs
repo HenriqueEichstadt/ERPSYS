@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ERPSYS.MVC.DAO
 {
@@ -18,6 +19,21 @@ namespace ERPSYS.MVC.DAO
         {
             Context = contexto;
             DbSet = contexto.Set<T>();
+        }
+
+        public void BeginTransaction()
+        {
+            Context.Database.BeginTransaction();
+        }
+
+        public void CommitTransaction()
+        {
+            Context.Database.CommitTransaction();
+        }
+
+        public void RollBackTransaction()
+        {
+            Context.Database.RollbackTransaction();
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿@{
-    var nome = ViewData["NomeUsuario"];
-    var nivelAcesso = ViewData["NivelAcesso"];
+﻿@using ERPSYS
+@using Microsoft.AspNetCore.Http
+@{
+    var nome = Startup.Session.GetString("USERNAME");
+    var nivelAcesso = Startup.Session.GetString("NIVELACESSO");
 }
 <!DOCTYPE html>
 <html>
