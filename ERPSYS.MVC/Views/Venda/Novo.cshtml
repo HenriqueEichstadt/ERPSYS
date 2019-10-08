@@ -1,3 +1,4 @@
+@model Venda
 <title>Venda</title>
 <div class="main-content">
 <div class="content-heading clearfix">
@@ -52,6 +53,7 @@
                     <div class="form-group">
                         <label for="forma_pagamento">Forma de pagamento</label>
                         <select id="forma_pagamento" class="form-control select2 col-md-6">
+                            <option value="0">Selecione uma forma de pagamento</option>
                             <option value="1">Dinheiro</option>
                             <option value="2">Débito</option>
                             <option value="3">Crédito</option>
@@ -71,8 +73,6 @@
                     <div class="form-group">
                         <label for="select_clientes">Cliente</label>
                         <select id="select_clientes" class="form-control col-md-6">
-                            <option value="1">Cliente 1</option>
-                            <option value="2">Cliente 2</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -166,4 +166,10 @@
 @section Scripts{
     <script src="~/Template/TemplateADMIN/assets/scripts/templateAdminScripts.js"></script>
     <script src="~/js/Form/vendaForm.js"></script>
+    
+        <script>
+        $(function () {
+                $("#data_venda").val('@Model.Data.ToString("yyyy-MM-dd")');    
+        });
+        </script>
 }

@@ -3,12 +3,22 @@ $(document).ready(function () {
     Pagina.CarregarSelect2Clientes();
     Pagina.CarregarSelect2FormaDePagamento();
     Pagina.CarregarSelect2Produtos();
+    Pagina.AtualizarQtdItensVenda();
+    Pagina.AtualizarPrecoTotalVenda();
+    Pagina.AtualizarPontosCliente();
 
-    $("#select_produtos").change(function () {
+    $('#select_produtos').change(function () {
         let idSelecionado = $("#select_produtos").val();
         let produto = Lista.GetProdutoPorId(idSelecionado);
         let precoUnidade = Number.parseFloat(produto.precoVenda).toFixed(2).replace(".", ",");
         $('#preco_unidade').val('R$ ' + precoUnidade);
+        $('#unidades').prop('max', produto.estoqueAtual);
+    });
+    
+    $('#select_clientes').change(function () {
+        let idClienteSelecionado = $('#select_clientes').val();
+        let cliente = Lista.GetClientePorId(idClienteSelecionado);
+        Pagina.AtualizarPontosCliente();
     });
 
     $('#venda_add_item').click(function (event) {
@@ -18,21 +28,24 @@ $(document).ready(function () {
         let nomeProduto = $('#select2-select_produtos-container').text();
         let unidadesProduto = $('#unidades').val();
         let precoUnidade = $('#preco_unidade').val();
-
+        let produto = Lista.GetProdutoPorId(idProdutoSelecionado);
+        
         if (idProdutoSelecionado == "") {
-            AlertBox.Show("Selecione um produto para a venda");
+            Notify.WarningNotify("Selecione um produto para a venda");
             return;
         }
         if (unidadesProduto == "") {
-            AlertBox.Show("Selecione uma quantidade");
+            Notify.WarningNotify("Selecione uma quantidade");
             return;
         }
         if(ItensDaVenda.ContemItem(idProdutoSelecionado)){
-            AlertBox.Show("Este produto já está cadastrado na venda");
+            Notify.WarningNotify("Este produto já está cadastrado na venda");
             return;
         }
-        
-        let produto = Lista.GetProdutoPorId(idProdutoSelecionado);
+        if(unidadesProduto > produto.estoqueAtual){
+            Notify.WarningNotify("Há apenas " + produto.estoqueAtual + " unidades no estoque");
+            return;
+        }
         
         let unidades = Number(unidadesProduto);
         let precoSubtotal = unidades * produto.precoVenda
@@ -40,14 +53,50 @@ $(document).ready(function () {
         
         Pagina.AdicionarItemNaTabela(produto.id, produto.nome, unidades, produto.precoVenda, precoSubtotal);
         Pagina.AtualizarPrecoTotalVenda();
+        Pagina.AtualizarQtdItensVenda();
+        Notify.SuccessNotify('Produto Adicionado com sucesso');
     });
 
     $('#emitir_venda').click(function (event) {
+        event.preventDefault();
+        let itensDaVenda = ItensDaVenda.GetItensDaVenda();
+        let qtdItensDaVenda = ItensDaVenda.GetQtdItensVenda();
+        let formaPagamento = $('#forma_pagamento').val();
+        
+        if(qtdItensDaVenda == ""){
+            Notify.WarningNotify("Venda vazia");
+            return;
+        }
+        if(formaPagamento == "" || formaPagamento == 0){
+            Notify.WarningNotify("Selecione uma forma de pagamento");
+            return;
+        }
 
+        Venda.AtualizarDados();
+        let objVenda = Venda.GetDadosVenda();
+        let objVendaItens = ItensDaVenda.GetItensDaVenda();
+        
+        
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'POST',
+            url: '/Venda/EmitirVenda',
+            data: JSON.stringify({ venda: objVenda, vendaItens: objVendaItens }),
+            success: function (response) {
+                if(response.emitida){
+                    Notify.SuccessNotify(response.mensagem);
+                    setTimeout(function () {
+                        //window.history.back();
+                    }, 3000);
+                }
+                else{
+                    Notify.ErrorNotify(response.mensagem);
+                }
+            }
+        });
     });
-
 });
-
 
 Pagina = (function () {
 
@@ -61,6 +110,8 @@ Pagina = (function () {
             ItensDaVenda.RemoveItem(idSelecionado);
             $(this).parent().parent().remove();
             Pagina.AtualizarPrecoTotalVenda();
+            Pagina.AtualizarQtdItensVenda();
+            Notify.SuccessNotify("Produto removido com sucesso");
         });
         
         $("#tabela_venda").append(
@@ -134,10 +185,36 @@ Pagina = (function () {
     function atualizarPrecoTotalVenda(){
         let total = 0;
         $.each(ItensDaVenda.GetItensDaVenda(), function (i, item){
-            total += item.precoTotalItem;
+            total += item.PrecoTotalItem;
         });
         let totalEmDecimal = Number.parseFloat(total).toFixed(2).replace(".", ",");
         $('#precoTotal').val('R$ ' + totalEmDecimal);
+        $('#preco_total').val('R$ ' + totalEmDecimal);
+        Venda.SetPrecoTotalVenda(total);
+    }
+    
+    function atualizarQtdItensVenda(){
+        let quantidade = ItensDaVenda.GetQtdItensVenda();
+        if(quantidade == 0){
+            $('#qtd_itens_venda').val('Nenhum item');
+        }
+        else if(quantidade == 1){
+            $('#qtd_itens_venda').val(quantidade + ' item');
+        }
+        else{
+            $('#qtd_itens_venda').val(quantidade + ' itens');    
+        }
+        Venda.SetQtdItensVenda(quantidade);
+    }
+    
+    function atualizarPontosCliente(){
+        let idClienteSelecionado = $('#select_clientes').val();
+        if(idClienteSelecionado == null){
+            $('#pontos_cliente').val('Selecione um cliente');
+            return;
+        }
+        let cliente = Lista.GetClientePorId(idClienteSelecionado);
+        $('#pontos_cliente').val(cliente.pontos + ' pontos');    
     }
 
     return {
@@ -145,7 +222,9 @@ Pagina = (function () {
         CarregarSelect2Clientes: carregarSelect2Clientes,
         CarregarSelect2Produtos: carregarSelect2Produtos,
         CarregarSelect2FormaDePagamento: carregarSelect2FormaDePagamento,
-        AtualizarPrecoTotalVenda: atualizarPrecoTotalVenda
+        AtualizarPrecoTotalVenda: atualizarPrecoTotalVenda,
+        AtualizarQtdItensVenda: atualizarQtdItensVenda,
+        AtualizarPontosCliente: atualizarPontosCliente
     };
 })();
 
@@ -161,38 +240,29 @@ Venda = (function () {
 
 
     function getDadosVenda() {
-        atualizarValores();
-        return this.venda;
+        return venda;
     }
 
 
-    function atualizarValores() {
-        venda.FormaPagamento = $('#forma_pagamento').val();
-        venda.Data = $('#data_venda').val();
-        venda.TotalUnidades = $('#qtd_itens_venda').val();
-        venda.ClienteId = $('#select_clientes').val();
-        venda.PrecoTotal = $('#preco_total').val();
+    function atualizarDados(qtdItens, precoTotal) {
+        venda.FormaPagamento = Number($('#forma_pagamento').val());
+        venda.ClienteId = Number($('#select_clientes').val());
     }
-
-    function validacoes() {
-        atualizarValores();
-        mensagemValidacao = "";
-
-        if (venda.FormaPagamento == null
-            || venda.FormaPagamento == undefined)
-            mensagemValidacao = "Selecione uma de pagamento. \n";
-        if (venda.PrecoTotal == null
-            || venda.PrecoTotal == undefined)
-            mensagemValidacao += "Preço total inválido. \n";
-        if (venda.TotalUnidades == null
-            || venda.TotalUnidades == undefined)
-            mensagemValidacao += "Quantidade de itens da venda inválida";
-
-        return mensagemValidacao;
+    
+    function setQtdItensVenda(qtdItens){
+        venda.TotalUnidades = qtdItens;
     }
-
-
-    return {};
+    
+    function setPrecoTotalVenda(precoTotal){
+        venda.PrecoTotal = precoTotal;
+    }
+    
+    return {
+        GetDadosVenda: getDadosVenda,
+        AtualizarDados: atualizarDados,
+        SetPrecoTotalVenda: setPrecoTotalVenda,
+        SetQtdItensVenda: setQtdItensVenda
+    };
 })();
 
 ItensDaVenda = (function () {
@@ -206,30 +276,39 @@ ItensDaVenda = (function () {
     function addItem(prodId, prodQuantidade, prodPrecoSubtotal) {
         itensDaVenda.push(
             {
-                produtoId: prodId,
-                unidades: prodQuantidade,
-                precoTotalItem: prodPrecoSubtotal
+                ProdutoId: prodId,
+                Unidades: prodQuantidade,
+                PrecoTotalItem: prodPrecoSubtotal
             });
     }
     
     function removeItem(produtoId){
-        itensDaVenda.splice(itensDaVenda.findIndex(p => p.produtoId == produtoId), 1);
+        itensDaVenda.splice(itensDaVenda.findIndex(p => p.ProdutoId == produtoId), 1);
     }
     
     function contemItem(id){
         let possui = false;
         $.each(itensDaVenda, function (i, item){
-            if(item.produtoId == id)
+            if(item.ProdutoId == id)
                 possui = true;
         });
         return possui;
+    }
+    
+    function getQtdItensVenda(){
+        let contador = 0;
+        $.each(itensDaVenda, function (i, item){
+            contador += item.Unidades;
+        });
+        return contador;
     }
 
     return {
         GetItensDaVenda: getItensDaVenda,
         AddItem: addItem,
         RemoveItem: removeItem,
-        ContemItem: contemItem
+        ContemItem: contemItem,
+        GetQtdItensVenda: getQtdItensVenda
     };
 })();
 
