@@ -33,11 +33,11 @@ namespace ERPSYS.MVC.Controllers
         }
 
         //[HttpPost]
-        public JsonResult EmitirVenda(Venda venda, List<VendaItens> vendaItens)
+        public JsonResult EmitirVenda([FromBody]Venda venda)
         {
             try
             {
-                venda.VendaItens = vendaItens;
+                //venda.VendaItens = vendaItens;
                 venda.Data = DateTime.Now;
                 if (ModelState.IsValid)
                 {
@@ -51,7 +51,7 @@ namespace ERPSYS.MVC.Controllers
                     else
                     {
                         VendaDao.AdicionaVenda(venda);
-                        VendaDao.DecrementaDoEstoque(vendaItens);
+                        VendaDao.DecrementaDoEstoque(Venda.VendaItens);
                     }
 
                     // Se for no Dinheiro ou Débito gera pontos para o programa de fidelidade

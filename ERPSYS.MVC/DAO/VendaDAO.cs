@@ -80,7 +80,7 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public void DecrementaDoEstoque(List<VendaItens> vendaItens)
+        public void DecrementaDoEstoque(IList<VendaItens> vendaItens)
         {
             foreach (var item in vendaItens)
             {

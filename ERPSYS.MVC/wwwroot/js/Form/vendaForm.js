@@ -78,12 +78,12 @@ $(document).ready(function () {
         
         
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            type: 'POST',
             url: '/Venda/EmitirVenda',
+            type: 'POST',
+            contentType: 'application/json',
+            type: 'POST',
             data: JSON.stringify({ venda: objVenda, vendaItens: objVendaItens }),
-            success: function (response) {
+        }).done(function (response){
                 if(response.emitida){
                     Notify.SuccessNotify(response.mensagem);
                     setTimeout(function () {
@@ -93,7 +93,6 @@ $(document).ready(function () {
                 else{
                     Notify.ErrorNotify(response.mensagem);
                 }
-            }
         });
     });
 });
@@ -236,6 +235,7 @@ Venda = (function () {
         TotalUnidades: 0,
         ClienteId: 0,
         PrecoTotal: 0,
+        VendaItens: 0,
     };
 
 
@@ -247,6 +247,7 @@ Venda = (function () {
     function atualizarDados(qtdItens, precoTotal) {
         venda.FormaPagamento = Number($('#forma_pagamento').val());
         venda.ClienteId = Number($('#select_clientes').val());
+        venda.VendaItens = ItensDaVenda.GetItensDaVenda();
     }
     
     function setQtdItensVenda(qtdItens){

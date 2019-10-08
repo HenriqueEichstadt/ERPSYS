@@ -12,7 +12,7 @@ namespace ERPSYS.MVC.DAO
         IList<Venda> ListAll();
         void TrocaPorPontos(int? clienteId, int pontos);
         void AdicionaVenda(Venda venda);
-        void DecrementaDoEstoque(List<VendaItens> vendaItens);
+        void DecrementaDoEstoque(IList<VendaItens> vendaItens);
         void SomaPontos(int clienteId, int pontos);
     }
 }
