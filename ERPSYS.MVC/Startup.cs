@@ -69,8 +69,7 @@ namespace ERPSYS
             
             // Registrar Connection String para acesso ao banco de dados
             ConnectionString = Configuration.GetConnectionString("Default");
-
-            CriaUsuarioPrincipalNoSistema();
+            
             services.ConfigureApplicationCookie(options => options.LoginPath = "/login");
             // Registrar as Injeções de dependências
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -93,6 +92,7 @@ namespace ERPSYS
                 Apelido = "admin",
                 Senha = "admin",
                 DataInclusao = DateTime.Now,
+                NivelAcesso = 'A'
             };
             // Criar o usuário principal do sistema
             if (!usuarioDao.IsUsuarioCadastrado(usuario.Apelido))                    
@@ -126,8 +126,9 @@ namespace ERPSYS
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            this.Kernel = this.RegisterApplicationComponents(app);
+            Kernel = RegisterApplicationComponents(app);
             MyDependencyContainer.Kernel = this.Kernel;
+            CriaUsuarioPrincipalNoSistema();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

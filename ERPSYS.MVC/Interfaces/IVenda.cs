@@ -13,7 +13,7 @@ namespace ERPSYS.MVC.Interfaces
         double PrecoTotal { get; set; }
         Cliente Cliente { get; set; }
         int? ClienteId { get; set; }
-        IList<VendaItens> VendaItens { get; set; }
+        List<VendaItens> VendaItens { get; set; }
         int FormaPagamento { get; set; }
     }
 }

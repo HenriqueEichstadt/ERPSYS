@@ -13,4 +13,7 @@
             }
         }
     });
+
+    $("#precoVenda").mask('#.##0.00', { reverse: true });
+    $("#precoCusto").mask('#.##0.00', { reverse: true });
 });

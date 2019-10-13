@@ -14,9 +14,13 @@ $(document).ready(function () {
         $('#preco_unidade').val('R$ ' + precoUnidade);
         $('#unidades').prop('max', produto.estoqueAtual);
     });
-    
+
     $('#select_clientes').change(function () {
         let idClienteSelecionado = $('#select_clientes').val();
+        
+        if(idClienteSelecionado != null){
+            Pagina.AdicionarTrocaPorPontosAoSelect2();
+        }
         let cliente = Lista.GetClientePorId(idClienteSelecionado);
         Pagina.AtualizarPontosCliente();
     });
@@ -29,7 +33,7 @@ $(document).ready(function () {
         let unidadesProduto = $('#unidades').val();
         let precoUnidade = $('#preco_unidade').val();
         let produto = Lista.GetProdutoPorId(idProdutoSelecionado);
-        
+
         if (idProdutoSelecionado == "") {
             Notify.WarningNotify("Selecione um produto para a venda");
             return;
@@ -38,19 +42,19 @@ $(document).ready(function () {
             Notify.WarningNotify("Selecione uma quantidade");
             return;
         }
-        if(ItensDaVenda.ContemItem(idProdutoSelecionado)){
+        if (ItensDaVenda.ContemItem(idProdutoSelecionado)) {
             Notify.WarningNotify("Este produto já está cadastrado na venda");
             return;
         }
-        if(unidadesProduto > produto.estoqueAtual){
+        if (unidadesProduto > produto.estoqueAtual) {
             Notify.WarningNotify("Há apenas " + produto.estoqueAtual + " unidades no estoque");
             return;
         }
-        
-        let unidades = Number(unidadesProduto);
-        let precoSubtotal = unidades * produto.precoVenda
-        ItensDaVenda.AddItem(produto.id, unidades, precoSubtotal);
-        
+
+        let unidades = Number.parseInt(unidadesProduto);
+        let precoSubtotal = Number.parseFloat(unidades * produto.precoVenda).toFixed(2);
+        ItensDaVenda.AddItem(produto.id, unidades, Number(precoSubtotal));
+
         Pagina.AdicionarItemNaTabela(produto.id, produto.nome, unidades, produto.precoVenda, precoSubtotal);
         Pagina.AtualizarPrecoTotalVenda();
         Pagina.AtualizarQtdItensVenda();
@@ -62,37 +66,40 @@ $(document).ready(function () {
         let itensDaVenda = ItensDaVenda.GetItensDaVenda();
         let qtdItensDaVenda = ItensDaVenda.GetQtdItensVenda();
         let formaPagamento = $('#forma_pagamento').val();
-        
-        if(qtdItensDaVenda == ""){
+
+        if (qtdItensDaVenda == "") {
             Notify.WarningNotify("Venda vazia");
             return;
         }
-        if(formaPagamento == "" || formaPagamento == 0){
+        if (formaPagamento == "" || formaPagamento == 0) {
             Notify.WarningNotify("Selecione uma forma de pagamento");
             return;
         }
 
-        Venda.AtualizarDados();
+        // Venda.AtualizarDados();
         let objVenda = Venda.GetDadosVenda();
-        let objVendaItens = ItensDaVenda.GetItensDaVenda();
-        
-        
+
         $.ajax({
             url: '/Venda/EmitirVenda',
             type: 'POST',
             contentType: 'application/json',
-            type: 'POST',
-            data: JSON.stringify({ venda: objVenda, vendaItens: objVendaItens }),
-        }).done(function (response){
-                if(response.emitida){
-                    Notify.SuccessNotify(response.mensagem);
-                    setTimeout(function () {
-                        //window.history.back();
-                    }, 3000);
-                }
-                else{
-                    Notify.ErrorNotify(response.mensagem);
-                }
+            data: JSON.stringify(
+                {
+                    clienteId: objVenda.ClienteId,
+                    formaPagamento: objVenda.FormaPagamento,
+                    vendaItens: objVenda.VendaItens,
+                    precoTotal: objVenda.PrecoTotal,
+                    totalUnidades: objVenda.TotalUnidades
+                }),
+        }).done(function (response) {
+            if (response.emitida) {
+                Notify.SuccessNotify(response.mensagem);
+                setTimeout(function() {
+                   // window.history.back();
+                }, 3000);
+            } else {
+                Notify.ErrorNotify(response.mensagem);
+            }
         });
     });
 });
@@ -112,7 +119,7 @@ Pagina = (function () {
             Pagina.AtualizarQtdItensVenda();
             Notify.SuccessNotify("Produto removido com sucesso");
         });
-        
+
         $("#tabela_venda").append(
             $("<tr>").append(
                 $("<td>").text(id).addClass("IdDoProduto")
@@ -176,44 +183,46 @@ Pagina = (function () {
             }
         });
     }
+    
+    function adicionarTrocaPorPontosAoSelect2(){
+        var formaPagamento = $('#forma_pagamento').select2();
+        $('<option>').val(4).text("Troca por pontos").appendTo(formaPagamento);
+    }
 
     function carregarSelect2FormaDePagamento() {
         $('#forma_pagamento').select2();
+        $("#forma_pagamento option[value='4']").remove();
     }
-    
-    function atualizarPrecoTotalVenda(){
+
+    function atualizarPrecoTotalVenda() {
         let total = 0;
-        $.each(ItensDaVenda.GetItensDaVenda(), function (i, item){
+        $.each(ItensDaVenda.GetItensDaVenda(), function (i, item) {
             total += item.PrecoTotalItem;
         });
         let totalEmDecimal = Number.parseFloat(total).toFixed(2).replace(".", ",");
         $('#precoTotal').val('R$ ' + totalEmDecimal);
         $('#preco_total').val('R$ ' + totalEmDecimal);
-        Venda.SetPrecoTotalVenda(total);
     }
-    
-    function atualizarQtdItensVenda(){
+
+    function atualizarQtdItensVenda() {
         let quantidade = ItensDaVenda.GetQtdItensVenda();
-        if(quantidade == 0){
+        if (quantidade == 0) {
             $('#qtd_itens_venda').val('Nenhum item');
-        }
-        else if(quantidade == 1){
+        } else if (quantidade == 1) {
             $('#qtd_itens_venda').val(quantidade + ' item');
+        } else {
+            $('#qtd_itens_venda').val(quantidade + ' itens');
         }
-        else{
-            $('#qtd_itens_venda').val(quantidade + ' itens');    
-        }
-        Venda.SetQtdItensVenda(quantidade);
     }
-    
-    function atualizarPontosCliente(){
+
+    function atualizarPontosCliente() {
         let idClienteSelecionado = $('#select_clientes').val();
-        if(idClienteSelecionado == null){
+        if (idClienteSelecionado == null) {
             $('#pontos_cliente').val('Selecione um cliente');
             return;
         }
         let cliente = Lista.GetClientePorId(idClienteSelecionado);
-        $('#pontos_cliente').val(cliente.pontos + ' pontos');    
+        $('#pontos_cliente').val(cliente.pontos + ' pontos');
     }
 
     return {
@@ -223,46 +232,54 @@ Pagina = (function () {
         CarregarSelect2FormaDePagamento: carregarSelect2FormaDePagamento,
         AtualizarPrecoTotalVenda: atualizarPrecoTotalVenda,
         AtualizarQtdItensVenda: atualizarQtdItensVenda,
-        AtualizarPontosCliente: atualizarPontosCliente
+        AtualizarPontosCliente: atualizarPontosCliente,
+        AdicionarTrocaPorPontosAoSelect2: adicionarTrocaPorPontosAoSelect2
     };
 })();
 
 Venda = (function () {
-    
-    let venda = {
-        FormaPagamento: 0,
-        Data: "",
-        TotalUnidades: 0,
-        ClienteId: 0,
-        PrecoTotal: 0,
-        VendaItens: 0,
-    };
+
+    let venda =
+        {
+            Cliente: null,
+            ClienteId: null,
+            Data: null,
+            DataAlteracao: null,
+            Datainclusao: null,
+            FormaPagamento: null,
+            Id: null,
+            PrecoTotal: 0,
+            TotalUnidades: 0,
+            UsuarioAlteracao: null,
+            UsuarioAlteracaoId: null,
+            UsuarioInclusao: null,
+            UsuarioInclusaoId: null,
+            VendaItens: Array(),
+        };
 
 
     function getDadosVenda() {
+        atualizarDados();
         return venda;
     }
 
 
     function atualizarDados(qtdItens, precoTotal) {
-        venda.FormaPagamento = Number($('#forma_pagamento').val());
-        venda.ClienteId = Number($('#select_clientes').val());
+        venda.TotalUnidades = Number.parseInt(ItensDaVenda.GetQtdItensVenda());
+        venda.PrecoTotal = ItensDaVenda.GetPrecoTotalVenda();
+        venda.Cliente = Number.parseInt($('#select_clientes').val());
+        venda.ClienteId = Number.parseInt($('#select_clientes').val());
         venda.VendaItens = ItensDaVenda.GetItensDaVenda();
+        venda.FormaPagamento = Number.parseInt($('#forma_pagamento').val());
     }
-    
-    function setQtdItensVenda(qtdItens){
+
+    function setQtdItensVenda(qtdItens) {
         venda.TotalUnidades = qtdItens;
     }
-    
-    function setPrecoTotalVenda(precoTotal){
-        venda.PrecoTotal = precoTotal;
-    }
-    
+
+
     return {
-        GetDadosVenda: getDadosVenda,
-        AtualizarDados: atualizarDados,
-        SetPrecoTotalVenda: setPrecoTotalVenda,
-        SetQtdItensVenda: setQtdItensVenda
+        GetDadosVenda: getDadosVenda
     };
 })();
 
@@ -282,26 +299,35 @@ ItensDaVenda = (function () {
                 PrecoTotalItem: prodPrecoSubtotal
             });
     }
-    
-    function removeItem(produtoId){
+
+    function removeItem(produtoId) {
         itensDaVenda.splice(itensDaVenda.findIndex(p => p.ProdutoId == produtoId), 1);
     }
-    
-    function contemItem(id){
+
+    function contemItem(id) {
         let possui = false;
-        $.each(itensDaVenda, function (i, item){
-            if(item.ProdutoId == id)
+        $.each(itensDaVenda, function (i, item) {
+            if (item.ProdutoId == id)
                 possui = true;
         });
         return possui;
     }
-    
-    function getQtdItensVenda(){
+
+    function getQtdItensVenda() {
         let contador = 0;
-        $.each(itensDaVenda, function (i, item){
+        $.each(itensDaVenda, function (i, item) {
             contador += item.Unidades;
         });
-        return contador;
+        return Number(contador);
+    }
+
+    function getPrecoTotalVenda() {
+        let total = 0;
+        $.each(itensDaVenda, function (i, item) {
+            total += item.PrecoTotalItem;
+        });
+        let valor = Number.parseFloat(total).toFixed(2);
+        return Number(valor);
     }
 
     return {
@@ -309,7 +335,8 @@ ItensDaVenda = (function () {
         AddItem: addItem,
         RemoveItem: removeItem,
         ContemItem: contemItem,
-        GetQtdItensVenda: getQtdItensVenda
+        GetQtdItensVenda: getQtdItensVenda,
+        GetPrecoTotalVenda: getPrecoTotalVenda
     };
 })();
 
@@ -339,7 +366,7 @@ Lista = (function () {
     }
 
     function getClientePorId(id) {
-        let retorno =  this.objClientes[this.objClientes.findIndex(p => p.id == id)];
+        let retorno = this.objClientes[this.objClientes.findIndex(p => p.id == id)];
         return retorno;
     }
 

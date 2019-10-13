@@ -1,4 +1,5 @@
 ﻿using ERPSYS.Common;
+using ERPSYS.MVC.BusinessLayer;
 using ERPSYS.MVC.Common.Interfaces;
 using ERPSYS.MVC.DAO;
 using ERPSYS.MVC.DAO.Interfaces;
@@ -41,6 +42,7 @@ namespace ERPSYS.MVC.IOC
             kernel.Bind<IProduto>().To<Produto>();
             kernel.Bind<IVenda>().To<Venda>();
             kernel.Bind<IVendaItens>().To<VendaItens>();
+            kernel.Bind<IEmissorDeVenda>().To<EmissorDeVenda>();
         }
 
         private static void RegistroDaos(StandardKernel kernel)

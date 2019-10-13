@@ -1,82 +1,82 @@
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
+using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Models;
+using Ninject;
 
 namespace ERPSYS.MVC.DAO
 {
-    public class VendaDAO : IVendaDAO
+    public class VendaDAO : BaseDAO<Venda>, IVendaDAO
     {
+        [Inject] public IProdutoDAO ProdutoDao { get; set; }
+        [Inject] public IClienteDAO ClienteDao { get; set; }
+
+        public VendaDAO(ApplicationContext contexto) : base(contexto)
+        {
+        }
+
         public void Add(Venda venda)
         {
-            using (var dbSet = new ApplicationContext())
-            {
-                dbSet.VENDAS.Add(venda);
-                dbSet.SaveChanges();
-            }
+            DbSet.Add(venda);
+            Context.SaveChanges();
         }
 
         public void Update(Venda venda)
         {
-            using (var dbSet = new ApplicationContext())
-            {
-                dbSet.VENDAS.Update(venda);
-                dbSet.SaveChanges();
-            }
+            DbSet.Update(venda);
+            Context.SaveChanges();
         }
 
         public void Delete(Venda venda)
         {
-            using (var dbSet = new ApplicationContext())
-            {
-                dbSet.VENDAS.Remove(venda);
-                dbSet.SaveChanges();
-            }
+            DbSet.Remove(venda);
+            Context.SaveChanges();
         }
 
         public Venda GetById(int id)
         {
-            using (var dbSet = new ApplicationContext())
-            {
-                return dbSet.VENDAS.FirstOrDefault(a => a.Id == id);
-            }
+            return DbSet.FirstOrDefault(a => a.Id == id);
         }
 
         public IList<Venda> ListAll()
         {
-            using (var dbSet = new ApplicationContext())
-            {
-                return dbSet.VENDAS.ToList();
-            }
+            return DbSet.ToList();
         }
 
-        public void TrocaPorPontos(int? clienteId, int pontos)
+        public void TrocaPorPontos(int clienteId, int pontos)
         {
-            if (clienteId == null) return;
-            
-            using (var dbSet = new ApplicationContext())
-            {
-                var cliente = dbSet.CLIENTES.Find(clienteId);
-                cliente.Pontos -= pontos;
-                dbSet.SaveChanges();
-            }
+            var cliente = ClienteDao.GetById(clienteId);
+            cliente.Pontos -= pontos;
+            Context.SaveChanges();
         }
 
         public void AdicionaVenda(Venda venda)
         {
-            using (var dbSet = new ApplicationContext())
-            {
-                dbSet.VENDAS.Add(venda);
-                dbSet.SaveChanges();
-            }
+            DbSet.Add(venda);
+            Context.SaveChanges();
         }
-        
+
         public void SomaPontos(int clienteId, int pontos)
         {
-            using (var dbSet = new ApplicationContext())
+            var cliente = ClienteDao.GetById(clienteId);
+            cliente.Pontos += pontos;
+            Context.SaveChanges();
+        }
+
+        public void GravarVenda(Venda venda)
+        {
+            try
             {
-                var cliente = dbSet.CLIENTES.Find(clienteId);
-                cliente.Pontos += pontos;
-                dbSet.SaveChanges();
+                BeginTransaction();
+                AdicionaVenda(venda);
+                DecrementaDoEstoque(venda.VendaItens);
+                CommitTransaction();
+            }
+            catch (DbException ex)
+            {
+                throw new Exception(ex.Message, ex);
             }
         }
 
@@ -90,12 +90,9 @@ namespace ERPSYS.MVC.DAO
 
         private void DecrementaProdutoDoEstoque(int id, double quantidade)
         {
-            using (var dbSet = new ApplicationContext())
-            {
-                var produto = dbSet.PRODUTOS.Find(id);
-                produto.EstoqueAtual -= quantidade;
-                dbSet.SaveChanges();
-            }
+            var produto = ProdutoDao.GetById(id);
+            produto.EstoqueAtual -= quantidade;
+            Context.SaveChanges();
         }
     }
 }

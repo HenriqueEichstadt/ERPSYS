@@ -13,6 +13,7 @@ namespace ERPSYS.MVC.Controllers
         [Inject] public IVenda Venda { get; set; }
         [Inject] public IVendaDAO VendaDao { get; set; }
         [Inject] public IMyActivator MyActivator { get; set; }
+        [Inject] public IEmissorDeVenda EmissorDeVenda { get; set; }
 
         public IActionResult Cadastrados()
         {
@@ -23,7 +24,7 @@ namespace ERPSYS.MVC.Controllers
         {
             Venda = MyActivator.CreateInstance<Venda>();
             Venda.Data = DateTime.Now;
-            return View(Venda);
+            return View(Venda as Venda);
         }
 
         public IActionResult Editar(int id)
@@ -32,42 +33,25 @@ namespace ERPSYS.MVC.Controllers
             return View(venda);
         }
 
-        //[HttpPost]
-        public JsonResult EmitirVenda([FromBody]Venda venda)
+        [HttpPost]
+        public JsonResult EmitirVenda([FromBody] Venda venda)
         {
             try
             {
-                //venda.VendaItens = vendaItens;
-                venda.Data = DateTime.Now;
+                venda.AtribuirDadosInclusao();
                 if (ModelState.IsValid)
                 {
-                    // Se for uma venda por troca de pontos
-                    if (venda.ClienteId != null && venda.FormaPagamento == 4)
-                    {
-                        int trocaPontos = (int) (venda.PrecoTotal * 100);
-                        VendaDao.TrocaPorPontos(venda.ClienteId, trocaPontos);
-                    }
-                    // Demais Vendas
-                    else
-                    {
-                        VendaDao.AdicionaVenda(venda);
-                        VendaDao.DecrementaDoEstoque(Venda.VendaItens);
-                    }
-
-                    // Se for no Dinheiro ou Débito gera pontos para o programa de fidelidade
-                    if (venda.ClienteId != null && venda.FormaPagamento == 1 || venda.FormaPagamento == 2)
-                    {
-                        int qtdDePontos = Convert.ToInt32(venda.PrecoTotal);
-                        int cliente = Convert.ToInt32(venda.ClienteId);
-                        VendaDao.SomaPontos(cliente, qtdDePontos);
-                    }
+                    EmissorDeVenda.EmitirVenda(venda);
+                    return Json(new {emitida = true, mensagem = "Venda efetuada com sucesso"});
                 }
-
-                return Json(new {emitida = true, mensagem = "Venda efetuada com sucesso"});
+                else
+                {
+                    return Json(new {emitida = false, mensagem = "Venda inválida"});
+                }
             }
-            catch
+            catch(Exception ex)
             {
-                return Json(new {emitida = false, mensagem = "Erro ao emitir venda"});
+                return Json(new {emitida = false, mensagem = $"Erro ao emitir venda {ex.Message}"});
             }
         }
     }

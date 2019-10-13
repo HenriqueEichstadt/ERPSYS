@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="produtoId">Id <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.Id" id="produtoId" readonly name="estoque.Id" placeholder="Nome do produto" class="form-control input-md" type="text">
+                        <input asp-for="@Model.Id" id="produtoId" readonly placeholder="Nome do produto" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <!-- Text input-->
@@ -89,14 +89,14 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="precoVenda">Estoque Atual<h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.EstoqueAtual" value="" id="estoqueAtual" placeholder="" class="form-control input-md" type="number">
+                        <input asp-for="@Model.EstoqueAtual" id="estoqueAtual" placeholder="" class="form-control input-md" type="number" step=".01">
                         <span asp-validation-for="EstoqueAtual" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="limiteEstoque">Limite de Estoque<h11></h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.LimiteEstoque" id="limiteEstoque" value="" placeholder="" class="form-control input-md" type="number">
+                        <input asp-for="@Model.LimiteEstoque" id="limiteEstoque" placeholder="" class="form-control input-md" type="number" step=".01">
                         <span asp-validation-for="LimiteEstoque" class="text-danger"></span>
                     </div>
                 </div>

@@ -10,9 +10,10 @@ namespace ERPSYS.MVC.DAO
         void Delete(Venda venda);
         Venda GetById(int id);
         IList<Venda> ListAll();
-        void TrocaPorPontos(int? clienteId, int pontos);
+        void TrocaPorPontos(int clienteId, int pontos);
         void AdicionaVenda(Venda venda);
         void DecrementaDoEstoque(IList<VendaItens> vendaItens);
         void SomaPontos(int clienteId, int pontos);
+        void GravarVenda(Venda venda);
     }
 }
