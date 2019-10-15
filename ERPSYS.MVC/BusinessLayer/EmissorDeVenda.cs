@@ -38,19 +38,16 @@ namespace ERPSYS.MVC.BusinessLayer
 
         private void VendaNaTrocaPorPontosProgFidelidade(Venda venda)
         {
+            VendaDao.GravarVenda(venda);
             var trocaPontos = (int)(venda.PrecoTotal * PontosProgramaFidelidade);
             VendaDao.TrocaPorPontos(venda.ClienteId ?? 0, trocaPontos);
         }
 
         private void VendaComAtribuicaoDePontosProgFidelidade(Venda venda)
         {
+            VendaDao.GravarVenda(venda);
             var qtdPontos = (int)(venda.PrecoTotal);
             VendaDao.SomaPontos(venda.ClienteId ?? 0, qtdPontos);
-        }
-
-        private void EmitirVendaAnonima(Venda venda)
-        {
-           
         }
     }
 }

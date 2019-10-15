@@ -85,5 +85,16 @@ namespace ERPSYS.MVC.DAO
                 dbSet.SaveChanges();
             }
         }
+
+        public void DecrementaEstoque(int produtoId, double quantidade)
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                var produto = GetById(produtoId);
+                produto.EstoqueAtual -= quantidade;
+                dbSet.PRODUTOS.Update(produto);
+                dbSet.SaveChanges();
+            }
+        }
     }
 }

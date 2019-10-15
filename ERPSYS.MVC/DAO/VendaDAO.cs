@@ -47,9 +47,7 @@ namespace ERPSYS.MVC.DAO
 
         public void TrocaPorPontos(int clienteId, int pontos)
         {
-            var cliente = ClienteDao.GetById(clienteId);
-            cliente.Pontos -= pontos;
-            Context.SaveChanges();
+            ClienteDao.TrocaPorPontos(clienteId, pontos);
         }
 
         public void AdicionaVenda(Venda venda)
@@ -60,9 +58,7 @@ namespace ERPSYS.MVC.DAO
 
         public void SomaPontos(int clienteId, int pontos)
         {
-            var cliente = ClienteDao.GetById(clienteId);
-            cliente.Pontos += pontos;
-            Context.SaveChanges();
+            ClienteDao.SomaPontos(clienteId, pontos);
         }
 
         public void GravarVenda(Venda venda)
@@ -90,9 +86,7 @@ namespace ERPSYS.MVC.DAO
 
         private void DecrementaProdutoDoEstoque(int id, double quantidade)
         {
-            var produto = ProdutoDao.GetById(id);
-            produto.EstoqueAtual -= quantidade;
-            Context.SaveChanges();
+            ProdutoDao.DecrementaEstoque(id, quantidade);
         }
     }
 }

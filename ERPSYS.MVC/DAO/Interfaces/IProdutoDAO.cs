@@ -13,6 +13,7 @@ namespace ERPSYS.MVC.DAO.Interfaces
         IList<Produto> ListActives();
         IList<Produto> ListAll();
         void Inativar(int id);
-        void Ativar(int id);
+        void Ativar(int id); 
+        void DecrementaEstoque(int produtoId, double quantidade);
     }
 }

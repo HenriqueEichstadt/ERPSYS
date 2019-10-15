@@ -15,5 +15,7 @@ namespace ERPSYS.MVC.DAO.Interfaces
         IList<Cliente> ListarClientes();
         void Inativar(int id);
         void Ativar(int id);
+        void SomaPontos(int clienteId, int pontos);
+        void TrocaPorPontos(int clienteId, int pontos);
     }
 }

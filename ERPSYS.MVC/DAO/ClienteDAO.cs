@@ -77,5 +77,21 @@ namespace ERPSYS.MVC.DAO
             DbSet.Update(cliente);
             Context.SaveChanges();
         }
+
+        public void SomaPontos(int clienteId, int pontos)
+        {
+            var cliente = GetById(clienteId);
+            cliente.Pontos += pontos;
+            DbSet.Update(cliente);
+            Context.SaveChanges();
+        }
+
+        public void TrocaPorPontos(int clienteId, int pontos)
+        {
+            var cliente = GetById(clienteId);
+            cliente.Pontos -= pontos;
+            DbSet.Update(cliente);
+            Context.SaveChanges();
+        }
     }
 }

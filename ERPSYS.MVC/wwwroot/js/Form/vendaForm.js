@@ -76,7 +76,15 @@ $(document).ready(function () {
             return;
         }
 
-        // Venda.AtualizarDados();
+        let idClienteSelecionado = $('#select_clientes').val();
+        let cliente = Lista.GetClientePorId(idClienteSelecionado);
+        
+        let pontosNecessarios = Number.parseInt(Venda.GetDadosVenda().PrecoTotal * 100);
+        if(formaPagamento == 4 && cliente.pontos < pontosNecessarios)
+        {
+            Notify.WarningNotify("O cliente precisa de " + pontosNecessarios + " para efetuar a troca por pontos");
+        }
+        
         let objVenda = Venda.GetDadosVenda();
 
         $.ajax({
