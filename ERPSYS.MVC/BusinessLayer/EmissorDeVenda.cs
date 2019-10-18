@@ -10,44 +10,55 @@ namespace ERPSYS.MVC.BusinessLayer
     {
         private const int PontosProgramaFidelidade = 100;
         [Inject] public IVendaDAO VendaDao { get; set; }
+        public const string mensagemVenda = "Venda efetuada com sucesso";
 
-        public void EmitirVenda(Venda venda)
+        public string EmitirVenda(Venda venda)
         {
             if (venda.ClienteId == null)
+            {
                 VendaDao.GravarVenda(venda);
+                return mensagemVenda;
+            }
+                 
             else
-                EmitirVendaComCliente(venda);
+                return EmitirVendaComCliente(venda);
         }
 
-        private void EmitirVendaComCliente(Venda venda)
+        private string EmitirVendaComCliente(Venda venda)
         {
+            var msg = string.Empty;
             switch (venda.FormaPagamento)
             {
                 case 1:
                 case 2:
-                    VendaComAtribuicaoDePontosProgFidelidade(venda);
+                    msg = VendaComAtribuicaoDePontosProgFidelidade(venda);
                     break;
                 case 3:
                     VendaDao.GravarVenda(venda);
+                    msg = mensagemVenda;
                     break;
                 case 4:
-                    VendaNaTrocaPorPontosProgFidelidade(venda);
+                    msg = VendaNaTrocaPorPontosProgFidelidade(venda);
                     break;
             }
+
+            return msg;
         }
 
-        private void VendaNaTrocaPorPontosProgFidelidade(Venda venda)
+        private string VendaNaTrocaPorPontosProgFidelidade(Venda venda)
         {
             VendaDao.GravarVenda(venda);
             var trocaPontos = (int)(venda.PrecoTotal * PontosProgramaFidelidade);
             VendaDao.TrocaPorPontos(venda.ClienteId ?? 0, trocaPontos);
+            return "Troca por pontos efetuada com sucesso";
         }
 
-        private void VendaComAtribuicaoDePontosProgFidelidade(Venda venda)
+        private string VendaComAtribuicaoDePontosProgFidelidade(Venda venda)
         {
             VendaDao.GravarVenda(venda);
             var qtdPontos = (int)(venda.PrecoTotal);
             VendaDao.SomaPontos(venda.ClienteId ?? 0, qtdPontos);
+            return $"{mensagemVenda}, o cliente somou {qtdPontos} pontos para o programa de fidelidade";
         }
     }
 }

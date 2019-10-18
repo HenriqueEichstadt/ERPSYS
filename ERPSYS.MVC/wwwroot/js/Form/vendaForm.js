@@ -82,7 +82,7 @@ $(document).ready(function () {
         let pontosNecessarios = Number.parseInt(Venda.GetDadosVenda().PrecoTotal * 100);
         if(formaPagamento == 4 && cliente.pontos < pontosNecessarios)
         {
-            Notify.WarningNotify("O cliente precisa de " + pontosNecessarios + " para efetuar a troca por pontos");
+            Notify.WarningNotify("O cliente precisa de " + pontosNecessarios + " pontos para efetuar a troca por pontos");
         }
         
         let objVenda = Venda.GetDadosVenda();
@@ -171,7 +171,7 @@ Pagina = (function () {
     function carregarSelect2Produtos() {
         $.ajax({
             type: "GET",
-            url: "/Produto/ListarProdutosAtivos",
+            url: "/Produto/ListarAtivosComEstoqueDisponivel",
             data: {ListaProdutos: $("#select_produtos").val()},
             dataType: 'json',
             contentType: "application/json; charset=utf-8",

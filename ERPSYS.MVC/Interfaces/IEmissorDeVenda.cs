@@ -4,6 +4,6 @@ namespace ERPSYS.MVC.Interfaces
 {
     public interface IEmissorDeVenda
     {
-        void EmitirVenda(Venda venda);
+        string EmitirVenda(Venda venda);
     }
 }

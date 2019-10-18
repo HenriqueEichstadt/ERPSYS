@@ -96,7 +96,7 @@ namespace ERPSYS.MVC.Controllers
         {
             return Json(new
             {
-                data = ProdutoDao.ListActives()
+                data = ProdutoDao.ListarAtivosComEstoqueDisponivel()
             });
         }
     }

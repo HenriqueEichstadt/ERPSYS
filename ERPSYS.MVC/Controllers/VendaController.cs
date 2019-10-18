@@ -41,8 +41,8 @@ namespace ERPSYS.MVC.Controllers
                 venda.AtribuirDadosInclusao();
                 if (ModelState.IsValid)
                 {
-                    EmissorDeVenda.EmitirVenda(venda);
-                    return Json(new {emitida = true, mensagem = "Venda efetuada com sucesso"});
+                    var msg = EmissorDeVenda.EmitirVenda(venda);
+                    return Json(new {emitida = true, mensagem = msg});
                 }
                 else
                 {

@@ -15,5 +15,6 @@ namespace ERPSYS.MVC.DAO.Interfaces
         void Inativar(int id);
         void Ativar(int id); 
         void DecrementaEstoque(int produtoId, double quantidade);
+        List<Produto> ListarAtivosComEstoqueDisponivel();
     }
 }

@@ -96,5 +96,13 @@ namespace ERPSYS.MVC.DAO
                 dbSet.SaveChanges();
             }
         }
+
+        public List<Produto> ListarAtivosComEstoqueDisponivel()
+        {
+            using (var dbSet = new ApplicationContext())
+            {
+                return dbSet.PRODUTOS.Where(e => e.EstoqueAtual > 0 && e.Ativo).ToList();
+            }
+        }
     }
 }
