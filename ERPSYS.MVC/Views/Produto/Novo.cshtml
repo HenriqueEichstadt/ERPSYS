@@ -20,12 +20,6 @@
             </li>
         </ul>
     </div>
-    
-    <div class="alert alert-warning alert-dismissible" id="validade-message">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-warning"></i> Validações</h4>
-        <h5>MESSAGE</h5>
-    </div>
 
     <form asp-action="AdicionarNovo" id="FormAdd" method="post">
         <div class="form-horizontal">
@@ -48,14 +42,12 @@
                     <label class="col-md-2 control-label" for="nomeproduto">Nome <h11>*</h11></label>
                     <div class="col-md-3">
                         <input asp-for="@Model.Nome" id="nomeproduto" placeholder="Nome do produto" class="form-control input-md" type="text">
-                        <span asp-validation-for="Nome" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="marca">Marca<h11>*</h11></label>
                     <div class="col-md-3">
                         <input asp-for="@Model.Marca" id="marca" placeholder="Marca do produto" class="form-control input-md" type="text">
-                        <span asp-validation-for="Marca" class="text-danger"></span>
                     </div>
                 </div>
                 <!-- Multiple Radios (inline) -->
@@ -66,64 +58,55 @@
                         <select asp-for="@Model.Categoria" id="categoria" class="form-control input-md">
                             <option value="P">Produto</option>
                         </select>
-                        <span asp-validation-for="Categoria" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="precoVenda">Preço de Venda<h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.PrecoVenda" id="precoVenda" placeholder="R$ 00,00" class="form-control input-md" type="text"> <!-- onkeyup="CalculaPontosAutomaticamente();" -->
-                        <span asp-validation-for="PrecoVenda" class="text-danger"></span>
+                        <input asp-for="@Model.PrecoVenda" id="precoVenda" placeholder="R$ 00,00" value="" class="form-control input-md" type="text" onkeyup="Page.CalculatePoints()"> 
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="precoCusto">Preço de Custo<h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.PrecoCusto" id="precoCusto" placeholder="R$ 00,00" class="form-control input-md" type="text">
-                        <span asp-validation-for="PrecoCusto" class="text-danger"></span>
+                        <input asp-for="@Model.PrecoCusto" id="precoCusto" placeholder="R$ 00,00" value="" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="precoVenda">Estoque Atual<h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.EstoqueAtual" value="" id="estoqueAtual" placeholder="" class="form-control input-md" type="number">
-                        <span asp-validation-for="EstoqueAtual" class="text-danger"></span>
+                        <input asp-for="@Model.EstoqueAtual" id="estoqueAtual" placeholder="" class="form-control input-md" type="number">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="limiteEstoque">Limite de Estoque<h11></h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.LimiteEstoque" id="limiteEstoque" value="" placeholder="" class="form-control input-md" type="number">
-                        <span asp-validation-for="LimiteEstoque" class="text-danger"></span>
+                        <input asp-for="@Model.LimiteEstoque" id="limiteEstoque"placeholder="" class="form-control input-md" type="number">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="observacoes">Descrição</label>
                     <div class="col-md-3">
                         <textarea asp-for="@Model.Descricao" id="observacoes" class="form-control input-md" type="text"></textarea>
-                        <span asp-validation-for="Descricao" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="dataFabricacao">Data Fabricação</label>
                     <div class="col-md-2">
                         <input asp-for="@Model.DataFabricacao" id="dataFabricacao" placeholder="DD/MM/AAAA" class="form-control input-md" type="date" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
-                        <span asp-validation-for="DataFabricacao" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Validade">Validade<h11>*</h11></label>
                     <div class="col-md-2">
                         <input asp-for="@Model.Validade" id="Validade" placeholder="DD/MM/AAAA" class="form-control input-md" type="date" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
-                        <span asp-validation-for="Validade" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="trocapontos">Troca por Pontos</label>
                     <div class="col-md-3">
                         <input asp-for="@Model.QtdPontosProgFidelidade" id="trocapontos" placeholder="" class="form-control input-md" type="text">
-                        <span asp-validation-for="QtdPontosProgFidelidade" class="text-danger"></span>
                     </div>
                 </div>
 
