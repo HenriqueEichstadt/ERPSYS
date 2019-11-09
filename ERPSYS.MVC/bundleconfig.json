@@ -62,6 +62,7 @@
       "wwwroot/Template/TemplateADMIN/assets/vendor/ValidateJquery/jquery.validate.min.js",
       "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "wwwroot/Template/TemplateADMIN/assets/scripts/moment-with-locales.js",
+      "wwwroot/Template/TemplateADMIN/assets/scripts/bootstrap-validate.js",
       "wwwroot/Template/TemplateADMIN/assets/css/select2/select2.min.js"
     ],
     "minify": {

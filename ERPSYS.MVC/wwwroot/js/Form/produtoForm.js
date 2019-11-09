@@ -1,10 +1,9 @@
 $(document).ready(function () {
 
     Page.ApplyMasks();
-    Page.LoadValidations();
     Page.LoadAjaxForm();
     Page.CalculatePoints();
-
+    Page.LoadValidations();
 });
 
 
@@ -16,6 +15,7 @@ Page = (function () {
     }
 
     function loadAjaxForm() {
+        Page.LoadValidations();
         $('#FormAdd').ajaxForm({
             dataType: 'json',
             success: function (response) {
@@ -26,24 +26,6 @@ Page = (function () {
                     }, 3000);
                 } else {
                     Notify.WarningNotify(response.data.validate);
-                }
-            }
-        });
-    }
-
-    function loadValidations() {
-        $('#FormAdd').validate({
-            debug: true,
-            rules: {
-                'nomeproduto': {
-                    required: true,
-                    minLength: 3,
-                    maxLength: 1500
-                }
-            },
-            messages: {
-                'nomeproduto': {
-                    accept: "Campo obrigatório"
                 }
             }
         });
@@ -61,7 +43,23 @@ Page = (function () {
         }
     }
 
-
+    function loadValidations() {
+        $("#FormAdd").validate({
+            rules: {
+                Nome: {
+                    required: true,
+                    maxlength: 50
+                },
+            },
+            messages: {
+                Nome: {
+                    required: "Campo obrigatório!",
+                    maxlength: "Máximo 50 Caracteres!"
+                },
+            }
+        });
+    }
+    
     return {
         ApplyMasks: applyMasks,
         LoadAjaxForm: loadAjaxForm,

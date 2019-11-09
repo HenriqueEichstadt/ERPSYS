@@ -1,1 +1,28 @@
-﻿<title>Menu Principal</title>
+﻿@using ERPSYS
+@using Microsoft.AspNetCore.Http
+@{
+    var nome = Startup.Session.GetString("USERNAME");
+    var nivelAcesso = Startup.Session.GetString("NIVELACESSO");
+}
+<title>Menu Principal</title>
+<div class="main-content">
+    <div class="content-heading clearfix">
+        <div class="heading-left">
+            @{
+                if (!string.IsNullOrEmpty(nome))
+                {
+                    <h1 class="page-title">Seja Bem Vindo <span>@nome</span>!</h1>
+                }
+                else
+                {
+                    <h1 class="page-title">Seja Bem Vindo <span>Usuário</span>!</h1>
+                }
+            }
+            <p class="page-subtitle">Menu Principal do Sistema</p>
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#">Menu Principal</a></li>
+        </ul>
+    </div>
+</div>

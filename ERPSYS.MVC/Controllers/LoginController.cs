@@ -20,7 +20,7 @@ namespace ERPSYS.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Autenticar(string apelido, string senha)
+        public JsonResult Autenticar(string apelido, string senha)
         {
             Usuario = UsuarioDao.GetByApelidoESenha(apelido, senha);
 
@@ -29,10 +29,10 @@ namespace ERPSYS.MVC.Controllers
                 Startup.Session = HttpContext.Session;
                 Startup.UserSession = Usuario;
                 AtribuirDadosUsuarioNaSessao(Usuario.Nome, Usuario.Id, Usuario.NivelAcesso);
-                return RedirectToAction("Index", "Home");
+                return Json(new {logIn = true});
             }
 
-            return RedirectToAction("Index");
+            return Json(new {logIn = false, message = "Usuário ou senha incorretos."});
         }
         
         public JsonResult Logout()
