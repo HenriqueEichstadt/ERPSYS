@@ -4,6 +4,7 @@ using ERPSYS.MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ERPSYS.Common;
 
 namespace ERPSYS.MVC.DAO
 {
@@ -98,6 +99,14 @@ namespace ERPSYS.MVC.DAO
                 dbSet.Update(usuario);
                 dbSet.SaveChanges();
             }
+        }
+
+        public Usuario Teste()
+        {
+            var query = new Query("SELECT * FROM PESSOAS");
+            DbEntity result = query.Execute();
+            var user = result.ConvertToModel<Usuario>();
+            return user.FirstOrDefault();
         }
     }
 }

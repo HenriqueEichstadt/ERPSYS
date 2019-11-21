@@ -4,48 +4,62 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ERPSYS.MVC.DAO.Interfaces;
 
 namespace ERPSYS.MVC.Models
 {
-    public partial class Produto : EntityModel, IProduto
+    public partial class Produto : EntityModel<Produto>, IProduto
     {
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        //[MinLength(3, ErrorMessage = "O Nome deve ter no mínimo 3 caracteres")]
-        //[MaxLength(30, ErrorMessage = "O Nome deve ter no máximo 30 caracteres")]
         public string Nome { get; set; }
 
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        //[MinLength(3, ErrorMessage = "A Marca deve ter no mínimo 3 caracteres")]
-        //[MaxLength(30, ErrorMessage = "A Marca deve ter no máximo 30 caracteres")]
+        [Required]
+        [MinLength(3)]
+        [MaxLength(30)]
         public string Marca { get; set; }
 
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        public char Categoria { get; set; }
+        [Required] public char Categoria { get; set; }
 
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        public double PrecoVenda { get; set; }
+        [Required] public double PrecoVenda { get; set; }
 
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        public double PrecoCusto { get; set; }
+        [Required] public double PrecoCusto { get; set; }
 
-        //[MaxLength(200, ErrorMessage = "A Descrição deve ter no máximo 200 caracteres")]
-        public string Descricao { get; set; }
+        [MaxLength(200)] public string Descricao { get; set; }
 
-        //[Required(ErrorMessage = "Campo obrigatório")]
-        public double EstoqueAtual { get; set; }
+        [Required] public double EstoqueAtual { get; set; }
 
         public double? LimiteEstoque { get; set; }
 
-        //[DataType(DataType.DateTime)]
-        public DateTime? DataFabricacao { get; set; }
+        [DataType(DataType.DateTime)] public DateTime? DataFabricacao { get; set; }
 
-        //[DataType(DataType.DateTime)]
-        public DateTime? Validade { get; set; }
+        [DataType(DataType.DateTime)] public DateTime? Validade { get; set; }
 
         public int? QtdPontosProgFidelidade { get; set; }
 
         public IList<VendaItens> VendaItens { get; set; }
 
         public bool Ativo { get; set; }
+
+        public partial class FieldNames
+        {
+            public const string Id = "ID";
+            public const string DataInclusao = "DATAINCLUSAO";
+            public const string DataAlteracao = "DATAALTERACAO";
+            public const string UsuarioInclusao = "USUARIOINCLUSAO";
+            public const string UsuarioInclusaoId = "USUARIOINCLUSAOID";
+            public const string UsuarioAlteracao = "USUARIOALTERACAO";
+            public const string UsuarioAlteracaoId = "USUARIOALTERACAOID";
+            public const string Nome = "NOME";
+            public const string Marca = "MARCA";
+            public const string Categoria = "CATEGORIA";
+            public const string PrecoVenda = "PRECOVENDA";
+            public const string PrecoCusto = "PRECOCUSTO";
+            public const string Descricao = "DESCRICAO";
+            public const string EstoqueAtual = "ESTOQUEATUAL";
+            public const string LimiteEstoque = "LIMITEESTOQUE";
+            public const string Validade = "VALIDADE";
+            public const string QtdPontosProgFidelidade = "QTDPONTOSPROGFIDELIDADE";
+            public const string VendaItens = "VENDAITENS";
+            public const string Ativo = "ATIVO";
+        }
     }
 }

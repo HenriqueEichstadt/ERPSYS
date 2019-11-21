@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Models
 {
-    public partial class Endereco : EntityModel, IEndereco
+    public partial class Endereco : EntityModel<Endereco>, IEndereco
     {
         [Required(ErrorMessage = "Campo obrigatório")]
         [MaxLength(9, ErrorMessage = "O CEP deve ter no máximo 9 caracteres")]

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ERPSYS.MVC.DAO
 {
-    public class BaseDAO<T> where T : EntityModel
+    public class BaseDAO<T> where T : EntityModel<T>
     {
         protected readonly ApplicationContext Context;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Interfaces
 {
-    public interface IProduto
+    public partial interface IProduto
     {
         string Nome { get; set; }
         string Marca { get; set; }

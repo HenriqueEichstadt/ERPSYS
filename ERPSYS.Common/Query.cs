@@ -28,14 +28,14 @@ namespace ERPSYS.Common
             _cmd.Parameters.Add(param);
         }
 
-        public SqlDataReader Execute()
+        public DbEntity Execute()
         {
             try
             {
                 OpenConnection();
                 _cmd = new SqlCommand(_query, _sqlConnection);
                 reader = _cmd.ExecuteReader();
-                return reader;
+                return new DbEntity(reader);
             }
             finally
             {/*
@@ -55,7 +55,7 @@ namespace ERPSYS.Common
 
         private void OpenConnection()
         {
-            _sqlConnection = new SqlConnection("");
+            _sqlConnection = new SqlConnection(Application.DbConnectionString);
             _sqlConnection.Open();
         }
 

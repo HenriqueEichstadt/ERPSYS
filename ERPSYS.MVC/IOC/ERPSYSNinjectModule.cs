@@ -7,6 +7,7 @@ using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
 using Ninject;
 using Ninject.Modules;
+using IProduto = ERPSYS.MVC.Interfaces.IProduto;
 
 namespace ERPSYS.MVC.IOC
 {

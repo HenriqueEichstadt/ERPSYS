@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Models
 {
-    public partial class VendaItens : EntityModel, IVendaItens
+    public partial class VendaItens : EntityModel<VendaItens>, IVendaItens
     {
         public int VendaId { get; set; }
 

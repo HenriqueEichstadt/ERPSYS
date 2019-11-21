@@ -4,6 +4,7 @@ using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Ninject;
+using IProduto = ERPSYS.MVC.Interfaces.IProduto;
 
 namespace ERPSYS.MVC.Controllers
 {

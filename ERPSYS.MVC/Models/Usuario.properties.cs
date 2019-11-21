@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Models
 {
-    public partial class Usuario : EntityModel, IUsuario
+    public partial class Usuario : EntityModel<Usuario>, IUsuario
     {
         [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(5, ErrorMessage = "O Nome deve ter no mínimo 5 caracteres")]

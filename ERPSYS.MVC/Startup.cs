@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
+using ERPSYS.Common;
 using ERPSYS.MVC.DAO;
-using ERPSYS.MVC.DAO.Interfaces;
 using ERPSYS.MVC.Extensions.ApplicationBuilder;
 using ERPSYS.MVC.Extensions.AspNetCore;
 using ERPSYS.MVC.Filters;
@@ -14,14 +11,11 @@ using ERPSYS.MVC.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyModel;
 using Ninject;
 using Ninject.Activation;
 using Ninject.Infrastructure.Disposal;
@@ -34,8 +28,6 @@ namespace ERPSYS
         private IKernel Kernel { get; set; }
         private object Resolve(Type type) => Kernel.Get(type);
         private object RequestScope(IContext context) => scopeProvider.Value;
-
-        public static string ConnectionString { get; private set; }
         public static ISession Session { get; set; }
         public static IUsuario UserSession { get; set; }
 
@@ -68,7 +60,7 @@ namespace ERPSYS
                 .AddSessionStateTempDataProvider();
             
             // Registrar Connection String para acesso ao banco de dados
-            ConnectionString = Configuration.GetConnectionString("Default");
+            Application.DbConnectionString = Configuration.GetConnectionString("Company");
             
             services.ConfigureApplicationCookie(options => options.LoginPath = "/login");
             // Registrar as Injeções de dependências
@@ -127,7 +119,7 @@ namespace ERPSYS
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             Kernel = RegisterApplicationComponents(app);
-            MyDependencyContainer.Kernel = this.Kernel;
+            MyDependencyContainer.Kernel = Kernel;
             CriaUsuarioPrincipalNoSistema();
             if (env.IsDevelopment())
             {
@@ -141,7 +133,6 @@ namespace ERPSYS
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseAuthentication();
             app.UseSession();
             app.UseMvc(routes =>

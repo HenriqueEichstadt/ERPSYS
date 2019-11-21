@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ERPSYS.MVC.Models;
 using ERPSYS.Models;
+using ERPSYS.MVC.DAO;
 using Ninject;
 using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.DAO.Interfaces;
@@ -26,6 +27,7 @@ namespace ERPSYS.MVC.Controllers
             GetUserInSession();
             ViewData["NomeUsuario"] = UsuarioLogado.Nome;
             ViewData["NivelAcesso"] = UsuarioLogado.NivelAcesso;
+            var usuario = new UsuarioDAO().Teste();
             return View();
         }
 

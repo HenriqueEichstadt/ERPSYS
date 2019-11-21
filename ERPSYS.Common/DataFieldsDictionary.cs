@@ -2,7 +2,7 @@ namespace ERPSYS.Common
 {
     public class DataFieldsDictionary
     {
-        public new object this[string key]
+        /*public new object this[string key]
         {
             get
             {
@@ -30,6 +30,6 @@ namespace ERPSYS.Common
                 else
                     this.ThrowKeyNotFoundException(key);
             }
-        }
+        }*/
     }
 }

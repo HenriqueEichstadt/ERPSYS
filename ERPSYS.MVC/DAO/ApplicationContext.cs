@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ERPSYS.Common;
 
 namespace ERPSYS.MVC.DAO
 {
@@ -38,7 +39,7 @@ namespace ERPSYS.MVC.DAO
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Startup.ConnectionString);
+            optionsBuilder.UseSqlServer(Application.DbConnectionString);
         }
     }
 }

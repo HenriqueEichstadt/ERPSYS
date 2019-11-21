@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Models
 {
-    public partial class Venda : EntityModel, IVenda
+    public partial class Venda : EntityModel<Venda>, IVenda
     {
         public double TotalUnidades { get; set; }
         public DateTime Data { get; set; }

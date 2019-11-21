@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Models
 {
-    public partial class Pessoa : EntityModel, IPessoa
+    public partial class Pessoa : EntityModel<Pessoa>, IPessoa
     {
         [Required(ErrorMessage = "Campo obrigatório")]
         public char TipoPessoa { get; set; }

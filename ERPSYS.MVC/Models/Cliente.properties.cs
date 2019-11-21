@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ERPSYS.MVC.Models
 {
-    public partial class Cliente : EntityModel, ICliente
+    public partial class Cliente : EntityModel<Cliente>, ICliente
     {
         [Required] public Pessoa Pessoa { get; set; }
         public int? Pontos { get; set; }
