@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
+    Page.LoadValidations();
     Page.ApplyMasks();
     Page.LoadAjaxForm();
     Page.CalculatePoints();
-    Page.LoadValidations();
 });
 
 
@@ -15,7 +15,6 @@ Page = (function () {
     }
 
     function loadAjaxForm() {
-        Page.LoadValidations();
         $('#FormAdd').ajaxForm({
             dataType: 'json',
             success: function (response) {
@@ -46,15 +45,57 @@ Page = (function () {
     function loadValidations() {
         $("#FormAdd").validate({
             rules: {
-                Nome: {
+                "produto.Nome": {
                     required: true,
+                    minlength: 3,
                     maxlength: 50
+                },
+                "produto.Marca": {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 30
+                },
+                "produto.Categoria": {
+                    required: true
+                },
+                "produto.PrecoVenda": {
+                    required: true
+                },
+                "produto.PrecoCusto": {
+                    required: true
+                },
+                "produto.Descricao": {
+                    maxlength: 200
+                },
+                "produto.EstoqueAtual": {
+                    required: true
                 },
             },
             messages: {
-                Nome: {
-                    required: "Campo obrigatório!",
-                    maxlength: "Máximo 50 Caracteres!"
+                "produto.Nome": {
+                    required: "Campo obrigatório",
+                    minlength: "Mínimo 3 caracteres",
+                    maxlength: "Máximo 50 caracteres"
+                },
+                "produto.Marca": {
+                    required: "Campo obrigatório",
+                    minlength: "Mínimo 3 caracteres",
+                    maxlength: "Máximo 30 caracteres"
+                },
+                "produto.Categoria": {
+                    required: "Campo obrigatório",
+                },
+                "produto.PrecoVenda": {
+                    required: "Campo obrigatório",
+                },
+                "produto.PrecoCusto": {
+                    required: "Campo obrigatório",
+                },
+                "produto.Descricao": {
+                    maxlength: "Máximo de 200 caracteres"
+                },
+                "produto.EstoqueAtual": {
+                    required: "Campo obrigatório",
                 },
             }
         });

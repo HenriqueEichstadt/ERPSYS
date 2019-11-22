@@ -15,7 +15,7 @@ namespace ERPSYS.MVC.Controllers
         
         public IActionResult Novo()
         {
-            return View(Produto as Produto);
+            return View();
         }
 
         public IActionResult Cadastrados()

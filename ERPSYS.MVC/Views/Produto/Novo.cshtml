@@ -1,6 +1,4 @@
 
-@model Produto
-
 <title>Cadastrar novo produto</title>
 <div class="main-content">
     <div class="content-heading clearfix">
@@ -21,7 +19,7 @@
         </ul>
     </div>
 
-    <form asp-action="AdicionarNovo" id="FormAdd" method="post">
+    <form action="/Produto/AdicionarNovo" id="FormAdd" method="post">
         <div class="form-horizontal">
             <div class="panel-body" id="formCadastro">
                 <div class="form-group">
@@ -41,13 +39,13 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="nomeproduto">Nome <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.Nome" id="nomeproduto" placeholder="Nome do produto" class="form-control input-md" type="text">
+                        <input name="produto.Nome" id="nomeproduto" placeholder="Nome do produto" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="marca">Marca<h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.Marca" id="marca" placeholder="Marca do produto" class="form-control input-md" type="text">
+                        <input name="produto.Marca" id="marca" placeholder="Marca do produto" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <!-- Multiple Radios (inline) -->
@@ -55,7 +53,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" id="Genero" for="Genero">Categoria <h11>*</h11></label>
                     <div class="col-md-3">
-                        <select asp-for="@Model.Categoria" id="categoria" class="form-control input-md">
+                        <select name="produto.Categoria" id="categoria" class="form-control input-md">
                             <option value="P">Produto</option>
                         </select>
                     </div>
@@ -64,49 +62,49 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="precoVenda">Preço de Venda<h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.PrecoVenda" id="precoVenda" placeholder="R$ 00,00" value="" class="form-control input-md" type="text" onkeyup="Page.CalculatePoints()"> 
+                        <input name="produto.PrecoVenda" id="precoVenda" placeholder="R$ 00,00" value="" class="form-control input-md" type="text" onkeyup="Page.CalculatePoints()"> 
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="precoCusto">Preço de Custo<h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.PrecoCusto" id="precoCusto" placeholder="R$ 00,00" value="" class="form-control input-md" type="text">
+                        <input name="produto.PrecoCusto" id="precoCusto" placeholder="R$ 00,00" value="" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="precoVenda">Estoque Atual<h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.EstoqueAtual" id="estoqueAtual" placeholder="" class="form-control input-md" type="number">
+                        <input name="produto.EstoqueAtual" id="estoqueAtual" placeholder="" class="form-control input-md" type="number">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="limiteEstoque">Limite de Estoque<h11></h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.LimiteEstoque" id="limiteEstoque"placeholder="" class="form-control input-md" type="number">
+                        <input name="produto.LimiteEstoque" id="limiteEstoque"placeholder="" class="form-control input-md" type="number">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="observacoes">Descrição</label>
                     <div class="col-md-3">
-                        <textarea asp-for="@Model.Descricao" id="observacoes" class="form-control input-md" type="text"></textarea>
+                        <textarea name="produto.Descricao" id="observacoes" class="form-control input-md" type="text"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="dataFabricacao">Data Fabricação</label>
                     <div class="col-md-2">
-                        <input asp-for="@Model.DataFabricacao" id="dataFabricacao" placeholder="DD/MM/AAAA" class="form-control input-md" type="date" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+                        <input name="produto.DataFabricacao" id="dataFabricacao" placeholder="DD/MM/AAAA" class="form-control input-md" type="date" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Validade">Validade<h11>*</h11></label>
                     <div class="col-md-2">
-                        <input asp-for="@Model.Validade" id="Validade" placeholder="DD/MM/AAAA" class="form-control input-md" type="date" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+                        <input name="produto.Validade" id="Validade" placeholder="DD/MM/AAAA" class="form-control input-md" type="date" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="trocapontos">Troca por Pontos</label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.QtdPontosProgFidelidade" id="trocapontos" placeholder="" class="form-control input-md" type="text">
+                        <input name="produto.QtdPontosProgFidelidade" id="trocapontos" placeholder="" class="form-control input-md" type="text">
                     </div>
                 </div>
 
@@ -119,7 +117,6 @@
                         <button id="Cancelar" name="Cancelar" class="btn btn-danger" type="reset">Cancelar</button>
                     </div>
                     <fieldset id=""></fieldset>
-
                 </div>
             </div>
             <fieldset id="panel-body"></fieldset>
