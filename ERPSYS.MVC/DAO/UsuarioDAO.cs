@@ -3,6 +3,7 @@ using ERPSYS.MVC.Interfaces;
 using ERPSYS.MVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using ERPSYS.Common;
 
@@ -101,12 +102,12 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public Usuario Teste()
+        public SqlDataReader Teste()
         {
-            var query = new Query("SELECT * FROM PESSOAS");
-            DbEntity result = query.Execute();
-            var user = result.ConvertToModel<Usuario>();
-            return user.FirstOrDefault();
+            var query = new Query("SELECT ID, SENHA FROM USUARIOS");
+            var result = query.Execute();
+            //var user = result.ConvertToModel<Usuario>();
+            return result;
         }
     }
 }

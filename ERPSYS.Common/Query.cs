@@ -28,28 +28,27 @@ namespace ERPSYS.Common
             _cmd.Parameters.Add(param);
         }
 
-        public DbEntity Execute()
+        public SqlDataReader Execute()
         {
             try
             {
-                OpenConnection();
-                _cmd = new SqlCommand(_query, _sqlConnection);
-                reader = _cmd.ExecuteReader();
-                return new DbEntity(reader);
+                using (var connection = new SqlConnection(Application.DbConnectionString))
+                {
+                    connection.Open();
+                    _cmd = new SqlCommand(_query, connection);
+                    reader = _cmd.ExecuteReader();
+                    //DbEntity dbEntity = new DbEntity();
+                    //dbEntity.SetDataReader(reader);
+                    return reader;    
+                }
+                
             }
             finally
-            {/*
+            {
                 // Fecha o datareader
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-
+                //reader?.Close();
                 // Fecha a conexão
-                if (_sqlConnection != null)
-                {
-                    _sqlConnection.Close();
-                }*/
+                //_sqlConnection?.Close();
             }
         }
 
