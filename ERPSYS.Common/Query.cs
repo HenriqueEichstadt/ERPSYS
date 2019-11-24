@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace ERPSYS.Common
 
         public Query(string query)
         {
-           // Parameters = new Parameter();
+            // Parameters = new Parameter();
             _query = query;
         }
 
@@ -35,13 +36,24 @@ namespace ERPSYS.Common
                 using (var connection = new SqlConnection(Application.DbConnectionString))
                 {
                     connection.Open();
-                    _cmd = new SqlCommand(_query, connection);
-                    reader = _cmd.ExecuteReader();
+                    using (_cmd = connection.CreateCommand())
+                    {
+                        _cmd.CommandText = _query;
+                        //reader = _cmd.ExecuteReader();
+
+                        using (var reader = _cmd.ExecuteReader(CommandBehavior.Default))
+                        {
+                            reader.Read();
+                            int ordinal = reader.GetOrdinal("SENHA");
+                            var senha = reader.GetValue(ordinal);
+                            string nome = "teste";
+                        }
+                    }
+
                     //DbEntity dbEntity = new DbEntity();
-                    //dbEntity.SetDataReader(reader);
-                    return reader;    
+                    
+                    return reader;
                 }
-                
             }
             finally
             {
@@ -57,6 +69,5 @@ namespace ERPSYS.Common
             _sqlConnection = new SqlConnection(Application.DbConnectionString);
             _sqlConnection.Open();
         }
-
     }
 }

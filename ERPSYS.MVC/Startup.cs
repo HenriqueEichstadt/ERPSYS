@@ -60,7 +60,7 @@ namespace ERPSYS
                 .AddSessionStateTempDataProvider();
             
             // Registrar Connection String para acesso ao banco de dados
-            Application.DbConnectionString = Configuration.GetConnectionString("Company");
+            Application.DbConnectionString = Configuration.GetConnectionString("Default");
             
             services.ConfigureApplicationCookie(options => options.LoginPath = "/login");
             // Registrar as Injeções de dependências
