@@ -3,6 +3,7 @@
 @{
     var nome = Startup.Session.GetString("USERNAME");
     var nivelAcesso = Startup.Session.GetString("NIVELACESSO");
+    var userId = Startup.Session.GetString("ID");
 }
 <!DOCTYPE html>
 <html>
@@ -59,12 +60,12 @@
                     </a>
                     <ul class="dropdown-menu logged-user-menu">
                         <li>
-                            <a href="/Usuario/MeusDados">
+                            <a href="#" onclick="editProfile()">
                                 <i class="ti-user"></i> <span>Meu Perfil</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" onclick="logOut();">
+                            <a href="#" onclick="logOut()">
                                 <i class="ti-power-off"></i> <span>Sair</span>
                             </a>
                         </li>
@@ -346,6 +347,12 @@
         function encerrar(login) {
             if (login.logOut == true) {
                 location.href = "/Login";
+            }
+        }
+        
+        function editProfile(){
+            if(@userId != null && @userId != ""){
+                location.href = "/Usuario/Editar/" + @userId;
             }
         }
     </script>

@@ -10,30 +10,30 @@ namespace ERPSYS.MVC.Models
 {
     public partial class Usuario : EntityModel, IUsuario
     {
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(5, ErrorMessage = "O Nome deve ter no mínimo 5 caracteres")]
-        [MaxLength(50, ErrorMessage = "O Nome deve ter no máximo 50 caracteres")]
+        [Required]
+        [MinLength(5)]
+        [MaxLength(50)]
         public string Nome { get; set; }
         
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(5, ErrorMessage = "O Apelido deve ter no mínimo 5 caracteres")]
-        [MaxLength(40, ErrorMessage = "O Apelido deve ter no máximo 40 caracteres")]
+        [Required]
+        [MinLength(5)]
+        [MaxLength(40)]
         public string Apelido { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(5, ErrorMessage = "O Email deve ter no mínimo 5 caracteres")]
-        [MaxLength(100, ErrorMessage = "O Email deve ter no máximo 100 caracteres")]
-        [EmailAddress(ErrorMessage = "Preencha com um email válido")]
+        [Required()]
+        [MinLength(5)]
+        [MaxLength(100)]
+        [EmailAddress]
         public string Email { get; set; }
         
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(5, ErrorMessage = "A Senha deve ter no mínimo 5 caracteres")]
-        [MaxLength(30, ErrorMessage = "A Senha deve ter no máximo 30 caracteres")]
+        [Required()]
+        [MinLength(5)]
+        [MaxLength(30)]
         public string Senha { get; set; }
         
         public bool Ativo { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Required]
         public char NivelAcesso { get; set; }
     }
 }

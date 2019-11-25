@@ -11,18 +11,11 @@ namespace ERPSYS.MVC.Controllers
     {
         [Inject] public IProduto Produto { get; set; }
         [Inject] public IProdutoDAO ProdutoDao { get; set; }
-        [Inject] public IMyActivator MyActivator { get; set; }
-        
-        public IActionResult Novo()
-        {
-            return View();
-        }
 
-        public IActionResult Cadastrados()
-        {
-            var produtos = ProdutoDao.ListAll();
-            return View(produtos);
-        }
+        public IActionResult Novo() => View();
+
+            public IActionResult Cadastrados() => View();
+        
 
         public IActionResult Editar(int id)
         {

@@ -11,24 +11,18 @@ namespace ERPSYS.MVC.Controllers
     {
         [Inject] public IUsuario Usuario { get; set; }
         [Inject] public IUsuarioDAO UsuarioDao { get; set; }
-        [Inject] public IMyActivator MyActivator { get; set; }
 
-        public IActionResult Cadastrados()
-        {
-            var usuarios = UsuarioDao.ListAll();
-            return View(usuarios);
-        }
-
-        public IActionResult Novo()
-        {
-            Usuario = MyActivator.CreateInstance<Usuario>();
-            return View((Usuario) Usuario);
-        }
+        public IActionResult Cadastrados() => View();
+        
+        public IActionResult Novo() => View();
+        
 
         public IActionResult Editar(int id)
         {
             Usuario = UsuarioDao.GetById(id);
-            return View(Usuario);
+            ViewBag.usuario = Usuario;
+            ViewData["USER"] = Usuario;
+            return View();
         }
 
         [HttpPost]
@@ -37,7 +31,7 @@ namespace ERPSYS.MVC.Controllers
             if (usuario.Senha != senhaRepetida)
                 return Json(new
                 {
-                    data = new {add = false, message = "As senhas n„o coincidem"}
+                    data = new {add = false, message = "As senhas n√£o coincidem"}
                 });
             
             usuario.AtribuirDadosInclusao();
@@ -46,7 +40,7 @@ namespace ERPSYS.MVC.Controllers
                 UsuarioDao.Add(usuario);
                 return Json(new
                 {
-                    data = new {add = true, message = "Usu·rio cadastrado com sucesso!"}
+                    data = new {add = true, message = "Usu√°rio cadastrado com sucesso!"}
                 });
             }
 
@@ -71,7 +65,7 @@ namespace ERPSYS.MVC.Controllers
             if (usuario.Senha != senhaRepetida)
                 return Json(new
                 {
-                    data = new {add = false, message = "As senhas n„o coincidem"}
+                    data = new {add = false, message = "As senhas n√£o coincidem"}
                 });
 
             usuario.AtribuirDadosAlteracao();
@@ -80,7 +74,7 @@ namespace ERPSYS.MVC.Controllers
                 UsuarioDao.Update(usuario);
                 return Json(new
                 {
-                    data = new {add = true, message = "Usu·rio editado com sucesso!"}
+                    data = new {add = true, message = "Usu√°rio editado com sucesso!"}
                 });
             }
 

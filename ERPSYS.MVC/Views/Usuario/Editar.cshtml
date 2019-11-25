@@ -1,4 +1,3 @@
-@model Usuario
 <title>Edição de usuário</title>
 <div class="main-content">
     <div class="content-heading clearfix">
@@ -19,7 +18,7 @@
         </ul>
     </div>
 
-    <form asp-action="UpdateUsuario" id="FormAdd" method="post">
+    <form action="/Usuario/UpdateUsuario" id="FormAdd" method="post">
         <div class="form-horizontal">
             <div class="panel-body">
                 <div class="form-group">
@@ -36,47 +35,73 @@
                     </div>
                 </div>
 
-
-                <input asp-for="@Model.Ativo" id="clienteAtivo" type="hidden" readonly>
-                <input asp-for="@Model.DataInclusao" id="clienteDataInclusao" type="hidden" readonly>
-                <input asp-for="@Model.DataAlteracao" id="clienteDataAlteracao" type="hidden" readonly>
-                <input asp-for="@Model.UsuarioInclusaoId" id="clienteUsuarioInclusaoId" type="hidden" readonly>
-                <input asp-for="@Model.UsuarioAlteracaoId" id="clienteUsuarioAlteracaoId" type="hidden" readonly>
+                @{
+                    string val = string.Empty;
+                    if (ViewBag.usuario.Ativo == true)
+                    {
+                        val = "True";
+                    }
+                    else
+                    {
+                        val = "False";
+                    }
+                    <input name="usuario.Ativo" value="@val" id="clienteAtivo" type="hidden" readonly>
+                }
+                
+                
+                <input name="usuario.DataInclusao" value="@ViewBag.usuario.DataInclusao" id="clienteDataInclusao" type="hidden" readonly>
+                <input name="usuario.DataAlteracao" value="@ViewBag.usuario.DataAlteracao" id="clienteDataAlteracao" type="hidden" readonly>
+                <input name="usuario.UsuarioInclusaoId" value="@ViewBag.usuario.UsuarioInclusaoId" id="clienteUsuarioInclusaoId" type="hidden" readonly>
+                <input name="usuario.UsuarioAlteracaoId" value="@ViewBag.usuario.UsuarioAlteracaoId"id="clienteUsuarioAlteracaoId" type="hidden" readonly>
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="id">Id <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.Id" id="id" readonly class="form-control input-md" type="text">
+                        <input name="usuario.Id" value="@ViewBag.usuario.Id" id="id" readonly class="form-control input-md" type="text">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-2 control-label">Nivel de acesso <h11>*</h11></label>
                     <div class="col-md-4">
-                        <label class="radio-inline" for="funcionarioNivelAcessoA">
-                            <input asp-for="@Model.NivelAcesso" value="A" id="funcionarioNivelAcessoA" type="radio">
-                            Administrador
-                        </label>
-                        <label class="radio-inline" for="funcionarioNivelAcessoN">
-                            <input asp-for="@Model.NivelAcesso" id="funcionarioNivelAcessoN" value="N" type="radio">
-                            Normal
-                        </label>
-                        <span asp-validation-for="NivelAcesso" class="text-danger"></span>
+                        @{
+                            if (@ViewBag.usuario.NivelAcesso.Equals('A'))
+                            {
+                                <label class="radio-inline" for="funcionarioNivelAcessoA">
+                                    <input name="usuario.NivelAcesso" id="funcionarioNivelAcessoA" value="A" type="radio" checked>
+                                    Administrador
+                                </label>
+                                <label class="radio-inline" for="funcionarioNivelAcessoN">
+                                    <input name="usuario.NivelAcesso" id="funcionarioNivelAcessoN" value="N" type="radio">
+                                    Normal
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="radio-inline" for="funcionarioNivelAcessoA">
+                                    <input name="usuario.NivelAcesso" id="funcionarioNivelAcessoA" value="A" type="radio">
+                                    Administrador
+                                </label>
+                                <label class="radio-inline" for="funcionarioNivelAcessoN">
+                                    <input name="usuario.NivelAcesso" id="funcionarioNivelAcessoN" value="N" type="radio" checked>
+                                    Normal
+                                </label>
+                            }
+
+                        }
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Nome">Nome <h11>*</h11></label>
                     <div class="col-md-5">
-                        <input asp-for="@Model.Nome" id="Nome" placeholder="Nome do funcionário" class="form-control input-md" type="text">
-                        <span asp-validation-for="Nome" class="text-danger"></span>
+                        <input name="usuario.Nome" value="@ViewBag.usuario.Nome" id="Nome" placeholder="Nome do funcionário" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="apelido">Apelido <h11>*</h11></label>
                     <div class="col-md-5">
-                        <input asp-for="@Model.Apelido" id="apelido" placeholder="Nome do funcionário" class="form-control input-md" type="text">
-                        <span asp-validation-for="Apelido" class="text-danger"></span>
+                        <input name="usuario.Apelido" value="@ViewBag.usuario.Apelido" id="apelido" placeholder="Nome do funcionário" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <div class="form-group">
@@ -86,8 +111,7 @@
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-envelope"></i>
                             </span>
-                            <input asp-for="@Model.Email" id="email" class="form-control" placeholder="funcionario@email.com" type="email">
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <input name="usuario.Email" value="@ViewBag.usuario.Email" id="email" class="form-control" placeholder="funcionario@email.com" type="email">
                         </div>
                     </div>
                 </div>
@@ -95,14 +119,13 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Nome">Senha <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.Senha" id="senhaPrincipal" placeholder="Digite sua senha" class="form-control input-md" type="password">
-                        <span asp-validation-for="Senha" class="text-danger"></span>
+                        <input name="usuario.Senha" value="@ViewBag.usuario.Senha" id="senhaPrincipal" placeholder="Digite sua senha" class="form-control input-md" type="password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="senhaDois">Repita a senha <h11>*</h11></label>
+                    <label class="col-md-2 control-label" for="senhaRepetida">Repita a senha <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input id="senhaDois" name="senhaRepetida" placeholder="Digite sua senha novamente" class="form-control input-md" type="password">
+                        <input id="senhaRepetida" name="senhaRepetida" placeholder="Digite sua senha novamente" class="form-control input-md" type="password">
                     </div>
                 </div>
                 <!-- Botão Cadastrar e Cancelar -->

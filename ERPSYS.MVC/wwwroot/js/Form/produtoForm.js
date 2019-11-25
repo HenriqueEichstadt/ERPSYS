@@ -31,13 +31,12 @@ Page = (function () {
     }
 
     function calculatePoints() {
-        if($("#precoVenda").val() != ""){
+        if ($("#precoVenda").val() != "") {
             let precoVendaText = $("#precoVenda").val().replace(',', '.');
             let precoVenda = parseFloat(precoVendaText);
             let pontos = precoVenda * 100;
-            $("#trocapontos").val(pontos);        
-        }
-        else{
+            $("#trocapontos").val(pontos);
+        } else {
             $("#trocapontos").val('');
         }
     }
@@ -97,7 +96,20 @@ Page = (function () {
                 "produto.EstoqueAtual": {
                     required: "Campo obrigatório",
                 },
-            }
+            },
+            errorPlacement: function (label, element) {
+                label.addClass('alert alert-danger validationErrorMessage');
+                label.prop("role", "alert");
+                label.insertAfter(element);
+            },
+            wrapper: 'div',
+            errorClass: 'campoInvalido',
+            highlight: function (element, errorClass) {
+                $(element).addClass(errorClass);
+            },
+            unhighlight: function (element, errorClass) {
+                $(element).removeClass(errorClass);
+            },
         });
     }
     
@@ -107,4 +119,5 @@ Page = (function () {
         LoadValidations: loadValidations,
         CalculatePoints: calculatePoints
     };
-})();
+})
+();
