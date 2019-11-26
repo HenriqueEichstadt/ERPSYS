@@ -34,30 +34,17 @@
                         <h3>Dados do Funcionário:</h3>
                     </div>
                 </div>
-
-                @{
-                    string val = string.Empty;
-                    if (ViewBag.usuario.Ativo == true)
-                    {
-                        val = "True";
-                    }
-                    else
-                    {
-                        val = "False";
-                    }
-                    <input name="usuario.Ativo" value="@val" id="clienteAtivo" type="hidden" readonly>
-                }
                 
-                
-                <input name="usuario.DataInclusao" value="@ViewBag.usuario.DataInclusao" id="clienteDataInclusao" type="hidden" readonly>
-                <input name="usuario.DataAlteracao" value="@ViewBag.usuario.DataAlteracao" id="clienteDataAlteracao" type="hidden" readonly>
-                <input name="usuario.UsuarioInclusaoId" value="@ViewBag.usuario.UsuarioInclusaoId" id="clienteUsuarioInclusaoId" type="hidden" readonly>
-                <input name="usuario.UsuarioAlteracaoId" value="@ViewBag.usuario.UsuarioAlteracaoId"id="clienteUsuarioAlteracaoId" type="hidden" readonly>
+                <input name="usuario.Ativo" value="@ViewBag.Usuario.Ativo.ToString()" type="hidden">
+                <input name="usuario.DataInclusao" value="@ViewBag.Usuario.DataInclusao" type="hidden" readonly>
+                <input name="usuario.DataAlteracao" value="@ViewBag.Usuario.DataAlteracao" type="hidden" readonly>
+                <input name="usuario.UsuarioInclusaoId" value="@ViewBag.Usuario.UsuarioInclusaoId" type="hidden" readonly>
+                <input name="usuario.UsuarioAlteracaoId" value="@ViewBag.Usuario.UsuarioAlteracaoId" type="hidden" readonly>
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="id">Id <h11>*</h11></label>
-                    <div class="col-md-3">
-                        <input name="usuario.Id" value="@ViewBag.usuario.Id" id="id" readonly class="form-control input-md" type="text">
+                    <div class="col-md-2">
+                        <input name="usuario.Id" value="@ViewBag.Usuario.Id" id="id" readonly class="form-control input-md text-center" type="text">
                     </div>
                 </div>
                 <!-- Text input-->
@@ -65,7 +52,7 @@
                     <label class="col-md-2 control-label">Nivel de acesso <h11>*</h11></label>
                     <div class="col-md-4">
                         @{
-                            if (@ViewBag.usuario.NivelAcesso.Equals('A'))
+                            if (@ViewBag.Usuario.NivelAcesso.Equals('A'))
                             {
                                 <label class="radio-inline" for="funcionarioNivelAcessoA">
                                     <input name="usuario.NivelAcesso" id="funcionarioNivelAcessoA" value="A" type="radio" checked>
@@ -95,13 +82,13 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Nome">Nome <h11>*</h11></label>
                     <div class="col-md-5">
-                        <input name="usuario.Nome" value="@ViewBag.usuario.Nome" id="Nome" placeholder="Nome do funcionário" class="form-control input-md" type="text">
+                        <input name="usuario.Nome" value="@ViewBag.Usuario.Nome" id="Nome" placeholder="Nome do funcionário" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="apelido">Apelido <h11>*</h11></label>
                     <div class="col-md-5">
-                        <input name="usuario.Apelido" value="@ViewBag.usuario.Apelido" id="apelido" placeholder="Nome do funcionário" class="form-control input-md" type="text">
+                        <input name="usuario.Apelido" value="@ViewBag.Usuario.Apelido" id="apelido" placeholder="Nome do funcionário" class="form-control input-md" type="text">
                     </div>
                 </div>
                 <div class="form-group">
@@ -111,7 +98,7 @@
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-envelope"></i>
                             </span>
-                            <input name="usuario.Email" value="@ViewBag.usuario.Email" id="email" class="form-control" placeholder="funcionario@email.com" type="email">
+                            <input name="usuario.Email" value="@ViewBag.Usuario.Email" id="email" class="form-control" placeholder="funcionario@email.com" type="email">
                         </div>
                     </div>
                 </div>
@@ -119,7 +106,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Nome">Senha <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input name="usuario.Senha" value="@ViewBag.usuario.Senha" id="senhaPrincipal" placeholder="Digite sua senha" class="form-control input-md" type="password">
+                        <input name="usuario.Senha" value="@ViewBag.Usuario.Senha" id="senhaPrincipal" placeholder="Digite sua senha" class="form-control input-md" type="password">
                     </div>
                 </div>
                 <div class="form-group">

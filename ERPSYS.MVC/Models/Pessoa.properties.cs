@@ -10,11 +10,10 @@ namespace ERPSYS.MVC.Models
 {
     public partial class Pessoa : EntityModel, IPessoa
     {
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Required]
         public char TipoPessoa { get; set; }
         
-        [MinLength(5, ErrorMessage = "O Nome deve ter no mínimo 5 caracteres")]
-        [MaxLength(100, ErrorMessage = "O Nome deve ter no máximo 100 caracteres")]
+        [MinLength(5), MaxLength(100)]
         public string Nome { get; set; }
         
         [DataType(DataType.Date)]
@@ -22,46 +21,34 @@ namespace ERPSYS.MVC.Models
         
         public char? Genero { get; set; }
 
-        [MaxLength(15, ErrorMessage = "O RG deve ter no máximo 15 caracteres")]
+        [MaxLength(15)]
         public string RG { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(11, ErrorMessage = "O campo ter no mínimo 11 caracteres")]
-        [MaxLength(18, ErrorMessage = "O campo deve ter no máximo 18 caracteres")]
+        [Required, MinLength(11), MaxLength(18)]
         public string CPFCNPJ { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(10, ErrorMessage = "O Email deve ter no mínimo 10 caracteres")]
-        [MaxLength(100, ErrorMessage = "O Email deve ter no máximo 100 caracteres")]
-        [EmailAddress(ErrorMessage = "Digite um email válido")]
+        [Required, MinLength(10), MaxLength(100), EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(10, ErrorMessage = "O Telefone deve ter no mínimo 10 caracteres")]
-        [MaxLength(14, ErrorMessage = "O Telefone deve ter no máximo 14 caracteres")]
+        [Required, MinLength(10), MaxLength(14)]
         public string TelefoneUm { get; set; }
 
-        [MinLength(10, ErrorMessage = "O Telefone deve ter no mínimo 10 caracteres")]
-        [MaxLength(14, ErrorMessage = "O Telefone deve ter no máximo 14 caracteres")]
+        [MinLength(10), MaxLength(14)]
         public string TelefoneDois { get; set; }
 
-        [MinLength(5, ErrorMessage = "O Nome Fantasia deve ter no mínimo 5 caracteres")]
-        [MaxLength(50, ErrorMessage = "O Nome Fantasia deve ter no máximo 50 caracteres")]
+        [MinLength(5), MaxLength(50)]
         public string NomeFantasia { get; set; }
 
-        [MinLength(5, ErrorMessage = "O Nome da Razão social deve ter no mínimo 5 caracteres")]
-        [MaxLength(50, ErrorMessage = "O Nome da Razão social deve ter no máximo 50 caracteres")]
+        [MinLength(5), MaxLength(50)]
         public string NomeRazaoSocial { get; set; }
 
-        [MinLength(5, ErrorMessage = "A Inscrição estadual deve ter no mínimo 5 caracteres")]
-        [MaxLength(50, ErrorMessage = "A Inscrição estadual deve ter no máximo 50 caracteres")]
+        [MinLength(5), MaxLength(50)]
         public string InscricaoEstadual { get; set; }
 
-
-        [MaxLength(200, ErrorMessage = "As observações devem ter no máximo 200 caractetes")]
+        [MaxLength(200)]
         public string Observacoes { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Required]
         public bool Ativo { get; set; }
 
         public Endereco Endereco { get; set; }

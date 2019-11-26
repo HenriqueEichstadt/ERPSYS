@@ -1,4 +1,3 @@
-@model Pessoa
 <title>Cadastro de fornecedor</title>
 <div class="main-content">
     <div class="content-heading clearfix">
@@ -13,7 +12,7 @@
         </ul>
     </div>
 
-    <form asp-action="AdicionarNovo" id="FormAdd" method="post">
+    <form action="/Fornecedor/AdicionarNovo" id="FormAdd" method="post">
         <main class="form-horizontal">
             <div class="panel-body">
                 <div class="form-group">
@@ -33,8 +32,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="nome">Nome do vendedor <h11></h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.Nome" id="nome" placeholder="Opcional" class="form-control input-md" type="text">
-                        <span asp-validation-for="Nome" class="text-danger"></span>
+                        <input for="pessoa.Nome" id="nome" placeholder="Opcional" class="form-control input-md" type="text">
                     </div>
                 </div>
 
@@ -42,24 +40,21 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="nomeEmpresa">Empresa <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.NomeFantasia" id="nomeEmpresa" placeholder="Nome da Empresa" class="form-control input-md" type="text">
-                        <span asp-validation-for="NomeFantasia" class="text-danger"></span>
+                        <input for="pessoa.NomeFantasia" id="nomeEmpresa" placeholder="Nome da Empresa" class="form-control input-md" type="text">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="razaoSocial">Razão Social <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.NomeRazaoSocial" id="razaoSocial" placeholder="Razão Social" class="form-control input-md" type="search">
-                        <span asp-validation-for="NomeRazaoSocial" class="text-danger"></span>
+                        <input for="pessoa.NomeRazaoSocial" id="razaoSocial" placeholder="Razão Social" class="form-control input-md" type="search">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="inscricaoEstadual">Inscrição Estadual <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.InscricaoEstadual" id="inscricaoEstadual" placeholder="Inscrição Estadual" class="form-control input-md" type="search">
-                        <span asp-validation-for="InscricaoEstadual" class="text-danger"></span>
+                        <input for="pessoa.InscricaoEstadual" id="inscricaoEstadual" placeholder="Inscrição Estadual" class="form-control input-md" type="search">
                     </div>
                 </div>
 
@@ -68,8 +63,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="CpfeCnpj">CNPJ <h11>*</h11></label>
                     <div class="col-md-3">
-                        <input asp-for="@Model.CPFCNPJ" id="CpfeCnpj" placeholder="Digite o CNPJ" onkeyup="confereCNPJ(this)" class="form-control input-md" type="text">
-                        <span asp-validation-for="CPFCNPJ" class="text-danger"></span>
+                        <input for="pessoa.CPFCNPJ" id="CpfeCnpj" placeholder="Digite o CNPJ" onkeyup="confereCNPJ(this)" class="form-control input-md" type="text">
                         <span id="cnpjFrase"></span>
                     </div>
 
@@ -81,16 +75,14 @@
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input asp-for="@Model.TelefoneUm" id="telefoneUm" class="form-control" placeholder="(XX)XXXXX-XXXX" type="text">
-                            <span asp-validation-for="TelefoneUm" class="text-danger"></span>
+                            <input for="pessoa.TelefoneUm" id="telefoneUm" class="form-control" placeholder="(XX)XXXXX-XXXX" type="text">
                         </div>
                     </div>
                     <label class="col-md-1 control-label" for="telefoneDois">Telefone 2 <h11></h11></label>
                     <div class="col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input asp-for="@Model.TelefoneDois" id="telefoneDois" class="form-control" placeholder="(XX)XXXXX-XXXX" type="text">
-                            <span asp-validation-for="TelefoneDois" class="text-danger"></span>
+                            <input for="pessoa.TelefoneDois" id="telefoneDois" class="form-control" placeholder="(XX)XXXXX-XXXX" type="text">
                         </div>
                     </div>
                 </div>
@@ -99,16 +91,14 @@
                     <div class="col-md-5">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input asp-for="@Model.Email" id="email" class="form-control" placeholder="email@email.com" type="email">
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <input for="pessoa.Email" id="email" class="form-control" placeholder="email@email.com" type="email">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="observacoes">Observações</label>
                     <div class="col-md-5">
-                        <textarea asp-for="@Model.Observacoes" id="observacoes" placeholder="Opcional" class="form-control input-md" type="text"></textarea>
-                        <span asp-validation-for="Observacoes" class="text-danger"></span>
+                        <textarea for="pessoa.Observacoes" id="observacoes" placeholder="Opcional" class="form-control input-md" type="text"></textarea>
                     </div>
                 </div>
                 <hr>
@@ -122,8 +112,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label" for="Cep">CEP <h11>*</h11></label>
                 <div class="col-md-2">
-                    <input asp-for="@Model.Endereco.CEP" id="Cep" onfocusout="pesquisacep(Cep.value)" placeholder="Apenas números" class="form-control input-md" type="search" maxlength="8" pattern="[0-9]+$">
-                    <span asp-validation-for="Endereco.CEP" class="text-danger"></span>
+                    <input for="pessoa.Endereco.CEP" id="Cep" onfocusout="pesquisacep(Cep.value)" placeholder="Apenas números" class="form-control input-md" type="search" maxlength="8" pattern="[0-9]+$">
                 </div>
                 <div class="col-md-2">
                     <button type="button" class="btn btn-primary" onclick="pesquisacep(Cep.value)">Pesquisar</button>
@@ -136,16 +125,14 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Rua</span>
-                        <input asp-for="@Model.Endereco.Rua" id="rua" class="form-control" placeholder="" type="text">
-                        <span asp-validation-for="Endereco.Rua" class="text-danger"></span>
+                        <input for="pessoa.Endereco.Rua" id="rua" class="form-control" placeholder="" type="text">
                     </div>
 
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">Nº <h11>*</h11></span>
-                        <input asp-for="@Model.Endereco.Numero" id="numero" class="form-control" placeholder="" type="text">
-                        <span asp-validation-for="Endereco.Numero" class="text-danger"></span>
+                        <input for="pessoa.Endereco.Numero" id="numero" class="form-control" placeholder="" type="text">
                     </div>
 
                 </div>
@@ -153,8 +140,7 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Bairro</span>
-                        <input asp-for="@Model.Endereco.Bairro" id="bairro" class="form-control" placeholder="" type="text">
-                        <span asp-validation-for="Endereco.Bairro" class="text-danger"></span>
+                        <input for="pessoa.Endereco.Bairro" id="bairro" class="form-control" placeholder="" type="text">
                     </div>
 
                 </div>
@@ -165,8 +151,7 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Cidade</span>
-                        <input asp-for="@Model.Endereco.Cidade" id="cidade" class="form-control" placeholder="" type="text">
-                        <span asp-validation-for="Endereco.Cidade" class="text-danger"></span>
+                        <input for="pessoa.Endereco.Cidade" id="cidade" class="form-control" placeholder="" type="text">
                     </div>
 
                 </div>
@@ -174,16 +159,14 @@
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">Estado</span>
-                        <input asp-for="@Model.Endereco.Estado" id="estado" class="form-control" placeholder="" type="text">
-                        <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
+                        <input for="pessoa.Endereco.Estado" id="estado" class="form-control" placeholder="" type="text">
                     </div>
 
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Complemento</span>
-                        <input asp-for="@Model.Endereco.Complemento" id="complemento" class="form-control" placeholder="" type="text">
-                        <span asp-validation-for="Endereco.Complemento" class="text-danger"></span>
+                        <input for="pessoa.Endereco.Complemento" id="complemento" class="form-control" placeholder="" type="text">
                     </div>
                 </div>
             </div>
@@ -204,6 +187,5 @@
 
 @section Scripts {
     <script src="~/Template/TemplateADMIN/assets/scripts/templateAdminScripts.js"></script>
-    <script src="~/js/Form/FormPessoa.js"></script>
+    <script src="~/js/Form/fornecedorForm.js"></script>
 }
-

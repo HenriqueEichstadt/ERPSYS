@@ -13,67 +13,33 @@ namespace ERPSYS.MVC.Controllers
         [Inject] public IPessoaDAO PessoaDao { get; set; }
         [Inject] public IMyActivator MyActivator { get; set; }
         
-        public IActionResult Cadastrados()
-        {
-            var fornecedores = PessoaDao.ListAll();
-            return View(fornecedores);
-        }
+        public IActionResult Cadastrados() => View();
 
         public IActionResult Novo()
         {
-            Pessoa = MyActivator.CreateInstance<Pessoa>();
-            Pessoa.Endereco = MyActivator.CreateInstance<IEndereco, Endereco>() as Endereco;
-            return View(Pessoa as Pessoa);
+            //ViewBag.Pessoa = new Pessoa();
+            //ViewBag.Pessoa.Endereco = new Endereco();
+            return View();
         }
 
         public IActionResult Editar(int id)
         {
-            var pessoa = PessoaDao.GetById(id);
-            return View(pessoa);
+            ViewBag.Pessoa = PessoaDao.GetById(id);
+            return View();
         }
-        
+
         [HttpPost]
-        public JsonResult AdicionarNovo(Pessoa pessoa)
-        {
-            pessoa.AtribuirDadosInclusao('J');
-            if (ModelState.IsValid)
-            {
-                PessoaDao.Add(pessoa);
-                return Json(new
-                {
-                    data = new { add = true, message = "Fornecedor cadastrado com sucesso!" }
-                });
-            }
-            ViewBag.Cliente = pessoa;
-            return Json(new
-            {
-                data = new { add = false, message = "Erro no cadastro", validate = ModelState.GetAllErrors()}
-            });
-        }
-        
+        public JsonResult AdicionarNovo(Pessoa pessoa) =>
+            ConsistirInformacoes(pessoa);
+
+        public JsonResult UpdateFornecedor(Pessoa pessoa) =>
+            ConsistirInformacoes(pessoa, false);
         
         public JsonResult ListarFornecedores()
         {
             return Json(new
             {
                 data = PessoaDao.ListFornecedores()
-            });
-        }
-        
-        public JsonResult UpdateFornecedor(Pessoa pessoa)
-        {
-            pessoa.AtribuirDadosAlteracao();
-            if (ModelState.IsValid)
-            {
-                PessoaDao.Update(pessoa); 
-                return Json(new
-                {
-                    data = new { add = true, message = "Fornecedor editado com sucesso!" }
-                });
-            }
-            return Json(new
-            {
-                data = new { add = false, message = "Erro no cadastro", validate = ModelState.GetAllErrors()}
             });
         }
 
@@ -92,6 +58,37 @@ namespace ERPSYS.MVC.Controllers
             return Json(new
             {
                 data = new { Ativou = true }
+            });
+        }
+
+        private JsonResult ConsistirInformacoes(Pessoa pessoa, bool insertMode = true)
+        {
+            string str;
+            if (insertMode)
+            {
+                pessoa.AtribuirDadosInclusao('J');
+                str = "cadastrado";
+            }
+            else
+            {
+                pessoa.AtribuirDadosAlteracao();
+                str = "editado";
+            }
+
+            if (ModelState.IsValid)
+            {
+                if (insertMode)
+                    PessoaDao.Add(pessoa);
+                else
+                    PessoaDao.Update(pessoa);
+                return Json(new
+                {
+                    data = new { add = true, message = $"Fornecedor {str} com sucesso!" }
+                });
+            }
+            return Json(new
+            {
+                data = new { add = false, message = "Erro no cadastro", validate = ModelState.GetAllErrors()}
             });
         }
     }
