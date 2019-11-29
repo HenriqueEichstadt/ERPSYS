@@ -102,12 +102,13 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public IEnumerable<DbEntity> Teste()
+        public Usuario Teste()
         {
             var query = new Query("SELECT * FROM USUARIOS");
-            var result = query.Execute();
-            //var user = result.ConvertToModel<Usuario>();
-            return result;
+            DbEntity result = query.Execute().FirstOrDefault();
+            var user = new Usuario();
+            //user.Id = result["ID"];
+            return null; //result;
         }
     }
 }

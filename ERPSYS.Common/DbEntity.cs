@@ -50,14 +50,62 @@ namespace ERPSYS.Common
 
         public object this[string field]
         {
-            get
-            {
-                return this._dbFields;
-            }
-            set
-            {
-                _dbFields.Add(field, value);
-            }
+            get { return RetornaObjetoCasoExista(field); }
+            set { _dbFields.Add(field, value); }
         }
+
+        private object RetornaObjetoCasoExista(string field)
+        {
+            if (!_dbFields.ContainsKey(field))
+                throw new Exception("Campo não enocntrado");
+                
+                return _dbFields[field];
+        }
+
+        public object GetValue()
+        {
+            return null;
+        }
+
+        public int GetInt32()
+        {
+            Convert.ToInt32(this);
+        }
+
+       /* int GetValues(object[] values);
+
+        int GetOrdinal(string name);
+
+        bool GetBoolean(int i);
+
+        byte GetByte(int i);
+
+        long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length);
+
+        char GetChar(int i);
+
+        long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length);
+
+        Guid GetGuid(int i);
+
+        short GetInt16(int i);
+
+        
+
+        long GetInt64(int i);
+
+        float GetFloat(int i);
+
+        double GetDouble(int i);
+
+        string GetString(int i);
+
+        Decimal GetDecimal(int i);
+
+        DateTime GetDateTime(int i);
+
+        IDataReader GetData(int i);
+
+        bool IsDBNull(int i);*/
     }
 }

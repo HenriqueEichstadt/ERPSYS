@@ -33,7 +33,6 @@ namespace ERPSYS.Common
         {
             List<DbEntity> results = new List<DbEntity>();
             
-            
             try
             {
                 using (var connection = new SqlConnection(Application.DbConnectionString))
@@ -46,43 +45,24 @@ namespace ERPSYS.Common
                         while (reader.Read())
                         {
                             DbEntity dbEntity = new DbEntity();
-                            dbEntity["ID"] = reader["ID"];
-                            dbEntity["SENHA"] = reader["SENHA"];
-                            dbEntity["APELIDO"] = reader["APELIDO"];
+                            for (int field = 0; field < reader.FieldCount; field++)
+                            {
+                                var columnName = reader.GetName(field);
+                                dbEntity[columnName] = reader[columnName];
+                            }
                             results.Add(dbEntity);
                         }
+                        reader.Close();
                     }
-
-                        /*using (var reader = _cmd.ExecuteReader(CommandBehavior.Default))
-                        {
-                            while (reader.Read())
-                            {
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    var index = reader.GetOrdinal(i);
-                                    var item = reader.GetValue(index);
-                                    reader
-                                }   
-                            }
-                            
-                            
-                            int ordinal = reader.GetOrdinal("SENHA");
-                            var senha = reader.GetValue(ordinal);
-                            string nome = "teste";
-                        }*/
-                    
-
-                  
-                    return null;
+                    connection.Close();
                 }
             }
-            finally
+            catch(SqlException sqlEx)
             {
-                // Fecha o datareader
-                //reader?.Close();
-                // Fecha a conexão
-                //_sqlConnection?.Close();
+                throw new Exception("Erro ao executar comando SQL" + sqlEx.StackTrace);
             }
+
+            return results;
         }
 
         private void OpenConnection()
