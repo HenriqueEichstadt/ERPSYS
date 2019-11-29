@@ -14,8 +14,8 @@ namespace ERPSYS.Common
     public class DbEntity
     {
         private SqlDataReader _sqlDataReader;
-        private Dictionary<string, object> _dbFields = new Dictionary<string, object>();
-
+        private Dictionary<string, ColumnDb> _dbFields = new Dictionary<string, ColumnDb>();
+        
         //public SqlDataReader Field => _sqlDataReader;
 
         public DbEntity()
@@ -48,13 +48,13 @@ namespace ERPSYS.Common
             return obj;
         }
 
-        public object this[string field]
+        public ColumnDb this[string field]
         {
             get { return RetornaObjetoCasoExista(field); }
             set { _dbFields.Add(field, value); }
         }
 
-        private object RetornaObjetoCasoExista(string field)
+        private ColumnDb RetornaObjetoCasoExista(string field)
         {
             if (!_dbFields.ContainsKey(field))
                 throw new Exception("Campo não enocntrado");

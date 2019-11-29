@@ -107,8 +107,8 @@ namespace ERPSYS.MVC.DAO
             var query = new Query("SELECT * FROM USUARIOS");
             DbEntity result = query.Execute().FirstOrDefault();
             var user = new Usuario();
-            //user.Id = result["ID"];
-            return null; //result;
+            user.Nome = result["NOME"].GetString();
+            return user;
         }
     }
 }

@@ -48,7 +48,9 @@ namespace ERPSYS.Common
                             for (int field = 0; field < reader.FieldCount; field++)
                             {
                                 var columnName = reader.GetName(field);
-                                dbEntity[columnName] = reader[columnName];
+                                dbEntity[columnName].Name = columnName;
+                                dbEntity[columnName].Value = reader[columnName];
+                                dbEntity[columnName].Type = reader[columnName].GetType();
                             }
                             results.Add(dbEntity);
                         }
