@@ -29,30 +29,51 @@ namespace ERPSYS.Common
             _cmd.Parameters.Add(param);
         }
 
-        public SqlDataReader Execute()
+        public List<DbEntity> Execute()
         {
+            List<DbEntity> results = new List<DbEntity>();
+            
+            
             try
             {
                 using (var connection = new SqlConnection(Application.DbConnectionString))
                 {
                     connection.Open();
-                    using (_cmd = connection.CreateCommand())
-                    {
-                        _cmd.CommandText = _query;
-                        //reader = _cmd.ExecuteReader();
+                    _cmd = new SqlCommand(_query, connection);
 
-                        using (var reader = _cmd.ExecuteReader(CommandBehavior.Default))
+                    using (var reader = _cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            reader.Read();
-                            int ordinal = reader.GetOrdinal("SENHA");
-                            var senha = reader.GetValue(ordinal);
-                            string nome = "teste";
+                            DbEntity dbEntity = new DbEntity();
+                            dbEntity["ID"] = reader["ID"];
+                            dbEntity["SENHA"] = reader["SENHA"];
+                            dbEntity["APELIDO"] = reader["APELIDO"];
+                            results.Add(dbEntity);
                         }
                     }
 
-                    //DbEntity dbEntity = new DbEntity();
+                        /*using (var reader = _cmd.ExecuteReader(CommandBehavior.Default))
+                        {
+                            while (reader.Read())
+                            {
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    var index = reader.GetOrdinal(i);
+                                    var item = reader.GetValue(index);
+                                    reader
+                                }   
+                            }
+                            
+                            
+                            int ordinal = reader.GetOrdinal("SENHA");
+                            var senha = reader.GetValue(ordinal);
+                            string nome = "teste";
+                        }*/
                     
-                    return reader;
+
+                  
+                    return null;
                 }
             }
             finally

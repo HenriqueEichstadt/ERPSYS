@@ -102,9 +102,9 @@ namespace ERPSYS.MVC.DAO
             }
         }
 
-        public SqlDataReader Teste()
+        public IEnumerable<DbEntity> Teste()
         {
-            var query = new Query("SELECT ID, SENHA FROM USUARIOS");
+            var query = new Query("SELECT * FROM USUARIOS");
             var result = query.Execute();
             //var user = result.ConvertToModel<Usuario>();
             return result;
