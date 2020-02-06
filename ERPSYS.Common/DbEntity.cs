@@ -18,10 +18,6 @@ namespace ERPSYS.Common
         
         //public SqlDataReader Field => _sqlDataReader;
 
-        public DbEntity()
-        {
-        }
-
         public void Dispose()
         {
             _sqlDataReader?.Dispose();
@@ -51,13 +47,18 @@ namespace ERPSYS.Common
         public ColumnDb this[string field]
         {
             get { return RetornaObjetoCasoExista(field); }
-            set { _dbFields.Add(field, value); }
+            set => _dbFields.Add(field, value);
+        }
+
+        public void SetValue(string field, object value)
+        {
+            _dbFields.Add(field, value);
         }
 
         private ColumnDb RetornaObjetoCasoExista(string field)
         {
             if (!_dbFields.ContainsKey(field))
-                throw new Exception("Campo não enocntrado");
+                throw new Exception($"O Campo {field} não foi encontrado na lista de campos da entidade");
                 
                 return _dbFields[field];
         }
@@ -66,46 +67,5 @@ namespace ERPSYS.Common
         {
             return null;
         }
-
-        public int GetInt32()
-        {
-            Convert.ToInt32(this);
-        }
-
-       /* int GetValues(object[] values);
-
-        int GetOrdinal(string name);
-
-        bool GetBoolean(int i);
-
-        byte GetByte(int i);
-
-        long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length);
-
-        char GetChar(int i);
-
-        long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length);
-
-        Guid GetGuid(int i);
-
-        short GetInt16(int i);
-
-        
-
-        long GetInt64(int i);
-
-        float GetFloat(int i);
-
-        double GetDouble(int i);
-
-        string GetString(int i);
-
-        Decimal GetDecimal(int i);
-
-        DateTime GetDateTime(int i);
-
-        IDataReader GetData(int i);
-
-        bool IsDBNull(int i);*/
     }
 }

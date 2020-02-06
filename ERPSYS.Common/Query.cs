@@ -48,9 +48,15 @@ namespace ERPSYS.Common
                             for (int field = 0; field < reader.FieldCount; field++)
                             {
                                 var columnName = reader.GetName(field);
-                                dbEntity[columnName].Name = columnName;
-                                dbEntity[columnName].Value = reader[columnName];
-                                dbEntity[columnName].Type = reader[columnName].GetType();
+                                var columnDb = new ColumnDb();
+                                columnDb.Ordinal = field;
+                                columnDb.Name = columnName;
+                                columnDb.Value = reader[columnName];
+                                columnDb.Type = reader[columnName].GetType();
+                                //dbEntity[columnName].Ordinal = field;
+                                //dbEntity[columnName].Name = columnName;
+                                //dbEntity[columnName].Value = reader[columnName];
+                                //dbEntity[columnName].Type = reader[columnName].GetType();
                             }
                             results.Add(dbEntity);
                         }

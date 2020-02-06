@@ -108,6 +108,7 @@ namespace ERPSYS.MVC.DAO
             DbEntity result = query.Execute().FirstOrDefault();
             var user = new Usuario();
             user.Nome = result["NOME"].GetString();
+            user.Id = result["ID"].GetInt32();
             return user;
         }
     }
